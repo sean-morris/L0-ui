@@ -4,10 +4,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
  
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.berkeley.path</groupId>
-  <artifactId>scenario-editor</artifactId>
+  <artifactId>via-ui</artifactId>
   <version>0.101-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>scenario-editor</name>
+  <name>via-ui</name>
  
   <properties>
     <jettyVersion>7.2.0.v20101020</jettyVersion>
@@ -19,11 +19,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
       <artifactId>jetty-server</artifactId>
       <version>${jettyVersion}</version>
       <scope>provided</scope>	
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
     </dependency>
     <dependency>
       <groupId>edu.berkeley.path</groupId>
