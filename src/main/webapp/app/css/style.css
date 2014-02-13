@@ -1,4 +1,7 @@
+/* Override default body styles here */
 body {
     margin: 0;
+		border: 0;
+		padding: 0;
     text-align: center;
 }
