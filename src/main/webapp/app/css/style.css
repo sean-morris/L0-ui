@@ -5,3 +5,19 @@ body {
 		padding: 0;
     text-align: center;
 }
+
+.map-elements {
+  position:absolute;
+}
+
+.marker {
+  position:absolute;
+  width:20px;
+  height:20px;
+}
+
+.line {
+  position:absolute;
+  width:500px;
+  height:200px;
+}
