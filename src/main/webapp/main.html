@@ -12,10 +12,14 @@
     <!-- <d3> -->
     <script type="text/javascript" src="lib/d3/d3.v3.js"></script>
     <!-- Map APIs -->
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&sensor=false"></script>
     <!-- <application> -->
     <script type="text/javascript" src="app/app.js"></script>
 </head>
 <body>
+    <div id="map-tile-control" class="map-control"></div>
+    <div id="map-tile-control-menu" class="map-control"></div>
+    <div id="map-zoom-control" class="map-control"></div>
+    <div id="main-map-tile" class="map-tiles"></div>
 </body>
 </html>

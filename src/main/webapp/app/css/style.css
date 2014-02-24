@@ -1,7 +1,23 @@
 /* Override default body styles here */
 body {
-    margin: 0;
-		border: 0;
-		padding: 0;
-		text-align: center;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.map-elements {
+  position:absolute;
+}
+
+.marker {
+  position:absolute;
+  width:20px;
+  height:20px;
+}
+
+.line {
+  position:absolute;
+  width:500px;
+  height:200px;
 }
