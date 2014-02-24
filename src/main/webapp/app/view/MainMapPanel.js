@@ -53,7 +53,7 @@ Ext.define('CC.view.MainMapPanel', {
             }));
         }
         //this.addLinkGoogle();
-        this.addNodeD3();
+        this.addPathD3();
         this.gmap.setCenter(new google.maps.LatLng(37.6203,-122.07620000000001));
         Ext.each(this.markers, this.addMarker, this);
         this.fireEvent('mapready', this, this.gmap);
@@ -108,6 +108,39 @@ Ext.define('CC.view.MainMapPanel', {
                         
                         
 
+                    }
+                };
+        };
+        overlay.setMap(this.gmap);
+  
+    },
+    addPathD3: function(){
+        var enc = google.maps.geometry.encoding
+        var overlay = new google.maps.OverlayView();
+        overlay.onAdd = function(){
+            var layer = d3.select(this.getPanes().overlayLayer).append("div")
+                          .attr("height", "100%")
+                          .attr("width", "100%")
+                          .attr("class", "map-elements")
+                overlay.draw = function(){
+                    var projection = this.getProjection();
+                    
+                    var marker = layer.selectAll("svg")
+                                  .data(enc.decodePath("m_sdF|ebhVaBdAkErC"))
+                                  .enter().append("svg:svg")
+                                  .attr("class", "line")
+                                  .append("svg:path")
+                                  .attr("d", line)
+                                  .style("stroke", "blue")
+                                  .style("stroke-width", "10")
+                                 
+                    function line(d){
+                      d = new google.maps.LatLng(d.lat(), d.lng());
+                      d = projection.fromLatLngToDivPixel(d);
+                      d3.svg.line()
+                        .x(function(d) { return d.x; })
+                        .y(function(d) { return d.y; })
+                        .interpolate("basis");
                     }
                 };
         };
