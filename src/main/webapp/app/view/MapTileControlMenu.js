@@ -1,12 +1,13 @@
 /**
- * This is the map tile selection menu overlay. 
- *
+ * This is the map tile selection menu overlay. With menu
+ * checkItem subcomponent.
  */
 Ext.define('CC.view.MapTileControlMenu', {
   extend: 'Ext.menu.Menu',
   alias: 'widget.MapTileControlMenu',
-  width: 100,
-  height: 110,
+  id: 'map-tile-control-menu',
+  width: 150,
+  height: 80,
   floating: false,
 
   bodyStyle: {
@@ -14,19 +15,25 @@ Ext.define('CC.view.MapTileControlMenu', {
     'z-index': 100000
   },
 
-  items: [{
-      xtype: 'menucheckitem',
-      text: 'Google Map Tiles'
-  },{
-      xtype: 'menucheckitem',
-      text: 'Google Satellite Tiles'
-  },{
-      xtype: 'menucheckitem',
-      text: 'Nokia Map Tiles'
-  }],
-
   initComponent : function() {
     var me = this;
+
+    // add menu check items, default tiles are Google Road
+    Ext.applyIf(me, {
+      items: [{
+        xtype: 'MenuCheckItem',
+        text: 'Google Road',
+        checked: true,
+      },
+      {
+        xtype: 'MenuCheckItem',
+        text: 'Google Satellite',
+      },
+      {
+        xtype: 'MenuCheckItem',
+        text: 'Nokia Road',
+      }]
+    });
 
     me.callParent(arguments);
 
@@ -41,5 +48,5 @@ Ext.define('CC.view.MapTileControlMenu', {
     });
     this.allowDomMove = false;
     this.renderTo = this.el;
-  },
+  }
 });
