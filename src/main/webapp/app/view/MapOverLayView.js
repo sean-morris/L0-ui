@@ -3,7 +3,9 @@
  * of map (e.g. Google, Nokia, etc).
  *
  */
-Ext.define('CC.view.OverLayView', {
+Ext.define('CC.view.MapOverLayView', {
+  alias: 'widget.MapOverLayView',
+  
   constructor: function(context) {
      this.map = context.map;
      this.svgPlace =  context.svgPlace;

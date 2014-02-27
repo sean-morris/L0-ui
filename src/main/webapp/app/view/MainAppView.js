@@ -9,7 +9,8 @@ Ext.define('CC.view.MainAppView', {
     'Ext.panel.Panel',
     'CC.view.MainMapPanel',
     'CC.view.MapTileControlPanel',
-    'CC.view.MapTileControlMenu'
+    'CC.view.MapTileControlMenu',
+    'CC.view.MapOverLayView'
   ],
   layout: 'absolute',
 

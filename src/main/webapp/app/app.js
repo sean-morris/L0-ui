@@ -15,7 +15,7 @@ Ext.application({
   views: [
     'MainAppView',
     'MainMapPanel',
-    'OverLayView'
+    'MapOverLayView'
   ],
   // CC for Connected Corridors
   name: 'CC',
