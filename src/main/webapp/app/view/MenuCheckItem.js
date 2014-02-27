@@ -8,7 +8,7 @@ Ext.define('CC.view.MenuCheckItem', {
     alias: 'widget.MenuCheckItem',
     onClick: function(e) {
         var me = this;
-        if(!me.disabled && !me.checkChangeDisabled && !(me.checked && me.group)) {
+        if (!me.disabled && !me.checkChangeDisabled && !(me.checked && me.group)) {
             me.setSingleChecked(!me.checked);
         }
     }, 
@@ -28,6 +28,9 @@ Ext.define('CC.view.MenuCheckItem', {
         
         // check selected checkbox
         me.setChecked(true);
+
+        // fire event to change map tiles
+        CC.util.EventManager.fireEvent('app:change-map-tile', me);
       }
     }
 });

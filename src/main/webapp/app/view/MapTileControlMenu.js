@@ -7,7 +7,7 @@ Ext.define('CC.view.MapTileControlMenu', {
   alias: 'widget.MapTileControlMenu',
   id: 'map-tile-control-menu',
   width: 150,
-  height: 80,
+  height: 100,
   floating: false,
 
   bodyStyle: {
@@ -23,15 +23,23 @@ Ext.define('CC.view.MapTileControlMenu', {
       items: [{
         xtype: 'MenuCheckItem',
         text: 'Google Road',
+        mapType: google.maps.MapTypeId.ROADMAP,
         checked: true,
       },
       {
         xtype: 'MenuCheckItem',
+        text: 'Google Hybrid',
+        mapType: google.maps.MapTypeId.HYBRID
+      },
+      {
+        xtype: 'MenuCheckItem',
         text: 'Google Satellite',
+        mapType: google.maps.MapTypeId.SATELLITE
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Nokia Road',
+        mapType: null
       }]
     });
 

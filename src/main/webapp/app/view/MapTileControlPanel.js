@@ -39,7 +39,6 @@ Ext.define('CC.view.MapTileControlPanel', {
     this.allowDomMove = false;
     this.renderTo = this.el;
 
-    // create Menu on start up, but set display to null
   },
 
   toggleMenu : function() {

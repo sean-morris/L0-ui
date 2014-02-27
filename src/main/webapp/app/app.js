@@ -10,15 +10,18 @@ Ext.Loader.setConfig({
   disableCaching: false
 });
 
-
+// Attach Main Application view
 Ext.application({
+  // Adds, global Components/Variables used throughout Application
+  requires: [
+    'CC.util.EventManager'
+  ],
   views: [
-    'MainAppView',
-    'MainMapPanel',
+    'MainAppView'
   ],
   // CC for Connected Corridors
   name: 'CC',
-  // Application Launch Point
+  // Application Launch Point, which renders Main Application view to body
   launch: function() {
     Ext.create('CC.view.MainAppView', {renderTo: Ext.getBody()});
   }
