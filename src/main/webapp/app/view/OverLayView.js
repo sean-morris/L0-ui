@@ -7,7 +7,10 @@ Ext.define('CC.view.OverLayView', {
   constructor: function(context) {
      this.map = context.map;
      this.svgPlace =  context.svgPlace;
-     this.overlay = new google.maps.OverlayView();
+     this.overlay = context.overlay;
+     this.projection = context.projection;
+     this.latLngToPix = context.latLngToPix;
+     this.latLngObj = context.latLngObj;
      this.fakeData();
      this.setMap();
    },
@@ -31,16 +34,16 @@ Ext.define('CC.view.OverLayView', {
     this.add();
    },
    drawPath: function(overLay){
-        var overlayProjection = overlay.getProjection();
-    
+        var overlayProjection = this.projection(this.overlay);
+        var me = this;
         // Turn the overlay projection into a d3 projection
-        var googleMapProjection = function(coordinates) {
-          var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
-          var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
+        var mapProjection = function(coordinates) {
+          var googleCoordinates = me.latLngObj(coordinates[1], coordinates[0]);
+          var pixelCoordinates = me.latLngToPix(googleCoordinates, overlayProjection);
           return [pixelCoordinates.x, pixelCoordinates.y];
         }
     
-        path2 = d3.geo.path().projection(googleMapProjection);
+        path2 = d3.geo.path().projection(mapProjection);
     
         this.svg.selectAll("path")
           .data(this.line2_geoJson.features)

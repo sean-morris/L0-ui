@@ -69,9 +69,15 @@ Ext.define('CC.view.MainMapPanel', {
   },
   addLinkCustom: function(){
      var me = this;
+     var o = new google.maps.OverlayView();
+     var p = o.getProjection();
       var context = {
                map: this.gmap,
-               svgPlace : function(over){ return over.getPanes().overlayLayer }
+               svgPlace : function(over){ return over.getPanes().overlayLayer },
+               overlay: o,
+               projection: function(over){ return over.getProjection() },
+               latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
+               latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng)} 
              }
       var overlay = new CC.view.OverLayView(context);
     
