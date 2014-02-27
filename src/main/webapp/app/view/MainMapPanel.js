@@ -22,6 +22,9 @@ Ext.define('CC.view.MainMapPanel', {
   initComponent: function() {
     var me = this;
 
+    // set up event Listeners
+    CC.util.EventManager.on('app:change-map-tile', this.changeMaps, this);
+
     me.callParent(arguments);
   },
 
@@ -46,7 +49,7 @@ Ext.define('CC.view.MainMapPanel', {
     options = Ext.applyIf(options, {
         zoom: 14,
         center: center,
-        mapTypeId: google.maps.MapTypeId.HYBRID,
+        mapTypeId: google.maps.MapTypeId.ROADWAY,
         mapTypeControl: false,
         zoomControl: true,
         zoomControlOptions: {
@@ -337,6 +340,13 @@ Ext.define('CC.view.MainMapPanel', {
     var map = this.gmap;
     if (map) {
       google.maps.event.trigger(map, 'resize');
+    }
+  },
+
+  changeMaps: function(mapTile) {
+    // add functionality to change nokia map tiles
+    if (mapTile != null && mapTile != undefined) {
+      this.gmap.setMapTypeId(mapTile.mapType);
     }
   }
 

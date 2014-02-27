@@ -39,53 +39,16 @@ Ext.define('CC.view.MapTileControlPanel', {
     this.allowDomMove = false;
     this.renderTo = this.el;
 
-    // create Menu on start up, but set display to null
-  },
-
-  createMenu : function() {
-    // Create menu for map tile selection
-    Ext.create('Ext.menu.Menu', {
-      width: 100,
-      height: 110,
-      floating: false,
-
-      bodyStyle: {
-        'posotion' : 'absolute',
-        'z-index': 100000
-      },  
-      items: [{
-          xtype: 'menucheckitem',
-          text: 'Google Map Tiles'
-      },{
-          xtype: 'menucheckitem',
-          text: 'Google Satellite Tiles'
-      },{
-          xtype: 'menucheckitem',
-          text: 'Nokia Map Tiles'
-      }],
-      initComponent : function() {
-        var me = this;
-
-        me.callParent(arguments);
-
-        // stylize positioning
-        this.el = Ext.get('map-tile-control-menu');
-        this.el.setStyle({
-            margin:'0',
-            border:'0 none',
-            top: '20px',
-            right: '20px',
-            position: 'absolute'
-        });
-        this.allowDomMove = false;
-        this.renderTo = this.el;
-      },
-    });
   },
 
   toggleMenu : function() {
     // toggle display of tile menu
-
+    menu = Ext.get('map-tile-control-menu');
+    if (menu.getStyle('display') === 'none' ) {
+      menu.setStyle('display');
+    } else {
+      menu.setStyle('display', 'none');
+    }
   }
 
 });
