@@ -18,6 +18,7 @@ Ext.define('CC.view.MainMapPanel', {
   layout: 'absolute',
   height: screen.availHeight,
   width: screen.availWidth,
+  id: 'main-panel',
 
   initComponent: function() {
     var me = this;
@@ -63,16 +64,31 @@ Ext.define('CC.view.MainMapPanel', {
             position: center
         }));
     }
-    this.addLinkGoogle();
+    //this.addLinkGoogle();
+    this.addLinkCustom();
 //    this.addNodeD3();
 //    this.gmap.setCenter(new google.maps.LatLng(37.6203,-122.07620000000001));
 //    Ext.each(this.markers, this.addMarker, this);
     this.fireEvent('mapready', this, this.gmap);
   },
+  addLinkCustom: function(){
+     var me = this;
+     var o = new google.maps.OverlayView();
+     var p = o.getProjection();
+     var context = {
+               map: this.gmap,
+               svgPlace : function(over){ return over.getPanes().overlayLayer },
+               overlay: o,
+               projection: function(over){ return over.getProjection() },
+               latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
+               latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng)} 
+             }
 
+      var overlay = new CC.view.MapOverLayView(context);
+    
+  },
   addLinkGoogle: function(){
-
-    var line2_geoJson = {
+      var line2_geoJson = {
         "type": "FeatureCollection",
             "features": [
 
@@ -197,27 +213,27 @@ Ext.define('CC.view.MainMapPanel', {
       ]}
     var overlay = new google.maps.OverlayView();
     overlay.onAdd = function() {
-
+    
       var layer = d3.select(this.getPanes().overlayLayer).append("div").attr("class", "SvgOverlay");
       var svg = layer.append("svg")
                       .attr({
                             "width": '100%',
                             "height": '100%'
       });
-
+    
       overlay.draw = function() {
         var markerOverlay = this;
         var overlayProjection = markerOverlay.getProjection();
-
+    
         // Turn the overlay projection into a d3 projection
         var googleMapProjection = function(coordinates) {
           var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
           var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
           return [pixelCoordinates.x, pixelCoordinates.y];
         }
-
+    
         path2 = d3.geo.path().projection(googleMapProjection);
-
+    
         svg.selectAll("path")
           .data(line2_geoJson.features)
           .attr("d", path2) // update existing paths
@@ -225,28 +241,28 @@ Ext.define('CC.view.MainMapPanel', {
           .style("fill-opacity", 0)
         .enter().append("svg:path");
       };
-
+    
     };
-
+    
     overlay.setMap(this.gmap);
-
-
-          
-    /*
-    var enc = google.maps.geometry.encoding
-    var o =  new google.maps.Polyline({
-                path: enc.decodePath("{urdFf_bhVyEtCwA~@"),
-                map: this.gmap,
-                strokeColor: 'blue',
-                icons: [{
-                  icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
-                  fillColor: 'blue',
-                  offset: '60%'
-                }],
-                strokeOpacity: 0.9,
-                strokeWeight: 7,
-              })
-    return o;*/
+    // 
+    // 
+    //       
+    // /*
+    // var enc = google.maps.geometry.encoding
+    // var o =  new google.maps.Polyline({
+    //             path: enc.decodePath("{urdFf_bhVyEtCwA~@"),
+    //             map: this.gmap,
+    //             strokeColor: 'blue',
+    //             icons: [{
+    //               icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
+    //               fillColor: 'blue',
+    //               offset: '60%'
+    //             }],
+    //             strokeOpacity: 0.9,
+    //             strokeWeight: 7,
+    //           })
+    // return o;*/
   },
 
   addNodeD3: function(){
