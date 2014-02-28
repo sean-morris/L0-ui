@@ -21,3 +21,12 @@ body {
   width:500px;
   height:200px;
 }
+
+.svg-overlay{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 101;
+  width: 100%;
+  -webkit-transform: translateZ(0px);
+}
