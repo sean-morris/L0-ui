@@ -6,6 +6,7 @@
 Ext.define('CC.view.MainMapPanel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.MainMapPanel',
+  xtype: 'MainMapPanel',
 
   requires: [
     'Ext.window.MessageBox',
@@ -285,6 +286,7 @@ Ext.define('CC.view.MainMapPanel', {
     overlay.setMap(this.gmap);
 
   },
+
   addMarker: function(marker) {
     marker = Ext.apply({
         map: this.gmap
@@ -332,6 +334,10 @@ Ext.define('CC.view.MainMapPanel', {
     if (mapTile != null && mapTile != undefined) {
       this.gmap.setMapTypeId(mapTile.mapType);
     }
+  },
+
+  drawNetwork: function(network) {
+    alert("Drawing Network");
   }
 
 });

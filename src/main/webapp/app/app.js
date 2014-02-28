@@ -14,10 +14,13 @@ Ext.Loader.setConfig({
 Ext.application({
   // Adds, global Components/Variables used throughout Application
   requires: [
-    'CC.util.EventManager'
+    'CC.util.EventManager',
   ],
   views: [
     'MainAppView'
+  ],
+  controllers: [
+    'MainMapController'
   ],
   // CC for Connected Corridors
   name: 'CC',
