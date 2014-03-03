@@ -17,12 +17,14 @@ Ext.application({
     'CC.util.EventManager',
   ],
   views: [
+    'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
   ],
   controllers: [
-    'MainMapController'
+    'MainMapController',
+    'LoginController'
   ],
   // CC for Connected Corridors
   name: 'CC',

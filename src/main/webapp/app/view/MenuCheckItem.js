@@ -31,7 +31,7 @@ Ext.define('CC.view.MenuCheckItem', {
 
       // fire event to change map tiles
       CC.util.EventManager.fireEvent('app:change-map-tile', me);
-      CC.util.EventManager.fireEvent('app:load-network', 478);
+      //CC.util.EventManager.fireEvent('app:load-network', 100001);
     }
   }
 });

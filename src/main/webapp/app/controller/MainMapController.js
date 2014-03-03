@@ -19,7 +19,6 @@ Ext.define('CC.controller.MainMapController', {
     init: function() {
       // Add event listeners here
       CC.util.EventManager.on('app:load-network', this.loadNetwork, this);
-
     },
 
     loadNetwork: function(networkId) {
@@ -29,7 +28,7 @@ Ext.define('CC.controller.MainMapController', {
         url: '/via-rest-api/project/1/scenario/1/network/'+networkId,
         method: 'GET',
         headers: {
-          'Authorization': window.btoa('user:pass'),
+          'Authorization': window.btoa('username:password'),
           'DB': 'ccoradb.path.berkeley.edu'
         },
         success: function(responseObject){
@@ -40,7 +39,7 @@ Ext.define('CC.controller.MainMapController', {
 
             // if request was successful, draw network
             if (response.success === true) {
-              var network = response.resource;
+              var network = response.resource.network;
               // Get map panel view, to draw network
               this.getMainMapPanelView().drawNetwork(network);
             } else {
