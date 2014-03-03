@@ -56,7 +56,6 @@ Ext.define('CC.view.MainMapPanel', {
     });
     this.gmap = new google.maps.Map(this.body.dom, options);
 
-    
     // add overlay to map
     this.overlayView = new CC.view.MapOverLayView(this.gmap);
 

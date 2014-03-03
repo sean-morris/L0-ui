@@ -14,6 +14,7 @@ Ext.Loader.setConfig({
 Ext.application({
   // Adds, global Components/Variables used throughout Application
   requires: [
+    // utils
     'CC.util.EventManager',
   ],
   views: [
@@ -24,6 +25,7 @@ Ext.application({
   ],
   controllers: [
     'MainMapController',
+    'NetworkController',
     'LoginController'
   ],
   // CC for Connected Corridors

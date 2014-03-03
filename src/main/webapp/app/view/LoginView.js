@@ -7,7 +7,7 @@ Ext.define('CC.view.LoginView', {
 
   // Login window properties
   id: 'login-window',
-  title: 'Login', 
+  title: 'CC Login', 
   model: true,
   constrain: true,
   autoShow: true,             
@@ -17,9 +17,8 @@ Ext.define('CC.view.LoginView', {
       type: 'fit'              
   },
   iconCls: 'key',                           
-  closeAction: 'hide',         
-  closable: true,
-  title : 'CC Login', 
+  closeAction: 'destroy',         
+  closable: false,
   frame : true, 
   items: [{ 
     // Add login form
@@ -34,22 +33,23 @@ Ext.define('CC.view.LoginView', {
     // Add fields to form
     items: [{
       // Username Field
-      xtype: 'textfield', 
+      xtype: 'textfield',
+      id: 'username',  
       fieldLabel: 'user', 
       name: 'username', 
-      itemId: 'username', 
       allowblank: false, 
     },{ 
       // Password Field
       xtype: 'textfield',
+      id: 'password', 
       inputType: 'password',  
       fieldLabel: 'password', 
       name: 'password', 
-      itemId: 'password', 
       allowblank: false, 
     },{
       // Database selection combo box
       xtype: 'combo',
+      id: 'database',
       fieldLabel: 'database',
       name: 'database',
       value: 'ccoradb',
@@ -59,6 +59,7 @@ Ext.define('CC.view.LoginView', {
       typeAhead: false,
       store: new Ext.data.SimpleStore({
         fields:['database','v'],
+        // TODO add these values as constants
         data: [['ccoradb','ccoradb.path.berkeley.edu'],['cctest','cctest.path.berkeley.edu']]
       }),
     }],

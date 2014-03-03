@@ -28,24 +28,27 @@ Ext.define('CC.controller.MainMapController', {
         url: '/via-rest-api/project/1/scenario/1/network/'+networkId,
         method: 'GET',
         headers: {
-          'Authorization': window.btoa('username:password'),
-          'DB': 'ccoradb.path.berkeley.edu'
+          'Authorization': CC.model.UserModel.authToken,
+          'DB': CC.model.UserModel.database
         },
         success: function(responseObject){
-            var text = responseObject.responseText;
+          var text = responseObject.responseText;
 
-            // convert response text to JSON
-            var response = Ext.JSON.decode(text);
+          // convert response text to JSON
+          var response = Ext.JSON.decode(text);
 
-            // if request was successful, draw network
-            if (response.success === true) {
-              var network = response.resource.network;
-              // Get map panel view, to draw network
-              this.getMainMapPanelView().drawNetwork(network);
-            } else {
-              alert('Failed to load Network. ' + response.message);
-            }
-
+          // if request was successful, draw network
+          if (response.success === true) {
+            var network = response.resource.network;
+            // Get map panel view, to draw network
+            this.getMainMapPanelView().drawNetwork(network);
+          } else {
+            alert('Failed to load Network. ' + response.message);
+          }
+        },
+        failure: function(response, opts) {
+          // TODO add error message to login view
+          alert('Failed to load Network. ' + response);
         }
       });
     }

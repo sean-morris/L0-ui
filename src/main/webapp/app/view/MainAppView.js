@@ -7,12 +7,21 @@ Ext.define('CC.view.MainAppView', {
 
   requires: [
     'Ext.panel.Panel',
+    // Views
+    'CC.view.NetworkSelectionWindow',
     'CC.view.MainMapPanel',
     'CC.view.MapTileControlPanel',
     'CC.view.MapTileControlMenu',
     'CC.view.MenuCheckItem',
+    'CC.view.MapOverLayView',
+    // Controllers
     'CC.controller.MainMapController',
-    'CC.view.MapOverLayView'
+    'CC.controller.NetworkController',
+    // Models
+    'CC.model.UserModel',
+    'CC.model.NetworkModel',
+    // Stores
+    'CC.store.Networks'
   ],
   layout: 'absolute',
 
