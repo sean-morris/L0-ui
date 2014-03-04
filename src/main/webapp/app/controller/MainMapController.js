@@ -25,7 +25,7 @@ Ext.define('CC.controller.MainMapController', {
 
       Ext.Ajax.request({
         scope: this,
-        url: '/via-rest-api/project/1/scenario/1/network/'+networkId,
+        url: '/via-rest-api/project/1/scenario/1/network/'+networkId+'/detail/5',
         method: 'GET',
         headers: {
           'Authorization': CC.model.UserModel.authToken,
@@ -44,11 +44,12 @@ Ext.define('CC.controller.MainMapController', {
             this.getMainMapPanelView().drawNetwork(network);
           } else {
             alert('Failed to load Network. ' + response.message);
+
           }
         },
         failure: function(response, opts) {
           // TODO add error message to login view
-          alert('Failed to load Network. ' + response);
+          alert('Failed to load Network. ' + response.statusText);
         }
       });
     }
