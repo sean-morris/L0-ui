@@ -7,11 +7,23 @@ Ext.define('CC.view.MainAppView', {
 
   requires: [
     'Ext.panel.Panel',
+    // Views
+    'CC.view.NetworkSelectionWindow',
     'CC.view.MainMapPanel',
     'CC.view.MapTileControlPanel',
     'CC.view.MapTileControlMenu',
     'CC.view.MapOverLayView',
-    'CC.view.MenuCheckItem'
+    'CC.view.MenuCheckItem',
+    'CC.view.MenuCheckItem',
+    'CC.view.MapOverLayView',
+    // Controllers
+    'CC.controller.MainMapController',
+    'CC.controller.NetworkController',
+    // Models
+    'CC.model.UserModel',
+    'CC.model.NetworkModel',
+    // Stores
+    'CC.store.Networks'
   ],
   layout: 'absolute',
 
@@ -21,6 +33,9 @@ Ext.define('CC.view.MainAppView', {
     Ext.applyIf(me, {
       items: [
         {
+          xtype: 'LoginView'
+        },
+        {
           xtype: 'MapTileControl'
         },
         {
@@ -28,24 +43,11 @@ Ext.define('CC.view.MainAppView', {
         },
         {
           xtype: 'MainMapPanel',
+          // set default map center to Berkeley co-ordinates
           center: {
-            lat: 40.718563000933024,
-            lng: -74.00703
+            lat: 37.8679933092856,
+            lng: -122.29768037796
           },
-          markers: [{
-            lat: 42.339641,
-            lng: -71.094224,
-            title: 'Boston Museum of Fine Arts',
-            listeners: {
-              click: function(e){
-                  Ext.Msg.alert('It\'s fine', 'and it\'s art.');
-              }
-            }
-          },{
-            lat: 42.339419,
-            lng: -71.09077,
-            title: 'Northeastern University'
-          }]
         }
       ]
     });

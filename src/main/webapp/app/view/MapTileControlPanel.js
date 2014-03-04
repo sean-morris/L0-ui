@@ -12,7 +12,6 @@ Ext.define('CC.view.MapTileControlPanel', {
     'z-index': 100000
   },
   html: 'Map Tiles',
-
   // define listener
   listeners: {
     'render': {
@@ -38,7 +37,6 @@ Ext.define('CC.view.MapTileControlPanel', {
     });
     this.allowDomMove = false;
     this.renderTo = this.el;
-
   },
 
   toggleMenu : function() {
