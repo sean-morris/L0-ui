@@ -45,7 +45,6 @@ Ext.define('CC.view.MainMapPanel', {
 
   createMap: function(center, marker) {
     var options = Ext.apply({}, this.mapOptions);
-
     options = Ext.applyIf(options, {
         zoom: 14,
         center: center,
@@ -63,31 +62,85 @@ Ext.define('CC.view.MainMapPanel', {
             position: center
         }));
     }
-    //this.addLinkGoogle();
-    this.addLinkCustom();
-//    this.addNodeD3();
-//    this.gmap.setCenter(new google.maps.LatLng(37.6203,-122.07620000000001));
-//    Ext.each(this.markers, this.addMarker, this);
+    
+    this.addGoogleMapsOverLay();
     this.fireEvent('mapready', this, this.gmap);
   },
-  addLinkCustom: function(){
-     var me = this;
-     var o = new google.maps.OverlayView();
-     var p = o.getProjection();
-     var context = {
-               map: this.gmap,
-               svgPlace : function(over){ return over.getPanes().overlayLayer },
-               overlay: o,
-               projection: function(over){ return over.getProjection() },
-               latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
-               latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng)} 
-             }
-
-      var overlay = new CC.view.MapOverLayView(context);
+  addGoogleMapsOverLay: function(){
+    this.fakeData();
+    var context = {
+      svgPlace : function(over){ return over.getPanes().overlayLayer },
+      overlay: new google.maps.OverlayView(),
+      projection: function(over){ return over.getProjection() },
+      latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
+      latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
+    }
     
+    this.overlay = new CC.view.MapOverLayView(context);    
+    var me = this;
+    context.overlay.onAdd  = function() {
+        me.overlay.layer = d3.select(context.svgPlace(this))
+            .append("div")
+            .attr('class', 'svg-overlay');
+    };
+    context.overlay.draw = function() {
+      var data = me.line2_geoJson.features
+      me.overlay.drawMarkers(data[0].geometry.coordinates);
+      me.overlay.drawPath(data);
+    };
+    context.overlay.setMap(this.gmap);
   },
-  addLinkGoogle: function(){
-      var line2_geoJson = {
+  addMarker: function(marker) {
+    marker = Ext.apply({
+        map: this.gmap
+    }, marker);
+
+    if (!marker.position) {
+        marker.position = new google.maps.LatLng(marker.lat, marker.lng);
+    }
+    var o =  new google.maps.Marker(marker);
+    Ext.Object.each(marker.listeners, function(name, fn){
+        google.maps.event.addListener(o, name, fn);
+    });
+    return o;
+  },
+
+  lookupCode: function(addr, marker) {
+    this.geocoder = new google.maps.Geocoder();
+    this.geocoder.geocode({
+        address: addr
+    }, Ext.Function.bind(this.onLookupComplete, this, [marker], true));
+  },
+
+  onLookUpComplete: function(data, response, marker) {
+    if (response != 'OK') {
+      Ext.MessageBox.alert('Error', 'An error occured: "' + response + '"');
+      return;
+    }
+    this.createMap(data[0].geometry.location, marker);
+  },
+
+  afterComponentLayout: function(w, h) {
+    this.callParent(arguments);
+    this.redraw();
+  },
+
+  redraw: function() {
+    var map = this.gmap;
+    if (map) {
+      google.maps.event.trigger(map, 'resize');
+    }
+  },
+
+  changeMaps: function(mapTile) {
+    // add functionality to change nokia map tiles
+    if (mapTile != null && mapTile != undefined) {
+      this.gmap.setMapTypeId(mapTile.mapType);
+    }
+  },
+  
+  fakeData: function(){
+        this.line2_geoJson = {
         "type": "FeatureCollection",
             "features": [
 
@@ -210,144 +263,6 @@ Ext.define('CC.view.MainMapPanel', {
             }
         }
       ]}
-    var overlay = new google.maps.OverlayView();
-    overlay.onAdd = function() {
-    
-      var layer = d3.select(this.getPanes().overlayLayer).append("div").attr("class", "SvgOverlay");
-      var svg = layer.append("svg")
-                      .attr({
-                            "width": '100%',
-                            "height": '100%'
-      });
-    
-      overlay.draw = function() {
-        var markerOverlay = this;
-        var overlayProjection = markerOverlay.getProjection();
-    
-        // Turn the overlay projection into a d3 projection
-        var googleMapProjection = function(coordinates) {
-          var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
-          var pixelCoordinates = overlayProjection.fromLatLngToDivPixel(googleCoordinates);
-          return [pixelCoordinates.x, pixelCoordinates.y];
-        }
-    
-        path2 = d3.geo.path().projection(googleMapProjection);
-    
-        svg.selectAll("path")
-          .data(line2_geoJson.features)
-          .attr("d", path2) // update existing paths
-          .attr("stroke", "red")
-          .style("fill-opacity", 0)
-        .enter().append("svg:path");
-      };
-    
-    };
-    
-    overlay.setMap(this.gmap);
-    // 
-    // 
-    //       
-    // /*
-    // var enc = google.maps.geometry.encoding
-    // var o =  new google.maps.Polyline({
-    //             path: enc.decodePath("{urdFf_bhVyEtCwA~@"),
-    //             map: this.gmap,
-    //             strokeColor: 'blue',
-    //             icons: [{
-    //               icon: { path: google.maps.SymbolPath.FORWARD_OPEN_ARROW },
-    //               fillColor: 'blue',
-    //               offset: '60%'
-    //             }],
-    //             strokeOpacity: 0.9,
-    //             strokeWeight: 7,
-    //           })
-    // return o;*/
-  },
-
-  addNodeD3: function(){
-    var enc = google.maps.geometry.encoding
-    var overlay = new google.maps.OverlayView();
-    overlay.onAdd = function() {
-      var layer = d3.select(this.getPanes().overlayLayer).append("div")
-                    .attr("height", "100%")
-                    .attr("width", "100%")
-                    .attr("class", "map-elements")
-      overlay.draw = function(){
-        var projection = this.getProjection();
-        
-        var marker = layer.selectAll("svg")
-                      .data(enc.decodePath("m_sdF|ebhVaBdAkErC"))
-                      .each(transform)
-                      .enter().append("svg:svg")
-                      .each(transform)
-                      .attr("class", "marker")
-                      .append("svg:circle")
-                      .attr("cx", "10")
-                      .attr("cy", "10")
-                      .attr("r", "8")
-                      .attr("fill", "white")
-                      .attr("stroke", "blue")
-                      .attr("stroke-width", "3")
-                     
-        function transform(d){
-           d = new google.maps.LatLng(d.lat(), d.lng());
-           d = projection.fromLatLngToDivPixel(d);
-           return d3.select(this)
-            .style("left", d.x + "px")
-            .style("top", d.y + "px")
-        }
-      };
-    };
-    overlay.setMap(this.gmap);
-
-  },
-  addMarker: function(marker) {
-    marker = Ext.apply({
-        map: this.gmap
-    }, marker);
-
-    if (!marker.position) {
-        marker.position = new google.maps.LatLng(marker.lat, marker.lng);
-    }
-    var o =  new google.maps.Marker(marker);
-    Ext.Object.each(marker.listeners, function(name, fn){
-        google.maps.event.addListener(o, name, fn);
-    });
-    return o;
-  },
-
-  lookupCode: function(addr, marker) {
-    this.geocoder = new google.maps.Geocoder();
-    this.geocoder.geocode({
-        address: addr
-    }, Ext.Function.bind(this.onLookupComplete, this, [marker], true));
-  },
-
-  onLookUpComplete: function(data, response, marker) {
-    if (response != 'OK') {
-      Ext.MessageBox.alert('Error', 'An error occured: "' + response + '"');
-      return;
-    }
-    this.createMap(data[0].geometry.location, marker);
-  },
-
-  afterComponentLayout: function(w, h) {
-    this.callParent(arguments);
-    this.redraw();
-  },
-
-  redraw: function() {
-    var map = this.gmap;
-    if (map) {
-      google.maps.event.trigger(map, 'resize');
-    }
-  },
-
-  changeMaps: function(mapTile) {
-    // add functionality to change nokia map tiles
-    if (mapTile != null && mapTile != undefined) {
-      this.gmap.setMapTypeId(mapTile.mapType);
-    }
-  }
+   }
 
 });
