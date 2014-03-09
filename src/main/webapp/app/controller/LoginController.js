@@ -18,8 +18,8 @@ Ext.define('CC.controller.LoginController', {
   }, 
   authenticateUser : function() { 
     // get username, password and database from login view
-    var username = this.getLoginView().down('#username').getValue()
-    var password = this.getLoginView().down('#password').getValue()
+    var username = this.getLoginView().down('#username').getValue();
+    var password = this.getLoginView().down('#password').getValue();
     
     // get database value from combobox datastore
     var dbComboBox = this.getLoginView().down('#database');
@@ -35,7 +35,7 @@ Ext.define('CC.controller.LoginController', {
     // Send Ajax Request to see if user is valid and authenticate 
     Ext.Ajax.request({
       scope: this,
-      url: '/via-rest-api/login',
+      url: CC.Globals.WEB_SERVICE_URL + 'login',
       method: 'GET',
       // pass username, password and database in request header
       headers: {
@@ -59,7 +59,7 @@ Ext.define('CC.controller.LoginController', {
       },
       failure: function(response, opts) {
         // TODO add error message to login view
-        alert('Failed to login. ' + response);
+        alert('Failed to login. ' + response.statusText);
       }
     });
   }

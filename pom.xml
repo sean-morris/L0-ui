@@ -29,6 +29,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
   </dependencies>
  
   <build>
+    <finalName>connected-corridors</finalName>
     <plugins>
       <plugin>
         <!-- This plugin is needed for the servlet example -->
@@ -38,8 +39,8 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
         <configuration>
           <contextHandlers>
             <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-              <contextPath>/via-rest-api</contextPath>
-              <war>target/via-rest-api.war</war>
+              <contextPath>/via-rest-api-new-ui</contextPath>
+              <war>target/via-rest-api-new-ui.war</war>
             </contextHandler>
           </contextHandlers>
           <connectors>
@@ -69,7 +70,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
                             <type>war</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>target/</outputDirectory>
-                            <destFileName>via-rest-api.war</destFileName>
+                            <destFileName>via-rest-api-new-ui.war</destFileName>
                         </artifactItem>
                     </artifactItems>
                 </configuration>

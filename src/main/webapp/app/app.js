@@ -12,17 +12,20 @@ Ext.Loader.setConfig({
 
 // Attach Main Application view
 Ext.application({
+
   // Adds, global Components/Variables used throughout Application
   requires: [
     // utils
     'CC.util.EventManager',
   ],
+  // View ExtJs files required by Application
   views: [
     'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
   ],
+  // Controller ExtJs files required by Controller
   controllers: [
     'MainMapController',
     'NetworkController',
@@ -36,3 +39,8 @@ Ext.application({
   }
 
 });
+
+// Define Globals here under the CC.Globals namespace
+Ext.ns('CC.Globals');
+
+CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';

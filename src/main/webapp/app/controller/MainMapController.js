@@ -25,7 +25,7 @@ Ext.define('CC.controller.MainMapController', {
 
       Ext.Ajax.request({
         scope: this,
-        url: '/via-rest-api/project/1/scenario/1/network/'+networkId+'/detail/3',
+        url: CC.Globals.WEB_SERVICE_URL + 'project/1/scenario/1/network/'+networkId+'/detail/5',
         method: 'GET',
         headers: {
           'Authorization': CC.model.UserModel.authToken,
