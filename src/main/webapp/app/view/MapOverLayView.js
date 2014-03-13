@@ -52,14 +52,14 @@ Ext.define('CC.view.MapOverLayView', {
                   .attr("r", "8")
                   .attr("fill", "white")
                   .attr("stroke", "blue")
-                  .attr("stroke-width", "3")
+                  .attr("stroke-width", "3");
                  
     function transform(d) { 
       d = me.latLngObj(d[1], d[0]);
       d = me.latLngToPix(d, overlayProjection);
       return d3.select(this)
         .style("left", (d.x - 10) + "px")
-        .style("top", (d.y - 10) + "px")
+        .style("top", (d.y - 10) + "px");
     }
   }
 });

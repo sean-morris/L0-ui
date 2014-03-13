@@ -39,7 +39,7 @@ Ext.define('CC.controller.MainMapController', {
 
           // if request was successful, draw network
           if (response.success === true) {
-            var network = response.resource.network;
+            var network = response.resource;
             // Get map panel view, to draw network
             this.getMainMapPanelView().loadNetwork(network);
           } else {
