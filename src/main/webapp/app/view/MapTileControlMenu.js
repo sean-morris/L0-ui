@@ -23,22 +23,26 @@ Ext.define('CC.view.MapTileControlMenu', {
       items: [{
         xtype: 'MenuCheckItem',
         text: 'Google Road',
+        map: CC.util.Constants.GOOGLE,
         mapType: google.maps.MapTypeId.ROADMAP,
         checked: true,
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Hybrid',
+        map: CC.util.Constants.GOOGLE,
         mapType: google.maps.MapTypeId.HYBRID
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Satellite',
+        map: CC.util.Constants.GOOGLE,
         mapType: google.maps.MapTypeId.SATELLITE
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Nokia Road',
+        map: CC.util.Constants.NOKIA,
         mapType: null
       }]
     });

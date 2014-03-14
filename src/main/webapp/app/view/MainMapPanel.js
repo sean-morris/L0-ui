@@ -128,26 +128,27 @@ Ext.define('CC.view.MainMapPanel', {
       google.maps.event.trigger(map, 'resize');
     }
   },
-
   changeMaps: function(mapTile) {
-    // add functionality to change nokia map tiles
-    if (mapTile != null && mapTile != undefined) {
-      this.gmap.setMapTypeId(mapTile.mapType);
+    var map = mapTile.map;
+    this.clearMapTiles(map);
+    if (mapTile != null && mapTile != undefined && map ==  CC.util.Constants.GOOGLE) {
+      if(this.map.type != map)
+        this.createGoogleMap(this.center);
+      this.map.setMapTypeId(mapTile.mapType);
+    }
+    else
+      this.createNokiaMap(this.center)
+  },
+  clearMapTiles: function(map){
+    if(this.map.type != map){
+      var dom = "#" + this.body.dom.id + " *";
+      d3.select(dom).remove();
     }
   },
-  
   setCenter: function(lat, lng) {
     this.gmap.setCenter(new google.maps.LatLng(lat, lng));
     // TODO handle for other maps
   },
-
-  changeMaps: function(mapTile) {
-    // add functionality to change nokia map tiles
-    if (mapTile != null && mapTile != undefined) {
-      //this.gmap.setMapTypeId(mapTile.mapType);
-    }
-  },
-
   loadNetwork: function(network) {
     var me = this;
     // hack to get network center, just take first point of bounding box
@@ -158,7 +159,6 @@ Ext.define('CC.view.MainMapPanel', {
     // set links
     this.links = this.linksToGeoJson(network.LinkList.link);
   },
-
   linksToGeoJson: function(links) {
     // convert links to geoJson
     var linkGeoJson = { 
