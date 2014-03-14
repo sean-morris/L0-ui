@@ -53,10 +53,10 @@ Ext.define('CC.view.MainMapPanel', {
           position: google.maps.ControlPosition.TOP_LEFT
         }
     });
-    this.gmap = new google.maps.Map(this.body.dom, options);
+    this.map = new google.maps.Map(this.body.dom, options);
     
     this.addGoogleMapsOverLay();
-    this.fireEvent('mapready', this, this.gmap);
+    this.fireEvent('mapready', this, this.map);
   },
 
   addGoogleMapsOverLay: function(){
@@ -84,12 +84,12 @@ Ext.define('CC.view.MainMapPanel', {
         me.overlay.drawLinks(me.links); 
       }
     };
-    context.overlay.setMap(this.gmap);
+    context.overlay.setMap(this.map);
   },
 
   addMarker: function(marker) {
     marker = Ext.apply({
-        map: this.gmap
+        map: this.map
     }, marker);
 
     if (!marker.position) {
@@ -123,7 +123,7 @@ Ext.define('CC.view.MainMapPanel', {
   },
 
   redraw: function() {
-    var map = this.gmap;
+    var map = this.map;
     if (map) {
       google.maps.event.trigger(map, 'resize');
     }
@@ -146,7 +146,7 @@ Ext.define('CC.view.MainMapPanel', {
     }
   },
   setCenter: function(lat, lng) {
-    this.gmap.setCenter(new google.maps.LatLng(lat, lng));
+    this.map.setCenter(new google.maps.LatLng(lat, lng));
     // TODO handle for other maps
   },
   loadNetwork: function(network) {
