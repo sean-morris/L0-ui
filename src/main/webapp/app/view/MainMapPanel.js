@@ -185,41 +185,11 @@ Ext.define('CC.view.MainMapPanel', {
   loadNetwork: function(network) {
     var me = this;
     // hack to get network center, just take first point of bounding box
-    var lat = network.position.point[0].lat;
-    var lng = network.position.point[0].lng;
+    var lat = network.center.lat;
+    var lng = network.center.lng;
     // set center
     this.setCenter(lat, lng);
     // set links
-    this.links = this.linksToGeoJson(network.LinkList.link);
-  },
-  linksToGeoJson: function(links) {
-    // convert links to geoJson
-    var linkGeoJson = { 
-      "type": "FeatureCollection",
-      "features": [] };
-
-    for (var i in links) {
-      var coordinates = new Array();
-      if (links != null && links != undefined) {
-        // get all points on link's linestring
-        for (var j in links[i].position.point) {
-          var lat = parseFloat(links[i].position.point[j].lat);
-          var lng = parseFloat(links[i].position.point[j].lng);
-          coordinates.push([lng, lat]);
-        }
-        // construct d3 geo feature object for link and add it to GeoJson
-        linkGeoJson.features.push({
-          "type": "Feature",
-          "properties": {
-            "link_id": links[i].id
-          },
-          "geometry": {
-            "type": "LineString",
-            "coordinates": coordinates
-          }
-        });
-      }
-    }
-    return linkGeoJson;  
+    this.links = network.links;
   }
 });
