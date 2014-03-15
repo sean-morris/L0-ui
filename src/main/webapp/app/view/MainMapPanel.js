@@ -64,15 +64,18 @@ Ext.define('CC.view.MainMapPanel', {
       projection: function(over){ return over.getProjection() },
       latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
       latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
+      height: this.height,
+      width: this.width,
+      center: this.center
     }
     
     this.overlay = new CC.view.MapOverLayView(context);    
     var me = this;
     context.overlay.onAdd  = function() {
-      var layer = d3.select(this.getPanes().overlayLayer)
-                    .append("div")
-                    .attr('class', 'svg-overlay');
-      me.overlay.layer = layer.append("svg");
+      // var layer = d3.select(this.getPanes().overlayLayer)
+      //               .append("div")
+      //               .attr('class', 'svg-overlay');
+      // me.overlay.layer = layer.append("svg");
     };
     context.overlay.draw = function() {
       //me.overlay.drawNodes(data[0].geometry.coordinates);

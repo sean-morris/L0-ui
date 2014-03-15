@@ -18,14 +18,14 @@ body {
   height:200px;
 }
 
-.svg-overlay{
+#svg-overlay{
   height: 100%;
   position: absolute;
   width: 100%;
   z-index: 10000;
 }
 
-.svg-overlay svg {
+#svg-overlay svg {
   left: 0;
   top: 0;
   position: absolute;
