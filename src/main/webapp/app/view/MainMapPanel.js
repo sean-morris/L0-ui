@@ -34,13 +34,12 @@ Ext.define('CC.view.MainMapPanel', {
     this.callParent();
 
     if (center) {
-      this.createMap(center);
+      this.createGoogleMap(center);
     } else {
       Ext.Error.raise('center is required');
     }
   },
-
-  createMap: function(center) {
+  createGoogleMap: function(center) {
     var options = Ext.apply({}, this.mapOptions);
     options = Ext.applyIf(options, {
         zoom: 12,
@@ -58,7 +57,6 @@ Ext.define('CC.view.MainMapPanel', {
     this.addGoogleMapsOverLay();
     this.fireEvent('mapready', this, this.map);
   },
-
   addGoogleMapsOverLay: function(){
     var context = {
       svgPlace : function(over){ return over.getPanes().overlayLayer },
@@ -92,7 +90,7 @@ Ext.define('CC.view.MainMapPanel', {
     this.map = new nokia.maps.map.Display(this.body.dom, {
       // Initial center and zoom level of the map
       center: center,
-      zoomLevel: 14,
+      zoomLevel: 12,
       // We add the behavior component to allow panning / zooming of the map
       components:[new nokia.maps.map.component.Behavior()]
     });
@@ -101,27 +99,26 @@ Ext.define('CC.view.MainMapPanel', {
     
   },
   addNokiaMapsOverLay: function(){
-    this.fakeData();
-    var me = this;
-    var context = {
-         map: this.map,
-         svgPlace : function(over){ return this.body.dom },
-         overlay: new google.maps.OverlayView(),
-         projection: function(over){ return over.getProjection() },
-         latLngToPix: function(c, map){ return map.geoToPixel(c); },
-         latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
-    }
-    this.overlay = new CC.view.MapOverLayView(context);    
-    this.overlay.layer = d3.select(("#" + this.body.dom.id))
-                         .select(".nma_p2d_0_markerLayer");
-                         // .append("div")
-                         // .attr('class', 'svg-overlay');
-    var data = me.line2_geoJson.features
-    this.overlay.drawNokiaMarkers(data[0].geometry.coordinates, this.map);
-      
-    var center =  new nokia.maps.geo.Coordinate(40.738728,-73.99236);
-    var marker = new nokia.maps.map.StandardMarker(center);
-    this.map.objects.add(marker);
+    // var me = this;
+    // var context = {
+    //      map: this.map,
+    //      svgPlace : function(over){ return this.body.dom },
+    //      overlay: new google.maps.OverlayView(),
+    //      projection: function(over){ return over.getProjection() },
+    //      latLngToPix: function(c, map){ return map.geoToPixel(c); },
+    //      latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
+    // }
+    // this.overlay = new CC.view.MapOverLayView(context);    
+    // this.overlay.layer = d3.select(("#" + this.body.dom.id))
+    //                      .select(".nma_p2d_0_markerLayer");
+    //                      // .append("div")
+    //                      // .attr('class', 'svg-overlay');
+    // var data = me.line2_geoJson.features
+    // this.overlay.drawNokiaMarkers(data[0].geometry.coordinates, this.map);
+    //   
+    // var center =  new nokia.maps.geo.Coordinate(40.738728,-73.99236);
+    // var marker = new nokia.maps.map.StandardMarker(center);
+    // this.map.objects.add(marker);
   },
   addMarker: function(marker) {
     marker = Ext.apply({
