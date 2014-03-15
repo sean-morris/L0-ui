@@ -64,8 +64,8 @@ Ext.define('CC.view.MainMapPanel', {
       projection: function(over){ return over.getProjection() },
       latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
       latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
-      height: window.innerHeight,
-      width: window.innerWidth,
+      height: this.height,
+      width: this.width,
       center: this.center
     }
     
