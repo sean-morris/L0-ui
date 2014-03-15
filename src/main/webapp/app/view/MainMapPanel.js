@@ -64,8 +64,8 @@ Ext.define('CC.view.MainMapPanel', {
       projection: function(over){ return over.getProjection() },
       latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
       latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
-      height: this.height,
-      width: this.width,
+      height: window.innerHeight,
+      width: window.innerWidth,
       center: this.center
     }
     
@@ -79,11 +79,11 @@ Ext.define('CC.view.MainMapPanel', {
     };
     context.overlay.draw = function() {
       //me.overlay.drawNodes(data[0].geometry.coordinates);
-      d3.select(".svg-overlay").selectAll("path").remove();
-      // Draw Links and Nodes if they exist
-      if (me.links != null && me.links != undefined) {
-        me.overlay.drawLinks(me.links); 
-      }
+      // d3.select(".svg-overlay").selectAll("path").remove();
+      // // Draw Links and Nodes if they exist
+      // if (me.links != null && me.links != undefined) {
+      //   me.overlay.drawLinks(me.links); 
+      // }
     };
     context.overlay.setMap(this.map);
   },

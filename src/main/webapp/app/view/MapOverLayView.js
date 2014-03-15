@@ -40,10 +40,9 @@ Ext.define('CC.view.MapOverLayView', {
     //   var pixelCoordinates = me.latLngToPix(coordinates, overProjection);
     //   return [pixelCoordinates.x, pixelCoordinates.y];
     // }
-    this.raster = this.svg.append("g");
     this.svg.call(this.zoom);
     this.vector = this.svg.selectAll("path")
-        .data(geoJson.features)
+        .data(geoJson.features[0].geometry.coordinates)
         .enter()
         .append("path")
         .attr("d", this.path)
