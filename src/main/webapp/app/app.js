@@ -17,6 +17,7 @@ Ext.application({
   requires: [
     // utils
     'CC.util.EventManager',
+    'CC.util.Constants'
   ],
   // View ExtJs files required by Application
   views: [

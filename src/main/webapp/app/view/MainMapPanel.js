@@ -34,13 +34,12 @@ Ext.define('CC.view.MainMapPanel', {
     this.callParent();
 
     if (center) {
-      this.createMap(center);
+      this.createGoogleMap(center);
     } else {
       Ext.Error.raise('center is required');
     }
   },
-
-  createMap: function(center) {
+  createGoogleMap: function(center) {
     var options = Ext.apply({}, this.mapOptions);
     options = Ext.applyIf(options, {
         zoom: 12,
@@ -53,12 +52,11 @@ Ext.define('CC.view.MainMapPanel', {
           position: google.maps.ControlPosition.TOP_LEFT
         }
     });
-    this.gmap = new google.maps.Map(this.body.dom, options);
+    this.map = new google.maps.Map(this.body.dom, options);
     
     this.addGoogleMapsOverLay();
-    this.fireEvent('mapready', this, this.gmap);
+    this.fireEvent('mapready', this, this.map);
   },
-
   addGoogleMapsOverLay: function(){
     var context = {
       svgPlace : function(over){ return over.getPanes().overlayLayer },
@@ -84,12 +82,47 @@ Ext.define('CC.view.MainMapPanel', {
         me.overlay.drawLinks(me.links); 
       }
     };
-    context.overlay.setMap(this.gmap);
+    context.overlay.setMap(this.map);
   },
-
+  createNokiaMap: function(center){
+    nokia.Settings.set("app_id", "ZvWa3zRHnu5OQ2W20jtc");
+    nokia.Settings.set("app_code", "OHJaz7XQiCjo4oOTdapgSw");
+    this.map = new nokia.maps.map.Display(this.body.dom, {
+      // Initial center and zoom level of the map
+      center: center,
+      zoomLevel: 12,
+      // We add the behavior component to allow panning / zooming of the map
+      components:[new nokia.maps.map.component.Behavior()]
+    });
+    this.map.type =  CC.util.Constants.NOKIA;
+    this.addNokiaMapsOverLay();
+    
+  },
+  addNokiaMapsOverLay: function(){
+    // var me = this;
+    // var context = {
+    //      map: this.map,
+    //      svgPlace : function(over){ return this.body.dom },
+    //      overlay: new google.maps.OverlayView(),
+    //      projection: function(over){ return over.getProjection() },
+    //      latLngToPix: function(c, map){ return map.geoToPixel(c); },
+    //      latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
+    // }
+    // this.overlay = new CC.view.MapOverLayView(context);    
+    // this.overlay.layer = d3.select(("#" + this.body.dom.id))
+    //                      .select(".nma_p2d_0_markerLayer");
+    //                      // .append("div")
+    //                      // .attr('class', 'svg-overlay');
+    // var data = me.line2_geoJson.features
+    // this.overlay.drawNokiaMarkers(data[0].geometry.coordinates, this.map);
+    //   
+    // var center =  new nokia.maps.geo.Coordinate(40.738728,-73.99236);
+    // var marker = new nokia.maps.map.StandardMarker(center);
+    // this.map.objects.add(marker);
+  },
   addMarker: function(marker) {
     marker = Ext.apply({
-        map: this.gmap
+        map: this.map
     }, marker);
 
     if (!marker.position) {
@@ -123,31 +156,32 @@ Ext.define('CC.view.MainMapPanel', {
   },
 
   redraw: function() {
-    var map = this.gmap;
+    var map = this.map;
     if (map) {
       google.maps.event.trigger(map, 'resize');
     }
   },
-
   changeMaps: function(mapTile) {
-    // add functionality to change nokia map tiles
-    if (mapTile != null && mapTile != undefined) {
-      this.gmap.setMapTypeId(mapTile.mapType);
+    var map = mapTile.map;
+    this.clearMapTiles(map);
+    if (mapTile != null && mapTile != undefined && map ==  CC.util.Constants.GOOGLE) {
+      if(this.map.type != map)
+        this.createGoogleMap(this.center);
+      this.map.setMapTypeId(mapTile.mapType);
+    }
+    else
+      this.createNokiaMap(this.center)
+  },
+  clearMapTiles: function(map){
+    if(this.map.type != map){
+      var dom = "#" + this.body.dom.id + " *";
+      d3.select(dom).remove();
     }
   },
-  
   setCenter: function(lat, lng) {
-    this.gmap.setCenter(new google.maps.LatLng(lat, lng));
+    this.map.setCenter(new google.maps.LatLng(lat, lng));
     // TODO handle for other maps
   },
-
-  changeMaps: function(mapTile) {
-    // add functionality to change nokia map tiles
-    if (mapTile != null && mapTile != undefined) {
-      //this.gmap.setMapTypeId(mapTile.mapType);
-    }
-  },
-
   loadNetwork: function(network) {
     var me = this;
     // hack to get network center, just take first point of bounding box
