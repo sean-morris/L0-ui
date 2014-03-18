@@ -27,12 +27,12 @@ Ext.define('CC.view.MapOverLayView', {
       var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
       var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
       var scale   = (hscale < vscale) ? hscale : vscale;
-      var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
-                          height - (bounds[0][1] + bounds[1][1])/2];
+      // var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
+      //                     height - (bounds[0][1] + bounds[1][1])/2];
        
        this.projection = d3.geo.mercator().center(this.center)
                                           .scale(scale)
-                                          .translate(offset);
+                                          .translate([width / 2, height / 2]);
       
    //   this.projection = d3.geo.mercator()
    //                      .scale(1)
@@ -57,7 +57,7 @@ Ext.define('CC.view.MapOverLayView', {
      //                        //.translate([context.width - this.center[0], context.height - this.center[1]])
      //                        .on("zoom", this.zoomed);
     this.drawLinks(CC.util.Constants.DATA)
-    this.drawNodes(CC.util.Constants.DATA.features[0])
+    this.drawNodes(CC.util.Constants.DATA.features[0].geometry.coordinates)
       
   },
 
@@ -96,26 +96,26 @@ Ext.define('CC.view.MapOverLayView', {
     //  .attr("fill", "none");     
   },
   drawNodes: function(points) {
+    var me = this;  
     var marker =  this.svg.selectAll(".marker")
                   .data(points)
                   .each(transform)
                   .enter()
                   .append("svg:svg")
-                  .each(transform)
                   .attr("class", "marker")
                   .append("svg:circle")
-                  .attr("cx", "10")
-                  .attr("cy", "10")
-                  .attr("r", "8")
-                  .attr("fill", "white")
-                  .attr("stroke", "blue")
-                  .attr("stroke-width", "3");
-                 
+                  .each(transform)
+                  
+          
     function transform(d) { 
-      d = this.path(d);
+      d = me.projection(d);
       return d3.select(this)
-        .style("left", (d.x - 10) + "px")
-        .style("top", (d.y - 10) + "px");
+        .attr("cx", d[0])
+        .attr("cy", d[1])
+        .attr("r", "8")
+        .attr("fill", "white")
+        .attr("stroke", "blue")
+        .attr("stroke-width", "3");
     }
   },
   zoomed: function() {
