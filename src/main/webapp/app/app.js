@@ -17,11 +17,11 @@ Ext.application({
   requires: [
     // utils
     'CC.util.EventManager',
-    'CC.util.Constants'
+    'CC.Globals'
   ],
   // View ExtJs files required by Application
   views: [
-    'LoginView',
+ //   'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
@@ -30,7 +30,7 @@ Ext.application({
   controllers: [
     'MainMapController',
     'NetworkController',
-    'LoginController'
+  //  'LoginController'
   ],
   // CC for Connected Corridors
   name: 'CC',
@@ -40,8 +40,3 @@ Ext.application({
   }
 
 });
-
-// Define Globals here under the CC.Globals namespace
-Ext.ns('CC.Globals');
-
-CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';

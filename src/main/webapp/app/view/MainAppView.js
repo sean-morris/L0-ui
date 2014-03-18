@@ -32,9 +32,9 @@ Ext.define('CC.view.MainAppView', {
 
     Ext.applyIf(me, {
       items: [
-        {
-          xtype: 'LoginView'
-        },
+        //{
+          //xtype: 'LoginView'
+        //},
         {
           xtype: 'MapTileControl'
         },
@@ -45,8 +45,8 @@ Ext.define('CC.view.MainAppView', {
           xtype: 'MainMapPanel',
           // set default map center to Berkeley co-ordinates
           center: {
-            lat: 37.8679933092856,
-            lng: -122.29768037796
+            lat: 40.714448123932996,
+            lng: -74.010074230999976
           },
         }
       ]
