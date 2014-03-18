@@ -16,8 +16,8 @@ Ext.define('CC.view.MainMapPanel', {
   gmapType: 'map',
   border: false,
   layout: 'absolute',
-  height: screen.availHeight,
-  width: screen.availWidth,
+  height: window.innerHeight,
+  width: window.innerWidth,
   id: 'main-panel',
 
   initComponent: function() {
@@ -42,7 +42,7 @@ Ext.define('CC.view.MainMapPanel', {
   createGoogleMap: function(center) {
     var options = Ext.apply({}, this.mapOptions);
     options = Ext.applyIf(options, {
-        zoom: 12,
+        zoom: 14,
         center: center,
         mapTypeId: google.maps.MapTypeId.ROADWAY,
         mapTypeControl: false,
@@ -93,7 +93,7 @@ Ext.define('CC.view.MainMapPanel', {
     this.map = new nokia.maps.map.Display(this.body.dom, {
       // Initial center and zoom level of the map
       center: center,
-      zoomLevel: 12,
+      zoomLevel: 14,
       // We add the behavior component to allow panning / zooming of the map
       components:[new nokia.maps.map.component.Behavior()]
     });

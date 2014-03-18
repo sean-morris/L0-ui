@@ -14,11 +14,12 @@ Ext.define('CC.view.MapOverLayView', {
      this.latLngToPix = context.latLngToPix;
      this.latLngObj = context.latLngObj;
      var width = context.width;
-     var height = context.height / 2;
+     var height = context.height;
      
-     this.center = d3.geo.centroid(CC.util.Constants.DATA);
-      var scale = 10;
-      this.projection = d3.geo.mercator().center(this.center)
+     //this.center = d3.geo.centroid(CC.util.Constants.DATA);
+     this.center =[context.center.lng,context.center.lat];
+     var scale = 10;
+     this.projection = d3.geo.mercator().center(this.center)
                        .scale(scale)
                        .translate([width / 2, height / 2]);
       this.path = d3.geo.path().projection(this.projection);
@@ -56,6 +57,7 @@ Ext.define('CC.view.MapOverLayView', {
      //                        //.translate([context.width - this.center[0], context.height - this.center[1]])
      //                        .on("zoom", this.zoomed);
     this.drawLinks(CC.util.Constants.DATA)
+    this.drawNodes(CC.util.Constants.DATA.features[0])
       
   },
 
@@ -94,9 +96,7 @@ Ext.define('CC.view.MapOverLayView', {
     //  .attr("fill", "none");     
   },
   drawNodes: function(points) {
-    var overlayProjection = this.projection(this.overlay);
-    var me = this;
-    var marker =  me.layer.selectAll(".marker")
+    var marker =  this.svg.selectAll(".marker")
                   .data(points)
                   .each(transform)
                   .enter()
@@ -112,8 +112,7 @@ Ext.define('CC.view.MapOverLayView', {
                   .attr("stroke-width", "3");
                  
     function transform(d) { 
-      d = me.latLngObj(d[1], d[0]);
-      d = me.latLngToPix(d, overlayProjection);
+      d = this.path(d);
       return d3.select(this)
         .style("left", (d.x - 10) + "px")
         .style("top", (d.y - 10) + "px");
