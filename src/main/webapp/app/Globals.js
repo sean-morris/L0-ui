@@ -2,21 +2,20 @@
 Ext.ns('CC.Globals');
 CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';
 
-CC.Globals.GOOGLE: 'google';
-CC.Globals.NOKIA: 'nokia';
-CC.Globals.DATA: {
-        "type": "FeatureCollection",
-            "features": [
-
-        {
+CC.Globals.GOOGLE = 'google';
+CC.Globals.NOKIA = 'nokia';
+CC.Globals.DATA = {
+          "type": "FeatureCollection",
+          "features": [
+            {
             "type": "Feature",
                 "properties": {
-                "Division": "IRT",
+                    "Division": "IRT",
                     "Line": "7th Ave-Bway",
                     "route_id": "2"
-            },
-                "geometry": {
-                "type": "LineString",
+                  },
+                  "geometry": {
+                    "type": "LineString",
                     "coordinates": [
                     [-74.010074230999976, 40.714448123932996],
                     [-74.0093, 40.715437000933001],
@@ -125,5 +124,5 @@ CC.Globals.DATA: {
                     [-73.972321096999963, 40.793921822933392]
                 ]
             }
-        }
-      ]}
+        }]
+      }

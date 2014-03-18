@@ -16,7 +16,8 @@ Ext.application({
   // Adds, global Components/Variables used throughout Application
   requires: [
     // utils
-    'CC.util.EventManager'
+    'CC.util.EventManager',
+    'CC.Globals'
   ],
   // View ExtJs files required by Application
   views: [

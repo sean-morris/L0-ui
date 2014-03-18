@@ -15,7 +15,7 @@ Ext.define('CC.view.MapOverLayView', {
                        .scale(scale)
                        .translate([width / 2, height / 2]);
       this.path = d3.geo.path().projection(this.projection);
-      var bounds  = this.path.bounds(CC.util.Constants.DATA);
+      var bounds  = this.path.bounds(CC.Globals.DATA);
       var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
       var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
       var scale   = (hscale < vscale) ? hscale : vscale;
