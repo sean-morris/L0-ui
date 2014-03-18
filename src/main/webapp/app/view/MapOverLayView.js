@@ -97,15 +97,12 @@ Ext.define('CC.view.MapOverLayView', {
   },
   drawNodes: function(points) {
     var me = this;  
-    var marker =  this.svg.selectAll(".marker")
+    var marker =  this.svg.selectAll("circle")
                   .data(points)
                   .each(transform)
                   .enter()
-                  .append("svg:svg")
-                  .attr("class", "marker")
                   .append("svg:circle")
                   .each(transform)
-                  
           
     function transform(d) { 
       d = me.projection(d);
