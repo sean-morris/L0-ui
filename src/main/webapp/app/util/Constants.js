@@ -1,14 +1,10 @@
-/**
- * Global Constants.
- *
- */
-Ext.define("CC.util.Constants", {
-  alias: 'widget.Constants',
-  singleton  : true,   
+// Define Globals here under the CC.Globals namespace
+Ext.ns('CC.Globals');
+CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';
 
-  GOOGLE: 'google',
-  NOKIA: 'nokia',
-  DATA: {
+CC.Globals.GOOGLE: 'google';
+CC.Globals.NOKIA: 'nokia';
+CC.Globals.DATA: {
         "type": "FeatureCollection",
             "features": [
 
@@ -131,4 +127,3 @@ Ext.define("CC.util.Constants", {
             }
         }
       ]}
-});

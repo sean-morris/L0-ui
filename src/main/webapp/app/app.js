@@ -16,8 +16,7 @@ Ext.application({
   // Adds, global Components/Variables used throughout Application
   requires: [
     // utils
-    'CC.util.EventManager',
-    'CC.util.Constants'
+    'CC.util.EventManager'
   ],
   // View ExtJs files required by Application
   views: [
@@ -40,8 +39,3 @@ Ext.application({
   }
 
 });
-
-// Define Globals here under the CC.Globals namespace
-Ext.ns('CC.Globals');
-
-CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';

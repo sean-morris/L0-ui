@@ -53,7 +53,7 @@ Ext.define('CC.view.MainMapPanel', {
         }
     });
     this.map = new google.maps.Map(this.body.dom, options);
-    this.map.type =  CC.util.Constants.GOOGLE;
+    this.map.type =  CC.Globals.GOOGLE;
     var me = this;
     google.maps.event.addListener(this.map, 'idle', function(){
       google.maps.event.clearListeners(me.map, 'idle');
@@ -76,7 +76,7 @@ Ext.define('CC.view.MainMapPanel', {
       // We add the behavior component to allow panning / zooming of the map
       components:[new nokia.maps.map.component.Behavior()]
     });
-    this.map.type =  CC.util.Constants.NOKIA;
+    this.map.type =  CC.Globals.NOKIA;
     
     var svgPlace = "#" + this.body.dom.id;
     svgPlace += " > div:first-child  > div:first-child > div:first-child";
@@ -127,7 +127,7 @@ Ext.define('CC.view.MainMapPanel', {
   changeMaps: function(mapTile) {
     var map = mapTile.map;
     this.clearMapTiles(map);
-    if (mapTile != null && mapTile != undefined && map ==  CC.util.Constants.GOOGLE) {
+    if (mapTile != null && mapTile != undefined && map ==  CC.Globals.GOOGLE) {
       if(this.map.type != map)
         this.createGoogleMap(this.center);
       this.map.setMapTypeId(mapTile.mapType);

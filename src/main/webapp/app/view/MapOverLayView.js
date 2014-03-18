@@ -36,8 +36,8 @@ Ext.define('CC.view.MapOverLayView', {
                              .translate([context.width - this.center[0], context.height - this.center[1]])
                              .on("zoom", this.zoomed);
     this.svg.call(this.zoom);
-    this.drawLinks(CC.util.Constants.DATA)
-    this.drawNodes(CC.util.Constants.DATA.features[0].geometry.coordinates)
+    this.drawLinks(CC.Globals.DATA)
+    this.drawNodes(CC.Globals.DATA.features[0].geometry.coordinates)
       
   },
 
