@@ -7,7 +7,6 @@ Ext.define('CC.view.MapOverLayView', {
   alias: 'widget.MapOverLayView',
   
   constructor: function(context) {
-     var me = this;
      var width = context.width;
      var height = context.height;
      this.center =[context.center.lng,context.center.lat];
@@ -30,12 +29,13 @@ Ext.define('CC.view.MapOverLayView', {
       this.svg = d3.select("#svg-overlay").append("svg")
                                           .attr("width", context.width)
                                           .attr("height", context.height);
-     // this.zoom = d3.behavior.zoom()
-     //                        .scale(this.projection.scale() * 2 * Math.PI)
-     //                        .scaleExtent([1 << 11, 1 << 14])
-     //                        //.translate(offset)
-     //                        //.translate([context.width - this.center[0], context.height - this.center[1]])
-     //                        .on("zoom", this.zoomed);
+     this.zoom = d3.behavior.zoom()
+                             .scale(this.projection.scale() * 2 * Math.PI)
+                             //.scaleExtent([1 << 11, 1 << 14])
+                             //.translate([width / 2, height / 2])
+                             .translate([context.width - this.center[0], context.height - this.center[1]])
+                             .on("zoom", this.zoomed);
+    this.svg.call(this.zoom);
     this.drawLinks(CC.util.Constants.DATA)
     this.drawNodes(CC.util.Constants.DATA.features[0].geometry.coordinates)
       
@@ -43,7 +43,6 @@ Ext.define('CC.view.MapOverLayView', {
 
   drawLinks: function(geoJson) {
     this.vector = this.svg.append("path");
-    //this.svg.call(this.zoom);
     this.vector.attr("d", this.path(geoJson.features[0]))
                 .attr("stroke", "blue")
                 .attr("fill", "none");  
@@ -70,9 +69,11 @@ Ext.define('CC.view.MapOverLayView', {
     }
   },
   zoomed: function() {
+    console.log("sdf");
     this.vector
         .attr("transform", "translate(" + this.zoom.translate() + ")")
-         .style("stroke-width", 10);
+        .attr("webkit-transform", "translate(" + this.zoom.translate() + ")")
+         .style("stroke-width", 3);
          //scale(" + this.zoom.scale() + ")")
    }
 });
