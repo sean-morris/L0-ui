@@ -54,7 +54,7 @@ Ext.define('CC.view.MapTileControlMenu', {
     this.el.setStyle({
         margin:'0',
         border:'0 none',
-        top: '40px',
+        top: '55px',
         right: '20px',
         position: 'absolute'
     });

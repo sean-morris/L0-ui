@@ -16,6 +16,8 @@ Ext.define('CC.view.MainAppView', {
     'CC.view.MenuCheckItem',
     'CC.view.MenuCheckItem',
     'CC.view.MapOverLayView',
+    'CC.view.LoginBarPanel',
+    'CC.view.LoginView',
     // Controllers
     'CC.controller.MainMapController',
     'CC.controller.NetworkController',
@@ -33,7 +35,7 @@ Ext.define('CC.view.MainAppView', {
     Ext.applyIf(me, {
       items: [
         {
-          xtype: 'LoginView'
+          xtype: 'LoginBarPanel'
         },
         {
           xtype: 'MapTileControl'

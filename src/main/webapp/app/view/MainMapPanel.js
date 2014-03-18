@@ -18,7 +18,7 @@ Ext.define('CC.view.MainMapPanel', {
   layout: 'absolute',
   height: screen.availHeight,
   width: screen.availWidth,
-  id: 'main-panel',
+  id: 'main-map-tile',
 
   initComponent: function() {
     var me = this;
