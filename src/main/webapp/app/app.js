@@ -21,7 +21,7 @@ Ext.application({
   ],
   // View ExtJs files required by Application
   views: [
-    'LoginView',
+ //   'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
@@ -30,7 +30,7 @@ Ext.application({
   controllers: [
     'MainMapController',
     'NetworkController',
-    'LoginController'
+  //  'LoginController'
   ],
   // CC for Connected Corridors
   name: 'CC',

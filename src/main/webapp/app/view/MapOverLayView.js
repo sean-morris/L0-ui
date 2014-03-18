@@ -13,29 +13,47 @@ Ext.define('CC.view.MapOverLayView', {
      //this.projection = context.projection;
      this.latLngToPix = context.latLngToPix;
      this.latLngObj = context.latLngObj;
-     this.center = d3.geo.centroid(CC.util.Constants.DATA);
-     var scale = 1;
-     this.projection = d3.geo.mercator()
-                      .scale(scale).center(this.center)
-                      .translate([context.width / 2, context.height / 2]);
-     this.path = d3.geo.path().projection(this.projection);
-     var bounds  = this.path.bounds(CC.util.Constants.DATA);
-     var hscale  = scale*context.width  / (bounds[1][0] - bounds[0][0]);
-     var vscale  = scale*context.height / (bounds[1][1] - bounds[0][1]);
-     var scale   = (hscale < vscale) ? hscale : vscale;
-     var offset  = [context.width - (bounds[0][0] + bounds[1][0])/2,
-                        context.height - (bounds[0][1] + bounds[1][1])/2];
+     var width = context.width;
+     var height = context.height / 2;
      
-     this.projection = d3.geo.mercator().center(this.center)
-                                        .scale(scale).translate(offset);
-     this.path = this.path.projection(this.projection);
-     this.svg = d3.select("#svg-overlay").append("svg")
+     this.center = d3.geo.centroid(CC.util.Constants.DATA);
+      var scale = 10;
+      this.projection = d3.geo.mercator().center(this.center)
+                       .scale(scale)
+                       .translate([width / 2, height / 2]);
+      this.path = d3.geo.path().projection(this.projection);
+      var bounds  = this.path.bounds(CC.util.Constants.DATA);
+      var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
+      var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
+      var scale   = (hscale < vscale) ? hscale : vscale;
+      var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
+                          height - (bounds[0][1] + bounds[1][1])/2];
+       
+       this.projection = d3.geo.mercator().center(this.center)
+                                          .scale(scale)
+                                          .translate(offset);
+      
+   //   this.projection = d3.geo.mercator()
+   //                      .scale(1)
+   //                      .translate([0, 0]);
+   //   this.path = d3.geo.path().projection(this.projection);
+   //   var b = this.path.bounds(CC.util.Constants.DATA),
+   //          s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+   //          t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+   // // Update the projection to use computed scale & translate.
+   //  this.projection
+   //        .scale(s)
+   //        .translate(t);
+   //  
+      this.path = this.path.projection(this.projection);
+      this.svg = d3.select("#svg-overlay").append("svg")
                                         .attr("width", context.width)
                                         .attr("height", context.height);
      // this.zoom = d3.behavior.zoom()
      //                        .scale(this.projection.scale() * 2 * Math.PI)
      //                        .scaleExtent([1 << 11, 1 << 14])
-     //                        .translate([context.width - this.center[0], context.height - this.center[1]])
+     //                        //.translate(offset)
+     //                        //.translate([context.width - this.center[0], context.height - this.center[1]])
      //                        .on("zoom", this.zoomed);
     this.drawLinks(CC.util.Constants.DATA)
       
@@ -102,8 +120,9 @@ Ext.define('CC.view.MapOverLayView', {
     }
   },
   zoomed: function() {
-    // this.vector
-    //     .attr("transform", "translate(" + this.zoom.translate() + ")scale(" + this.zoom.scale() + ")")
-    //     .style("stroke-width", 1 / this.zoom.scale());
-  }
+    this.vector
+        .attr("transform", "translate(" + this.zoom.translate() + ")")
+         .style("stroke-width", 10);
+         //scale(" + this.zoom.scale() + ")")
+   }
 });
