@@ -8,15 +8,8 @@ Ext.define('CC.view.MapOverLayView', {
   
   constructor: function(context) {
      var me = this;
-     this.svgPlace =  context.svgPlace;
-     this.overlay = context.overlay;
-     //this.projection = context.projection;
-     this.latLngToPix = context.latLngToPix;
-     this.latLngObj = context.latLngObj;
      var width = context.width;
      var height = context.height;
-     
-     //this.center = d3.geo.centroid(CC.util.Constants.DATA);
      this.center =[context.center.lng,context.center.lat];
      var scale = 10;
      this.projection = d3.geo.mercator().center(this.center)
@@ -30,26 +23,13 @@ Ext.define('CC.view.MapOverLayView', {
       // var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
       //                     height - (bounds[0][1] + bounds[1][1])/2];
        
-       this.projection = d3.geo.mercator().center(this.center)
+      this.projection = d3.geo.mercator().center(this.center)
                                           .scale(scale)
                                           .translate([width / 2, height / 2]);
-      
-   //   this.projection = d3.geo.mercator()
-   //                      .scale(1)
-   //                      .translate([0, 0]);
-   //   this.path = d3.geo.path().projection(this.projection);
-   //   var b = this.path.bounds(CC.util.Constants.DATA),
-   //          s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
-   //          t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
-   // // Update the projection to use computed scale & translate.
-   //  this.projection
-   //        .scale(s)
-   //        .translate(t);
-   //  
       this.path = this.path.projection(this.projection);
       this.svg = d3.select("#svg-overlay").append("svg")
-                                        .attr("width", context.width)
-                                        .attr("height", context.height);
+                                          .attr("width", context.width)
+                                          .attr("height", context.height);
      // this.zoom = d3.behavior.zoom()
      //                        .scale(this.projection.scale() * 2 * Math.PI)
      //                        .scaleExtent([1 << 11, 1 << 14])
@@ -62,38 +42,12 @@ Ext.define('CC.view.MapOverLayView', {
   },
 
   drawLinks: function(geoJson) {
-    // var overProjection = this.projection(this.overlay);
-    // var me = this;
-    // 
-    // // Turn the overlay projection into a d3 projection
-    // var mapProjection = function(coordinates) {
-    //   var coordinates = me.latLngObj(coordinates[1], coordinates[0]);
-    //   var pixelCoordinates = me.latLngToPix(coordinates, overProjection);
-    //   return [pixelCoordinates.x, pixelCoordinates.y];
-    // }
     this.vector = this.svg.append("path");
     //this.svg.call(this.zoom);
     this.vector.attr("d", this.path(geoJson.features[0]))
                 .attr("stroke", "blue")
                 .attr("fill", "none");  
-    // this.vector = this.svg.selectAll("path")
-    //     .data(geoJson.features)
-    //     .enter()
-    //     .append("path")
-    //     .attr("d", this.path)
-    //     .attr("stroke", "blue")
-    //     .attr("fill", "none");  
     //this.zoomed();
-    
-    //translation = d3.geo.path().projection(mapProjection);
-    
-    // me.layer.selectAll("path")
-    //  .data(geoJson.features)
-    //  .enter()
-    //  .append("path")
-    //  .attr("d", translation)
-    //  .attr("stroke", "blue")
-    //  .attr("fill", "none");     
   },
   drawNodes: function(points) {
     var me = this;  

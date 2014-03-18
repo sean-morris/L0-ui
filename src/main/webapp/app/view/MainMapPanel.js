@@ -53,39 +53,18 @@ Ext.define('CC.view.MainMapPanel', {
         }
     });
     this.map = new google.maps.Map(this.body.dom, options);
-    
-    this.addGoogleMapsOverLay();
-    this.fireEvent('mapready', this, this.map);
-  },
-  addGoogleMapsOverLay: function(){
-    var context = {
-      svgPlace : function(over){ return over.getPanes().overlayLayer },
-      overlay: new google.maps.OverlayView(),
-      projection: function(over){ return over.getProjection() },
-      latLngToPix: function(c, proj){ return proj.fromLatLngToDivPixel(c); },
-      latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
-      height: this.height,
-      width: this.width,
-      center: this.center
-    }
-    
-    this.overlay = new CC.view.MapOverLayView(context);    
+    this.map.type =  CC.util.Constants.GOOGLE;
     var me = this;
-    context.overlay.onAdd  = function() {
-      // var layer = d3.select(this.getPanes().overlayLayer)
-      //               .append("div")
-      //               .attr('class', 'svg-overlay');
-      // me.overlay.layer = layer.append("svg");
-    };
-    context.overlay.draw = function() {
-      //me.overlay.drawNodes(data[0].geometry.coordinates);
-      // d3.select(".svg-overlay").selectAll("path").remove();
-      // // Draw Links and Nodes if they exist
-      // if (me.links != null && me.links != undefined) {
-      //   me.overlay.drawLinks(me.links); 
-      // }
-    };
-    context.overlay.setMap(this.map);
+    google.maps.event.addListener(this.map, 'idle', function(){
+      google.maps.event.clearListeners(me.map, 'idle');
+      var svgPlace = "#" + me.body.dom.id;
+      svgPlace += " > div:first-child > div:first-child > div:first-child";
+      
+      me.addOverLay(svgPlace);
+
+    });
+    //is this doing anything?
+    //this.fireEvent('mapready', this, this.mapReady());
   },
   createNokiaMap: function(center){
     nokia.Settings.set("app_id", "ZvWa3zRHnu5OQ2W20jtc");
@@ -98,46 +77,28 @@ Ext.define('CC.view.MainMapPanel', {
       components:[new nokia.maps.map.component.Behavior()]
     });
     this.map.type =  CC.util.Constants.NOKIA;
-    this.addNokiaMapsOverLay();
     
+    var svgPlace = "#" + this.body.dom.id;
+    svgPlace += " > div:first-child  > div:first-child > div:first-child";
+    
+    this.addOverLay(svgPlace);
   },
-  addNokiaMapsOverLay: function(){
-    // var me = this;
-    // var context = {
-    //      map: this.map,
-    //      svgPlace : function(over){ return this.body.dom },
-    //      overlay: new google.maps.OverlayView(),
-    //      projection: function(over){ return over.getProjection() },
-    //      latLngToPix: function(c, map){ return map.geoToPixel(c); },
-    //      latLngObj: function(lat,lng){ return new google.maps.LatLng(lat, lng) },
-    // }
-    // this.overlay = new CC.view.MapOverLayView(context);    
-    // this.overlay.layer = d3.select(("#" + this.body.dom.id))
-    //                      .select(".nma_p2d_0_markerLayer");
-    //                      // .append("div")
-    //                      // .attr('class', 'svg-overlay');
-    // var data = me.line2_geoJson.features
-    // this.overlay.drawNokiaMarkers(data[0].geometry.coordinates, this.map);
-    //   
-    // var center =  new nokia.maps.geo.Coordinate(40.738728,-73.99236);
-    // var marker = new nokia.maps.map.StandardMarker(center);
-    // this.map.objects.add(marker);
-  },
-  addMarker: function(marker) {
-    marker = Ext.apply({
-        map: this.map
-    }, marker);
+  addOverLay: function(svgPlace){
+    d3.select("#svg-overlay").remove();
 
-    if (!marker.position) {
-        marker.position = new google.maps.LatLng(marker.lat, marker.lng);
+    d3.select(svgPlace)
+        .append("div")
+        .attr("id","svg-overlay")
+        .style("height", this.height + "px")
+        .style("width", this.width + "px");
+        
+    var context = {
+      height: this.height,
+      width: this.width,
+      center: this.center
     }
-    var o =  new google.maps.Marker(marker);
-    Ext.Object.each(marker.listeners, function(name, fn){
-        google.maps.event.addListener(o, name, fn);
-    });
-    return o;
+    this.overlay = new CC.view.MapOverLayView(context);    
   },
-
   lookupCode: function(addr, marker) {
     this.geocoder = new google.maps.Geocoder();
     this.geocoder.geocode({
@@ -157,7 +118,6 @@ Ext.define('CC.view.MainMapPanel', {
     this.callParent(arguments);
     this.redraw();
   },
-
   redraw: function() {
     var map = this.map;
     if (map) {
