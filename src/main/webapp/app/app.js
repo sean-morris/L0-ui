@@ -30,7 +30,7 @@ Ext.application({
   controllers: [
     'MainMapController',
     'NetworkController',
-  //  'LoginController'
+    'LoginController'
   ],
   // CC for Connected Corridors
   name: 'CC',

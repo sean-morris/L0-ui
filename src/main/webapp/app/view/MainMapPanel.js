@@ -147,12 +147,19 @@ Ext.define('CC.view.MainMapPanel', {
   },
   loadNetwork: function(network) {
     var me = this;
+    // clear old overlay
+    this.overlay.clear();
     // hack to get network center, just take first point of bounding box
     var lat = network.center.lat;
     var lng = network.center.lng;
+    var center = {};
+    center.lat = lat;
+    center.lng = lng;
     // set center
     this.setCenter(lat, lng);
     // set links
     this.links = network.links;
+    // draw network on svg overlay
+    this.overlay.drawNetwork(center, this.links, null);
   }
 });

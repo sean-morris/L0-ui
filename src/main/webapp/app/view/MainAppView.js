@@ -21,6 +21,7 @@ Ext.define('CC.view.MainAppView', {
     // Controllers
     'CC.controller.MainMapController',
     'CC.controller.NetworkController',
+    'CC.controller.LoginController',
     // Models
     'CC.model.UserModel',
     'CC.model.NetworkModel',
