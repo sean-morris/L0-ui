@@ -87,7 +87,7 @@ Ext.define('CC.view.MapOverLayView', {
     console.log("zoom:" + self.zoom.translate());
     var t = d3.event.translate;
     
-    var scale = 1 + Math.pow(1.0/6,d3.event.scale);
+    var scale = 1 + 1.0/20;
 
     for (var i=0; i< self.transMatrix.length; i++)
     {
