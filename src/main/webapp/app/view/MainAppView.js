@@ -32,9 +32,9 @@ Ext.define('CC.view.MainAppView', {
 
     Ext.applyIf(me, {
       items: [
-        //{
-          //xtype: 'LoginView'
-        //},
+        {
+          xtype: 'LoginView'
+        },
         {
           xtype: 'MapTileControl'
         },

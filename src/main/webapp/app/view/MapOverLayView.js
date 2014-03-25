@@ -18,11 +18,9 @@ Ext.define('CC.view.MapOverLayView', {
                        .translate([width / 2, height / 2]);
       this.path = d3.geo.path().projection(this.projection);
       var bounds  = this.path.bounds(CC.Globals.DATA);
-            var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
-            var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
-            var scale   = (hscale < vscale) ? hscale : vscale;
-      // var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
-      //                     height - (bounds[0][1] + bounds[1][1])/2];
+      var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
+      var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
+      var scale   = (hscale < vscale) ? hscale : vscale;
       
       this.transMatrix = [1,0,0,1,0,0];
       
@@ -34,10 +32,8 @@ Ext.define('CC.view.MapOverLayView', {
                                           .attr("width", context.width)
                                           .attr("height", context.height);
      this.svg = this.svg.append("g")
-     this.svg.attr("transform", "matrix("+ this.transMatrix.join(",")  +")");
-      this.svg.attr("transform-origin", "0 0");     
      var self = this;
-
+     this.scale = 1;
      this.zoom = d3.behavior.zoom()
                   .on("zoom", function(){
                     self.zoomed(self);
@@ -45,9 +41,12 @@ Ext.define('CC.view.MapOverLayView', {
     d3.select("#main-panel-body").call(this.zoom)
     this.drawLinks(CC.Globals.DATA)
     this.drawNodes(CC.Globals.DATA.features[0].geometry.coordinates)
-      
+    google.maps.event.addListener(context.map, 'zoom_changed', function() {
+        self.scale *= 2;
+        self.zoom.event(self.svg);
+    });
+    
   },
-
   drawLinks: function(geoJson) {
      this.vector = this.svg.selectAll("path")
                           .data(geoJson.features)
@@ -85,22 +84,31 @@ Ext.define('CC.view.MapOverLayView', {
     console.log("here:" + d3.event.scale);
     console.log("trans:" + self.projection.translate());
     console.log("zoom:" + self.zoom.translate());
-    var t = d3.event.translate;
-    
-    var scale = 1 + 1.0/20;
+    var t = d3.event.translate;    
+    var scale = this.scale;
 
-    for (var i=0; i< self.transMatrix.length; i++)
-    {
-      self.transMatrix[i] *= scale;
-    }
-    self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
-    self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
-    self.transMatrix[4] += ((1-scale)*self.context.width/2);
-    self.transMatrix[5] += ((1-scale)*self.context.height/2);
-    self.projection.translate([self.projection.translate()[0] + self.transMatrix[4],self.projection.translate()[1] + self.transMatrix[5] ]);
-    self.zoom.translate([0,0]);
+    // for (var i=0; i< self.transMatrix.length; i++)
+    // {
+        self.transMatrix[0] = scale;
+        self.transMatrix[3] = scale;
+
+    //}
+    
+    // self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
+    // self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
+    // self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
+    // self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
+   
+    self.transMatrix[4] = ((1-scale)*self.context.width/2);
+    self.transMatrix[5] = ((1-scale)*self.context.height/2);
+
+    //self.projection.translate([self.projection.translate()[0] + self.transMatrix[4],self.projection.translate()[1] + self.transMatrix[5] ]);
+    //self.zoom.translate([0,0]);
+    //self.zoom.scale(1);
    
     newMatrix = "matrix(" +  self.transMatrix.join(' ') + ")";
+    //newMatrix = "translate(" +  self.transMatrix[4] + "," + self.transMatrix[5] + ") scale("+ this.scale +")";
+
     d3.select("g").attr("transform", newMatrix);
     console.log(this.svg.attr("transform"));
     
