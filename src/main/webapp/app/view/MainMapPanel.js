@@ -28,7 +28,6 @@ Ext.define('CC.view.MainMapPanel', {
 
     me.callParent(arguments);
   },
-
   afterFirstLayout: function() {
     var center = this.center;
     this.callParent();
@@ -95,7 +94,8 @@ Ext.define('CC.view.MainMapPanel', {
     var context = {
       height: this.height,
       width: this.width,
-      center: this.center
+      center: this.center,
+      map: this.map
     }
     this.overlay = new CC.view.MapOverLayView(context);    
   },

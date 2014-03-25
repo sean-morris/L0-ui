@@ -7,21 +7,25 @@ Ext.define('CC.view.MapOverLayView', {
   alias: 'widget.MapOverLayView',
   
   constructor: function(context) {
+    this.fact = 0;
+     this.context = context;
      var width = context.width;
      var height = context.height;
      this.center =[context.center.lng,context.center.lat];
-     var scale = 10;
+     var scale = 1;
      this.projection = d3.geo.mercator().center(this.center)
                        .scale(scale)
                        .translate([width / 2, height / 2]);
       this.path = d3.geo.path().projection(this.projection);
       var bounds  = this.path.bounds(CC.Globals.DATA);
-      var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
-      var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
-      var scale   = (hscale < vscale) ? hscale : vscale;
+            var hscale  = scale*width  / (bounds[1][0] - bounds[0][0]);
+            var vscale  = scale*height / (bounds[1][1] - bounds[0][1]);
+            var scale   = (hscale < vscale) ? hscale : vscale;
       // var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
       //                     height - (bounds[0][1] + bounds[1][1])/2];
-       
+      
+      this.transMatrix = [1,0,0,1,0,0];
+      
       this.projection = d3.geo.mercator().center(this.center)
                                           .scale(scale)
                                           .translate([width / 2, height / 2]);
@@ -29,24 +33,31 @@ Ext.define('CC.view.MapOverLayView', {
       this.svg = d3.select("#svg-overlay").append("svg")
                                           .attr("width", context.width)
                                           .attr("height", context.height);
+     this.svg = this.svg.append("g")
+     this.svg.attr("transform", "matrix("+ this.transMatrix.join(",")  +")");
+      this.svg.attr("transform-origin", "0 0");     
+     var self = this;
+
      this.zoom = d3.behavior.zoom()
-                             .scale(this.projection.scale() * 2 * Math.PI)
-                             //.scaleExtent([1 << 11, 1 << 14])
-                             //.translate([width / 2, height / 2])
-                             .translate([context.width - this.center[0], context.height - this.center[1]])
-                             .on("zoom", this.zoomed);
-    this.svg.call(this.zoom);
+                  .on("zoom", function(){
+                    self.zoomed(self);
+                    });   
+    d3.select("#main-panel-body").call(this.zoom)
     this.drawLinks(CC.Globals.DATA)
     this.drawNodes(CC.Globals.DATA.features[0].geometry.coordinates)
       
   },
 
   drawLinks: function(geoJson) {
-    this.vector = this.svg.append("path");
-    this.vector.attr("d", this.path(geoJson.features[0]))
-                .attr("stroke", "blue")
-                .attr("fill", "none");  
-    //this.zoomed();
+     this.vector = this.svg.selectAll("path")
+                          .data(geoJson.features)
+                          .each()
+                          .attr("d", this.path)
+                          .enter()
+                          .append("path")
+                          .attr("d", this.path)
+                          .attr("stroke", "blue")
+                          .attr("fill", "none");
   },
   drawNodes: function(points) {
     var me = this;  
@@ -68,12 +79,31 @@ Ext.define('CC.view.MapOverLayView', {
         .attr("stroke-width", "3");
     }
   },
-  zoomed: function() {
-    console.log("sdf");
-    this.vector
-        .attr("transform", "translate(" + this.zoom.translate() + ")")
-        .attr("webkit-transform", "translate(" + this.zoom.translate() + ")")
-         .style("stroke-width", 3);
-         //scale(" + this.zoom.scale() + ")")
+  zoomed: function(self) {
+    
+    console.log("here:" + d3.event.translate);
+    console.log("here:" + d3.event.scale);
+    console.log("trans:" + self.projection.translate());
+    console.log("zoom:" + self.zoom.translate());
+    var t = d3.event.translate;
+    
+    var scale = 1 + Math.pow(1.0/6,d3.event.scale);
+
+    for (var i=0; i< self.transMatrix.length; i++)
+    {
+      self.transMatrix[i] *= scale;
+    }
+    self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
+    self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
+    self.transMatrix[4] += ((1-scale)*self.context.width/2);
+    self.transMatrix[5] += ((1-scale)*self.context.height/2);
+    self.projection.translate([self.projection.translate()[0] + self.transMatrix[4],self.projection.translate()[1] + self.transMatrix[5] ]);
+    self.zoom.translate([0,0]);
+   
+    newMatrix = "matrix(" +  self.transMatrix.join(' ') + ")";
+    d3.select("g").attr("transform", newMatrix);
+    console.log(this.svg.attr("transform"));
+    
    }
+        
 });
