@@ -10,6 +10,7 @@ Ext.define('CC.view.MapOverLayView', {
     this.context = context;
     this.width = context.width;
     this.height = context.height;
+    this.currentZoom = context.map.getZoom();
     this.center =[context.center.lng,context.center.lat];
     this.scale = 1;
     this.transMatrix = [1,0,0,1,0,0];
@@ -39,7 +40,8 @@ Ext.define('CC.view.MapOverLayView', {
                   }); 
     d3.select("#main-panel-body").call(this.zoom)
     google.maps.event.addListener(context.map, 'zoom_changed', function() {
-        self.scale *= 2;
+        self.scale = this.currentZoom - self.context.map.getZoom() > 0 ? self.scale / 2 : self.scale * 2;
+        this.currentZoom =  self.context.map.getZoom()
         self.zoom.event(self.svg);
     });
   },
