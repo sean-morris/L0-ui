@@ -7,18 +7,42 @@ Ext.define('CC.view.MapOverLayView', {
   alias: 'widget.MapOverLayView',
   
   constructor: function(context) {
+    this.context = context;
     this.width = context.width;
     this.height = context.height;
-     
+    this.center =[context.center.lng,context.center.lat];
+    this.scale = 1;
+    this.transMatrix = [1,0,0,1,0,0];
+    this.projection = d3.geo.mercator().center(this.center)
+                     .scale(this.scale)
+                     .translate([this.width / 2, this.height / 2]);
+    this.path = d3.geo.path().projection(this.projection);
+    var bounds  = this.path.bounds(CC.Globals.DATA);
+    var hscale  = scale*this.width  / (bounds[1][0] - bounds[0][0]);
+    var vscale  = scale*this.height / (bounds[1][1] - bounds[0][1]);
+    var scale   = (hscale < vscale) ? hscale : vscale;
+    this.projection = d3.geo.mercator().center(this.center)
+                                        .scale(scale)
+                                        .translate([this.width / 2, this.height / 2]);
+    this.path = this.path.projection(this.projection);
     this.svg = d3.select("#svg-overlay").append("svg")
-                                          .attr("width", context.width)
-                                          .attr("height", context.height);
-     
+                                        .attr("width", context.width)
+                                        .attr("height", context.height);
+    this.svg = this.svg.append("g");
+    
     // draw default network
     this.drawNetwork(context.center, CC.Globals.DATA, CC.Globals.DATA.features[0].geometry.coordinates);
-      
+    var self = this;
+    this.zoom = d3.behavior.zoom()
+                  .on("zoom", function(){
+                    self.zoomed(self);
+                  }); 
+    d3.select("#main-panel-body").call(this.zoom)
+    google.maps.event.addListener(context.map, 'zoom_changed', function() {
+        self.scale *= 2;
+        self.zoom.event(self.svg);
+    });
   },
-
   drawNetwork:function(center, links, nodes) {
     // set center and scale
     this.center =[center.lng,center.lat];
@@ -31,9 +55,6 @@ Ext.define('CC.view.MapOverLayView', {
     var hscale  = scale*this.width  / (bounds[1][0] - bounds[0][0]);
     var vscale  = scale*this.height / (bounds[1][1] - bounds[0][1]);
     var scale   = (hscale < vscale) ? hscale : vscale;
-    // var offset  = [width - (bounds[0][0] + bounds[1][0])/2,
-    //                     height - (bounds[0][1] + bounds[1][1])/2];
-     
     this.projection = d3.geo.mercator().center(this.center)
                                         .scale(scale)
                                         .translate([this.width / 2, this.height / 2]);
@@ -41,9 +62,7 @@ Ext.define('CC.view.MapOverLayView', {
 
     this.zoom = d3.behavior.zoom()
                              .scale(this.projection.scale() * 2 * Math.PI)
-                             //.scaleExtent([1 << 11, 1 << 14])
-                             //.translate([width / 2, height / 2])
-                             .translate([this.width - this.center[0], this.height - this.center[1]])
+                             .translate([this.width / 2, this.height / 2])
                              .on("zoom", this.zoomed);
 
     this.svg.call(this.zoom);
@@ -55,10 +74,11 @@ Ext.define('CC.view.MapOverLayView', {
       this.drawNodes(nodes);
     }
   },
-
   drawLinks: function(geoJson) {
     this.svg.selectAll("path")
      .data(geoJson.features)
+     .each()
+     .attr("d", this.path)                      
      .enter()
      .append("path")
      .attr("d", this.path)
@@ -85,18 +105,45 @@ Ext.define('CC.view.MapOverLayView', {
         .attr("stroke-width", "3");
     }
   },
+  zoomed: function(self) {
+    
+    console.log("here:" + d3.event.translate);
+    console.log("here:" + d3.event.scale);
+    console.log("trans:" + self.projection.translate());
+    console.log("zoom:" + self.zoom.translate());
+    var t = d3.event.translate;    
+    var scale = this.scale;
+
+    // for (var i=0; i< self.transMatrix.length; i++)
+    // {
+        self.transMatrix[0] = scale;
+        self.transMatrix[3] = scale;
+
+    //}
+    
+    // self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
+    // self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
+    // self.transMatrix[4] += self.projection.translate()[0]  - Math.abs(t[0]);
+    // self.transMatrix[5] += self.projection.translate()[1]  - Math.abs(t[1]);     
+   
+    self.transMatrix[4] = ((1-scale)*self.context.width/2);
+    self.transMatrix[5] = ((1-scale)*self.context.height/2);
+
+    //self.projection.translate([self.projection.translate()[0] + self.transMatrix[4],self.projection.translate()[1] + self.transMatrix[5] ]);
+    //self.zoom.translate([0,0]);
+    //self.zoom.scale(1);
+   
+    newMatrix = "matrix(" +  self.transMatrix.join(' ') + ")";
+    //newMatrix = "translate(" +  self.transMatrix[4] + "," + self.transMatrix[5] + ") scale("+ this.scale +")";
+
+    d3.select("g").attr("transform", newMatrix);
+    console.log(this.svg.attr("transform"));
+    
+  },
   clear: function() {
     // remove links
     this.svg.selectAll("path").remove();
     // remove nodes
     this.svg.selectAll("circle").remove();
-  },
-  zoomed: function() {
-    console.log("sdf");
-    this.vector
-        .attr("transform", "translate(" + this.zoom.translate() + ")")
-        .attr("webkit-transform", "translate(" + this.zoom.translate() + ")")
-         .style("stroke-width", 3);
-         //scale(" + this.zoom.scale() + ")")
-   }
+  }
 });

@@ -21,7 +21,7 @@ Ext.application({
   ],
   // View ExtJs files required by Application
   views: [
- //   'LoginView',
+    'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
