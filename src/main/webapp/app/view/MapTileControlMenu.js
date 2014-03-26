@@ -23,22 +23,26 @@ Ext.define('CC.view.MapTileControlMenu', {
       items: [{
         xtype: 'MenuCheckItem',
         text: 'Google Road',
+        map: CC.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.ROADMAP,
         checked: true,
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Hybrid',
+        map: CC.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.HYBRID
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Satellite',
+        map: CC.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.SATELLITE
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Nokia Road',
+        map: CC.Globals.NOKIA,
         mapType: null
       }]
     });
@@ -50,7 +54,7 @@ Ext.define('CC.view.MapTileControlMenu', {
     this.el.setStyle({
         margin:'0',
         border:'0 none',
-        top: '40px',
+        top: '55px',
         right: '20px',
         position: 'absolute'
     });

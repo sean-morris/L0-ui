@@ -12,14 +12,25 @@ Ext.Loader.setConfig({
 
 // Attach Main Application view
 Ext.application({
+
   // Adds, global Components/Variables used throughout Application
   requires: [
-    'CC.util.EventManager'
+    // utils
+    'CC.util.EventManager',
+    'CC.Globals'
   ],
+  // View ExtJs files required by Application
   views: [
+    'LoginView',
     'MainAppView',
     'MainMapPanel',
     'MapOverLayView'
+  ],
+  // Controller ExtJs files required by Controller
+  controllers: [
+    'MainMapController',
+    'NetworkController',
+    'LoginController'
   ],
   // CC for Connected Corridors
   name: 'CC',
