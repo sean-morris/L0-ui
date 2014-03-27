@@ -40,8 +40,8 @@ Ext.define('CC.view.MapOverLayView', {
                   }); 
     d3.select("#main-panel-body").call(this.zoom)
     google.maps.event.addListener(context.map, 'zoom_changed', function() {
-        self.scale = this.currentZoom - self.context.map.getZoom() > 0 ? self.scale / 2 : self.scale * 2;
-        this.currentZoom =  self.context.map.getZoom()
+        self.scale = self.currentZoom - self.context.map.getZoom() > 0 ? self.scale / 2 : self.scale * 2;
+        self.currentZoom =  self.context.map.getZoom()
         self.zoom.event(self.svg);
     });
   },
