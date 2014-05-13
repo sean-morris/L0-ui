@@ -26,3 +26,21 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.menubar-item {
+    padding: 5px;
+    margin: 0px;
+    background: #DDD;
+}
+.menu-item {
+    padding: 1px;
+    margin: 1px;
+    background: #DDD;
+}
+.menu-item :hover {
+  background: #CCC;
+}
+
+.no-icon-menu .x-menu-item-icon { 
+  display: none; 
+}

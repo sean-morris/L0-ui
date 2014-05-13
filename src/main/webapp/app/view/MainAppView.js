@@ -18,6 +18,9 @@ Ext.define('CC.view.MainAppView', {
     'CC.view.MapOverLayView',
     'CC.view.LoginBarPanel',
     'CC.view.LoginView',
+    'CC.view.MenuBarPanel',
+    'CC.view.MenuItem',
+    
     // Controllers
     'CC.controller.MainMapController',
     'CC.controller.NetworkController',
@@ -41,6 +44,19 @@ Ext.define('CC.view.MainAppView', {
     Ext.applyIf(me, {
       items: [
         {
+          region:'north',
+          bodyPadding: 0,
+          split: false,
+          collapsible: false,
+          height: '4%',
+          margins: '5 5 0 5',
+          items : [
+            {
+              xtype: 'MenuBarPanel'
+            }
+          ]
+        },
+        {
           title: 'Tree',
           region:'west',
           floatable: false,
@@ -48,7 +64,6 @@ Ext.define('CC.view.MainAppView', {
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
-          html: 'Secondary content like navigation links could go here'
         },
         {
           title: 'Forms and Reporting',
@@ -58,7 +73,6 @@ Ext.define('CC.view.MainAppView', {
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
-          html: 'Secondary content like navigation links could go here'
         },
         {
           title: 'Map',
