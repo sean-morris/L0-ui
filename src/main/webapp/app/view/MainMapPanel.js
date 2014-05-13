@@ -12,14 +12,10 @@ Ext.define('CC.view.MainMapPanel', {
     'Ext.window.MessageBox',
   ],
 
-  plain: true,
   gmapType: 'map',
-  border: false,
-  layout: 'absolute',
-  height: window.innerHeight,
-  width: window.innerWidth,
+  //height: this.getHeight(),
+  //width: window.innerWidth,
   id: 'main-panel',
-
   initComponent: function() {
     var me = this;
 
@@ -27,6 +23,12 @@ Ext.define('CC.view.MainMapPanel', {
     CC.util.EventManager.on('app:change-map-tile', this.changeMaps, this);
 
     me.callParent(arguments);
+  },
+  onBoxReady: function(){
+      Ext.get('main-panel').setHeight(this.getHeight());
+      Ext.get('main-panel').setWidth(this.getWidth());
+      console.log( 'boxready ' +this.getHeight());
+      console.log( 'boxready ' +this.getWidth());
   },
   afterFirstLayout: function() {
     var center = this.center;

@@ -28,30 +28,68 @@ Ext.define('CC.view.MainAppView', {
     // Stores
     'CC.store.Networks'
   ],
-  layout: 'absolute',
-
+  layout: 'border',
+  bodyBorder: false,
+  defaults: {
+    collapsible: true,
+    split: true,
+    bodyPadding: 15
+  },
   initComponent: function() {
     var me = this;
 
     Ext.applyIf(me, {
       items: [
         {
-          xtype: 'LoginBarPanel'
+          title: 'Tree',
+          region:'west',
+          floatable: false,
+          margins: '5 0 5 5',
+          width: '20%',
+          minWidth: 100,
+          maxWidth: 250,
+          html: 'Secondary content like navigation links could go here'
         },
         {
-          xtype: 'MapTileControl'
+          title: 'Forms and Reporting',
+          region:'east',
+          floatable: false,
+          margins: '5 5 5 0',
+          width: '20%',
+          minWidth: 100,
+          maxWidth: 250,
+          html: 'Secondary content like navigation links could go here'
         },
         {
-          xtype: 'MapTileControlMenu'
+          title: 'Map',
+          region:'center',
+          floatable: false,
+          margins: '5 0 5 0',
+          layout: 'fit',
+          width: '60%',
+          items: [
+            // {
+            //              //xtype: 'LoginBarPanel'
+            //            },
+            //            {
+            //              //xtype: 'MapTileControl'
+            //            },
+            //            {
+            //              //xtype: 'MapTileControlMenu'
+            //            },
+            {
+              xtype: 'MainMapPanel',
+              //height: 822,
+              //width: 1217,
+              // set default map center to Berkeley co-ordinates
+              center: {
+                lat: 40.714448123932996,
+                lng: -74.010074230999976
+              },
+             
+            }
+          ]
         },
-        {
-          xtype: 'MainMapPanel',
-          // set default map center to Berkeley co-ordinates
-          center: {
-            lat: 40.714448123932996,
-            lng: -74.010074230999976
-          },
-        }
       ]
     });
     me.callParent(arguments);
