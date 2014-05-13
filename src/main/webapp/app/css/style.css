@@ -36,11 +36,9 @@ body {
     padding: 1px;
     margin: 1px;
     background: #DDD;
-}
-.menu-item :hover {
-  background: #CCC;
+    width: 100px;
 }
 
 .no-icon-menu .x-menu-item-icon { 
-  display: none; 
+  display: none;
 }
