@@ -71,12 +71,11 @@ Ext.define('CC.view.MainAppView', {
           floatable: false,
           margins: '5 5 5 0',
           width: '20%',
-          minWidth: 100,
-          maxWidth: 250,
         },
         {
           title: 'Map',
           region:'center',
+          collapseDirection: 'left',
           floatable: false,
           margins: '5 0 5 0',
           layout: 'fit',
@@ -93,8 +92,7 @@ Ext.define('CC.view.MainAppView', {
             //            },
             {
               xtype: 'MainMapPanel',
-              //height: 822,
-              //width: 1217,
+
               // set default map center to Berkeley co-ordinates
               center: {
                 lat: 40.714448123932996,
