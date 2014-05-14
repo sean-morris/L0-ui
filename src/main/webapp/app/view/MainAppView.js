@@ -21,6 +21,7 @@ Ext.define('CC.view.MainAppView', {
     'CC.view.LoginView',
     'CC.view.MenuBarPanel',
     'CC.view.MenuItem',
+    'CC.view.TreeView',
     
     // Controllers
     'CC.controller.MainMapController',
@@ -62,6 +63,11 @@ Ext.define('CC.view.MainAppView', {
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
+          items: [
+            {
+              xtype: 'TreeView'
+            }
+          ]
         },
         {
           title: 'Forms and Reporting',
