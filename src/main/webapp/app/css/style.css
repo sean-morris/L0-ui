@@ -42,3 +42,7 @@ body {
 .no-icon-menu .x-menu-item-icon { 
   display: none;
 }
+
+.field-margin {
+  margin: 5px;
+}

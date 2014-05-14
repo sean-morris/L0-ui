@@ -13,8 +13,8 @@ Ext.define('CC.view.MainMapPanel', {
   ],
 
   gmapType: 'map',
-  //height: this.getHeight(),
-  //width: window.innerWidth,
+  height: 660,
+  width: 558,
   id: 'main-panel',
   initComponent: function() {
     var me = this;
@@ -23,12 +23,6 @@ Ext.define('CC.view.MainMapPanel', {
     CC.util.EventManager.on('app:change-map-tile', this.changeMaps, this);
 
     me.callParent(arguments);
-  },
-  onBoxReady: function(){
-      Ext.get('main-panel').setHeight(this.getHeight());
-      Ext.get('main-panel').setWidth(this.getWidth());
-      console.log( 'boxready ' +this.getHeight());
-      console.log( 'boxready ' +this.getWidth());
   },
   afterFirstLayout: function() {
     var center = this.center;

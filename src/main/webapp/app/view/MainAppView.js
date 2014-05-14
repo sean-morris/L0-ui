@@ -8,6 +8,7 @@ Ext.define('CC.view.MainAppView', {
   requires: [
     'Ext.panel.Panel',
     // Views
+    'CC.view.FormBasicView',
     'CC.view.NetworkSelectionWindow',
     'CC.view.MainMapPanel',
     'CC.view.MapTileControlPanel',
@@ -39,10 +40,7 @@ Ext.define('CC.view.MainAppView', {
     bodyPadding: 15
   },
   initComponent: function() {
-    var me = this;
-
-    Ext.applyIf(me, {
-      items: [
+    this.items = [
         {
           region:'north',
           bodyPadding: 0,
@@ -70,7 +68,12 @@ Ext.define('CC.view.MainAppView', {
           region:'east',
           floatable: false,
           margins: '5 5 5 0',
-          width: '20%',
+          width: '40%',
+          items: [
+            {
+              xtype: 'FormBasicView'
+            }
+          ]
         },
         {
           title: 'Map',
@@ -79,7 +82,7 @@ Ext.define('CC.view.MainAppView', {
           floatable: false,
           margins: '5 0 5 0',
           layout: 'fit',
-          width: '60%',
+          width: '40%',
           items: [
             // {
             //              //xtype: 'LoginBarPanel'
@@ -102,8 +105,7 @@ Ext.define('CC.view.MainAppView', {
             }
           ]
         },
-      ]
-    });
-    me.callParent(arguments);
+    ];
+    this.callParent(arguments);
   }
 });
