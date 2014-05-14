@@ -12,14 +12,10 @@ Ext.define('CC.view.MainMapPanel', {
     'Ext.window.MessageBox',
   ],
 
-  plain: true,
   gmapType: 'map',
-  border: false,
-  layout: 'absolute',
-  height: window.innerHeight,
-  width: window.innerWidth,
+  height: 660,
+  width: 558,
   id: 'main-panel',
-
   initComponent: function() {
     var me = this;
 
