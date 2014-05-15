@@ -47,7 +47,7 @@ Ext.define('CC.view.MainAppView', {
           bodyPadding: 0,
           split: false,
           collapsible: false,
-          height: '4%',
+          height: '20px',
           margins: '5 5 0 5',
           items : [
             {
