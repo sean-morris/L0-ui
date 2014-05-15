@@ -15,43 +15,36 @@ Ext.define('CC.view.MenuBarPanel', {
         menu: [
           {
             xtype: 'MenuItem',
-            text: "One",
+            text: "Open Project",
           },
           {
             xtype: 'MenuItem',
-            text: "Two",
+            text: "Save Project",
+          },
+          {
+            xtype: 'MenuItem',
+            text: "Import Data",
           }
         ]
       },
       {
         xtype: 'splitbutton',
-        text: 'Edit',
+        text: 'Help',
         cls: 'menubar-item',
         menu: [
           {
             xtype: 'MenuItem',
-            text: "One",
+            text: "Documentation",
           },
           {
             xtype: 'MenuItem',
-            text: "Two",
+            text: "Contact",
+          },
+          {
+            xtype: 'MenuItem',
+            text: "Version Info",
           }
         ]
       },
-      {
-        xtype: 'splitbutton',
-        text: 'Tools',
-        cls: 'menubar-item',
-        menu: [
-          {
-            xtype: 'MenuItem',
-            text: "One",
-          },
-          {
-            xtype: 'MenuItem',
-            text: "Two",
-          }
-        ]
-      } 
   ],
 });

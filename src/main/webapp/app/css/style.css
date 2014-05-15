@@ -37,10 +37,7 @@ body {
     margin: 1px;
     background: #DDD;
     width: 100px;
-}
-
-.no-icon-menu .x-menu-item-icon { 
-  display: none;
+    text-align:left;
 }
 
 .field-margin {
