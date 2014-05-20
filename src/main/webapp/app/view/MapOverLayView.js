@@ -109,10 +109,10 @@ Ext.define('CC.view.MapOverLayView', {
   },
   zoomed: function(self) {
     
-    console.log("here:" + d3.event.translate);
-    console.log("here:" + d3.event.scale);
-    console.log("trans:" + self.projection.translate());
-    console.log("zoom:" + self.zoom.translate());
+    // console.log("here:" + d3.event.translate);
+    // console.log("here:" + d3.event.scale);
+    // console.log("trans:" + self.projection.translate());
+    // console.log("zoom:" + self.zoom.translate());
     var t = d3.event.translate;    
     var scale = this.scale;
 
@@ -139,7 +139,7 @@ Ext.define('CC.view.MapOverLayView', {
     //newMatrix = "translate(" +  self.transMatrix[4] + "," + self.transMatrix[5] + ") scale("+ this.scale +")";
 
     d3.select("g").attr("transform", newMatrix);
-    console.log(this.svg.attr("transform"));
+    //g(this.svg.attr("transform"));
     
   },
   clear: function() {

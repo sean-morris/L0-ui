@@ -2,6 +2,7 @@
 Ext.ns('CC.Globals');
 CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';
 
+CC.Globals.PROJECT = {};
 CC.Globals.GOOGLE = 'google';
 CC.Globals.NOKIA = 'nokia';
 CC.Globals.DATA = {

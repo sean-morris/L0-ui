@@ -16,6 +16,9 @@ Ext.define('CC.view.MenuBarPanel', {
           {
             xtype: 'MenuItem',
             text: "Open Project",
+            func: function(){
+              new CC.view.FileUploadFormView();
+            }
           },
           {
             xtype: 'MenuItem',

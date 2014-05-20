@@ -4,7 +4,7 @@ Ext.define('CC.view.MenuItem', {
   cls: 'menu-item',
   onClick: function(e) {
     var me = this;
-    alert("clicked");
+    new CC.view.FileUploadFormView();
   }, 
   
 });

@@ -17,10 +17,12 @@ Ext.application({
   requires: [
     // utils
     'CC.util.EventManager',
-    'CC.Globals'
+    'CC.Globals',
+    'CC.store.Networks'
   ],
   // View ExtJs files required by Application
   views: [
+    'FileUploadFormView',
     'LoginView',
     'MainAppView',
     'MainMapPanel',
