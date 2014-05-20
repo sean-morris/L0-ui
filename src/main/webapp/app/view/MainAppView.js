@@ -56,14 +56,21 @@ Ext.define('CC.view.MainAppView', {
           ]
         },
         {
-          title: 'Tree',
+          title: 'Navigation',
           region:'west',
           floatable: false,
           margins: '5 0 5 5',
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
+          layout: {
+                 type: 'accordion',
+                 multi: true,
+          },
           items: [
+            {
+              xtype: 'TreeView'
+            },
             {
               xtype: 'TreeView'
             }

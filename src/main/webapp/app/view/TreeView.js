@@ -24,5 +24,6 @@ Ext.define('CC.view.TreeView', {
     store: store,
     rootVisible: true,
     useArrows: true,
-    border: false
+    border: false,
 });
+
