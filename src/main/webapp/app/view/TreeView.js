@@ -2,8 +2,6 @@ var store = Ext.create('Ext.data.TreeStore', {
     root: {
         expanded: true, 
         text:"Scenario",
-        user:"",
-        status:"", 
         children: [
             { text:"detention", leaf: true },
             { text:"homework", expanded: true, 
