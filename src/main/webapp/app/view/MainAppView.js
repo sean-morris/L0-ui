@@ -31,7 +31,10 @@ Ext.define('CC.view.MainAppView', {
     'CC.model.UserModel',
     'CC.model.NetworkModel',
     // Stores
-    'CC.store.Networks'
+    'CC.store.Networks',
+    
+    //util
+    'CC.util.GenerateNavigation'
   ],
   layout: 'border',
   bodyBorder: false,
@@ -41,6 +44,7 @@ Ext.define('CC.view.MainAppView', {
     bodyPadding: 15
   },
   initComponent: function() {
+    var menus = CC.util.GenerateNavigation.writeNav();
     this.items = [
         {
           region:'north',
@@ -67,14 +71,7 @@ Ext.define('CC.view.MainAppView', {
                  type: 'accordion',
                  multi: true,
           },
-          items: [
-            {
-              xtype: 'TreeView'
-            },
-            {
-              xtype: 'TreeView'
-            }
-          ]
+          items: menus
         },
         {
           title: 'Forms and Reporting',
