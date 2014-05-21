@@ -3,35 +3,37 @@
  */
  Ext.define('CC.util.GenerateNavigation', {
   alias: 'widget.GenerateNavigation',
-  singleton: true, // ensure only one application event manager can exist
-  
+  singleton: true,
+  beginText: '<span class="nav-begin-text">To populate Navigation:</br>File > Open Project</span>',
   writeNav: function(){
-     // var proj = CC.Globals.PROJECT;
-    //  proj.project["Scenario Elements"]
       var menus = [];
       var menuConfig = {
-              title: "Scenario Elements",
               xtype: 'TreeView',
               showSeparator: false,
               floating: false,
               hideHeader: false,
               collapsed: false,
-              store: CC.util.GenerateNavigation.getStore()
+              store:  CC.util.GenerateNavigation.getStore()
       };
       menus.push(menuConfig);
-      return menus;
+      Ext.getCmp('panelOne').update('');
+      Ext.getCmp('panelOne').add(menus[0]);
+      var keyArray = Ext.Object.getKeys(CC.Globals.PROJECT.project);
+
   },
   getStore: function(){
       var store = Ext.create('Ext.data.TreeStore', {
         root: {
             expanded: true, 
-            text:"Scenario Elements",
             children: [
-                { text:"Calibration", leaf: true,
-                    children: CC.util.GenerateNavigation.getChildren(["a","b"])
-
-//                    children: getChildren(CC.Globals.PROJECT.project["Scenario Elements"]["Calibrations"].names)
+                { 
+                  text:"Calibration", 
+                  children: CC.util.GenerateNavigation.getChildren(CC.Globals.PROJECT.project["Scenario Elements"]["Calibrations"].names)    
                 },
+                { 
+                  text:"Traffic Management", 
+                  children: CC.util.GenerateNavigation.getChildren(CC.Globals.PROJECT.project["Scenario Elements"]["Traffic Management"].names)    
+                }
             ]
         }
     });
@@ -43,5 +45,21 @@
       chi.push({text: child, leaf: true});
     });
     return chi;
+  },
+  getPanelTitles: function(){
+   return [ {
+            title: 'Scenario Elements',
+            id: 'panelOne',
+            collapsed: false,
+            html: this.beginText
+          }, {
+            title: 'Scenarios'
+          }, {
+            title: 'Runs'
+          },
+          {
+            title: 'Reports'
+          }
+    ]
   }
 });

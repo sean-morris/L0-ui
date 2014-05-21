@@ -22,7 +22,7 @@ Ext.define('CC.view.TreeView', {
     width: 200,
     height: '100%',
     store: store,
-    rootVisible: true,
+    rootVisible: false,
     useArrows: true,
     border: false,
 });

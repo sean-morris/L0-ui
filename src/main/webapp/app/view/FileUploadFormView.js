@@ -58,7 +58,8 @@ Ext.define('CC.view.FileUploadFormView', {
   buttons: [{
         text: 'Upload',
         handler: function(){
-
+          var menus = CC.util.GenerateNavigation.writeNav();
+          this.up('window').close();          
         }
   }],
 });

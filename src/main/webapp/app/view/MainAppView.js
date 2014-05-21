@@ -44,7 +44,6 @@ Ext.define('CC.view.MainAppView', {
     bodyPadding: 15
   },
   initComponent: function() {
-    var menus = CC.util.GenerateNavigation.writeNav();
     this.items = [
         {
           region:'north',
@@ -61,6 +60,7 @@ Ext.define('CC.view.MainAppView', {
         },
         {
           title: 'Navigation',
+          id: 'nav-accordian',
           region:'west',
           floatable: false,
           margins: '5 0 5 5',
@@ -71,7 +71,11 @@ Ext.define('CC.view.MainAppView', {
                  type: 'accordion',
                  multi: true,
           },
-          items: menus
+          defaults: {
+            collapsed: true,
+            hideCollapseTool: true
+          },
+          items: CC.util.GenerateNavigation.getPanelTitles()
         },
         {
           title: 'Forms and Reporting',

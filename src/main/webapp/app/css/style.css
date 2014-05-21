@@ -43,3 +43,12 @@ body {
 .field-margin {
   margin: 5px;
 }
+
+.nav-begin-text {
+  text-align: left;
+  font-weight: bold;
+}
+
+.nav-elem {
+    text-align:left;
+}
