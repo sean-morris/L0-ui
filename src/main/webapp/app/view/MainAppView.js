@@ -27,11 +27,15 @@ Ext.define('CC.view.MainAppView', {
     'CC.controller.MainMapController',
     'CC.controller.NetworkController',
     'CC.controller.LoginController',
+    
     // Models
     'CC.model.UserModel',
     'CC.model.NetworkModel',
+    'CC.model.Calibration',
+    
     // Stores
     'CC.store.Networks',
+    'CC.store.Calibrations',
     
     //util
     'CC.util.GenerateNavigation'
@@ -73,7 +77,7 @@ Ext.define('CC.view.MainAppView', {
           },
           defaults: {
             collapsed: true,
-            hideCollapseTool: true
+            hideCollapseTool: false
           },
           items: CC.util.GenerateNavigation.getPanelTitles()
         },
