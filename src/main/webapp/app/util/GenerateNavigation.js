@@ -6,49 +6,45 @@
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File > Open Project</span>',
   writeNav: function(){
-      Ext.create('CC.store.Calibrations');
-      var cStore = Ext.data.StoreManager.get('calibrations');
-      cStore.loadData(CC.Globals.PROJECT.project["Scenario Elements"]["Calibrations"]);
+      var stores = ["Calibrations"];
       var menus = [];
-      var menuConfig = {
+      stores.forEach(function(store){
+          var s = Ext.data.StoreManager.get(store.toLowerCase());
+          s.load();
+          var menuConfig = {
               xtype: 'treepanel',
               showSeparator: false,
               floating: false,
-              hideHeader: false,
+              hideHeader: true,
               collapsed: false,
-              store:  CC.util.GenerateNavigation.getStore(cStore)
-          
-      };
-      menus.push(menuConfig);
+              rootVisible: false,
+              border: 0,
+              useArrows: true,
+              store:  CC.util.GenerateNavigation.getStore(s, store)
+          };
+          menus.push(menuConfig);      
+      });
       Ext.getCmp('panelOne').update('');
       Ext.getCmp('panelOne').add(menus[0]);
-      var keyArray = Ext.Object.getKeys(CC.Globals.PROJECT.project);
-
   },
-  getStore: function(cStore){
+  getStore: function(store, nodeName){
       var store = Ext.create('Ext.data.TreeStore', {
         root: {
             expanded: true,
-            data: cStore
-            // children: [
-            //     { 
-            //       text:"Calibration", 
-            //       children: CC.util.GenerateNavigation.getChildren(CC.Globals.PROJECT.project["Scenario Elements"]["Calibrations"])    
-            //     },
-            //     { 
-            //       text:"Traffic Management", 
-            //       children: CC.util.GenerateNavigation.getChildren(CC.Globals.PROJECT.project["Scenario Elements"]["Traffic Management"])    
-            //     }
-            // ]
+            children: [
+               {
+                  text:nodeName, 
+                  children: CC.util.GenerateNavigation.getChildren(store)    
+               }
+            ]
         }
     });
-    store.load(cStore);
     return store;
   },
-  getChildren: function(children){
+  getChildren: function(store){
     var chi = [];
-    children.forEach(function(child){
-      chi.push({text: child.name, leaf: true});
+    store.getRange().forEach(function(child){
+      chi.push({text: child.data.name, leaf: true});
     });
     return chi;
   },

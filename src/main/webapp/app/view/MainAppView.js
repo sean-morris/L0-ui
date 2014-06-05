@@ -124,6 +124,11 @@ Ext.define('CC.view.MainAppView', {
           ]
         },
     ];
+    this.createStores();
     this.callParent(arguments);
+  },
+  createStores: function(){
+    Ext.create('CC.store.Calibrations');
   }
+  
 });
