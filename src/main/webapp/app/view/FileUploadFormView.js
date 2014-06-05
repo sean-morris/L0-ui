@@ -6,12 +6,14 @@ var myForm = {
       name: 'file-project',
       buttonText: '...',
       listeners : {
-        change: function(field){
+        change: function(field, value){
           var file = field.fileInputEl.dom.files[0];
           var reader = new FileReader();
           reader.onload = function(e){
             var JsonObj = JSON.parse(e.target.result);
             CC.Globals.PROJECT = JsonObj;
+            var n = Ext.DomQuery.selectNode('input[id='+field.getInputId()+']');
+            n.value = value.replace("C:\\fakepath\\","");
           };
           reader.onerror = function(event){
             console.log("Error");
@@ -25,30 +27,30 @@ Ext.define('CC.view.FileUploadFormView', {
   extend: 'Ext.window.Window',
   alias: 'widget.FileUploadFormView',
   xtype: 'FileUploadFormView',
-    // Login window properties
+    // upload window properties
   id: 'upload-window',
   title: 'CC Upload', 
   model: true,
   constrain: true,
-  autoShow: true,             
-  height: 130,                 
+  autoShow: true,
+  height: 130,
   width: 350,
   layout: {
-      type: 'fit'              
+      type: 'fit'
   },
-  iconCls: 'key',                           
-  closeAction: 'destroy',         
+  iconCls: 'key',
+  closeAction: 'destroy',
   closable: true,
   items:[
   { 
     // Add upload form
-    xtype: 'form', 
-    frame: false,        
-    bodyPadding: 15,      
-    defaults: {             
+    xtype: 'form',
+    frame: false,
+    bodyPadding: 15,
+    defaults: {
       xtype: 'textfield', 
-      anchor: '100%',     
-      labelWidth: 80     
+      anchor: '100%',
+      labelWidth: 80
     },
     // Add fields to form
     items: [
@@ -56,10 +58,10 @@ Ext.define('CC.view.FileUploadFormView', {
     ]
   }],
   buttons: [{
-        text: 'Upload',
-        handler: function(){
-          var menus = CC.util.GenerateNavigation.writeNav();
-          this.up('window').close();          
-        }
+    text: 'Upload',
+    handler: function(){
+      var menus = CC.util.GenerateNavigation.writeNav();
+      this.up('window').close();
+    }
   }],
 });

@@ -10,7 +10,7 @@
       var menus = [];
       stores.forEach(function(store){
           var s = Ext.data.StoreManager.get(store.toLowerCase());
-          s.load();
+          s.loadStore();
           var menuConfig = {
               xtype: 'treepanel',
               showSeparator: false,

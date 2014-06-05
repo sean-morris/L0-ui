@@ -7,7 +7,7 @@ Ext.define('CC.store.Calibrations', {
       property:'name',
       direction:'ASC'
     }],
-    load: function(){
-      this.loadData(CC.Globals.PROJECT.project["Scenario Elements"]["Calibrations"])
+    loadStore: function(){
+      this.loadData(CC.Globals.PROJECT.project.scenarioElements.calibrations)
     }
 });

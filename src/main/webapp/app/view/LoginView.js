@@ -70,7 +70,7 @@ Ext.define('CC.view.LoginView', {
     listeners :{ 
       click: function() { 
         // fire login event which login controller will handle by attempting to log in
-        CC.util.EventManager.fireEvent('app:login');        
+        CC.util.EventManager.fireEvent('app:login');
       }
     } 
   }] 
