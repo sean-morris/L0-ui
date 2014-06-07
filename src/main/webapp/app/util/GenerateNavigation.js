@@ -59,7 +59,7 @@
             collapsed: true,
             tools: 
               [{
-                  id:'save',
+                  type:'save',
                   tooltip: 'New Scenario',
                   handler: function(){ alert("open form"); }
                 }
