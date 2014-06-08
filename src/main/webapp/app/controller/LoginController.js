@@ -2,7 +2,7 @@
  * CC Login Controller.  Sends Ajax request to log into database and
  * authorize user credentials.
  */ 
-Ext.define('CC.controller.LoginController', { 
+Ext.define('cc.controller.LoginController', { 
   extend : 'Ext.app.Controller', 
   refs: [
     // Controller references, which query ExtJS for active component names
@@ -14,7 +14,7 @@ Ext.define('CC.controller.LoginController', {
     }
   ],
   init: function() { 
-    CC.util.EventManager.on('app:login', this.authenticateUser, this); 
+    cc.util.EventManager.on('app:login', this.authenticateUser, this); 
   }, 
   authenticateUser : function() { 
     // get username, password and database from login view
@@ -30,17 +30,17 @@ Ext.define('CC.controller.LoginController', {
       var database = store.getAt(index).raw[1];  
     }
     // Add authentication and databse to global user model
-    CC.model.UserModel.authToken = window.btoa(username + ':' + password);
-    CC.model.UserModel.database = database;
+    cc.model.UserModel.authToken = window.btoa(username + ':' + password);
+    cc.model.UserModel.database = database;
     // Send Ajax Request to see if user is valid and authenticate 
     Ext.Ajax.request({
       scope: this,
-      url: CC.Globals.WEB_SERVICE_URL + 'login',
+      url: cc.Globals.WEB_SERVICE_URL + 'login',
       method: 'GET',
       // pass username, password and database in request header
       headers: {
-        'Authorization': CC.model.UserModel.authToken,
-        'DB': CC.model.UserModel.database
+        'Authorization': cc.model.UserModel.authToken,
+        'DB': cc.model.UserModel.database
       },
       success: function(responseObject, opts) {
         var text = responseObject.responseText;
@@ -50,7 +50,7 @@ Ext.define('CC.controller.LoginController', {
         // and show logged in status
         if (response.authenticated === true) {
           this.getLoginView().close();
-          var networkWindow = new CC.view.NetworkSelectionWindow();
+          var networkWindow = new cc.view.NetworkSelectionWindow();
           // TODO show login status
         } else {
           // TODO add error message to login view

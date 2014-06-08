@@ -3,7 +3,7 @@
  * be used to register events and map them to appropriate components.
  *
  */
- Ext.define('CC.util.EventManager', {
+ Ext.define('cc.util.EventManager', {
   extend: 'Ext.util.Observable',
   alias: 'widget.EventManager',
   singleton: true, // ensure only one application event manager can exist

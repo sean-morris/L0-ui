@@ -2,7 +2,7 @@
  * This is the map tile selection menu overlay. With menu
  * checkItem subcomponent.
  */
-Ext.define('CC.view.MapTileControlMenu', {
+Ext.define('cc.view.MapTileControlMenu', {
   extend: 'Ext.menu.Menu',
   alias: 'widget.MapTileControlMenu',
   id: 'map-tile-control-menu',
@@ -23,26 +23,26 @@ Ext.define('CC.view.MapTileControlMenu', {
       items: [{
         xtype: 'MenuCheckItem',
         text: 'Google Road',
-        map: CC.Globals.GOOGLE,
+        map: cc.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.ROADMAP,
         checked: true,
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Hybrid',
-        map: CC.Globals.GOOGLE,
+        map: cc.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.HYBRID
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Google Satellite',
-        map: CC.Globals.GOOGLE,
+        map: cc.Globals.GOOGLE,
         mapType: google.maps.MapTypeId.SATELLITE
       },
       {
         xtype: 'MenuCheckItem',
         text: 'Nokia Road',
-        map: CC.Globals.NOKIA,
+        map: cc.Globals.NOKIA,
         mapType: null
       }]
     });

@@ -1,11 +1,11 @@
-Ext.define('CC.view.NetworkSelectionWindow', {
+Ext.define('cc.view.NetworkSelectionWindow', {
   extend: 'Ext.window.Window', 
   alias : 'widget.NetworkSelectionWindow',
   // attach to data store
   requires : [
     'Ext.grid.Panel',
     'Ext.data.StoreManager',
-    'CC.store.Networks'
+    'cc.store.Networks'
   ],
   // Newtork window properties
   id: 'network-selection-window',
@@ -26,7 +26,7 @@ Ext.define('CC.view.NetworkSelectionWindow', {
   items: [{ 
     xtype: 'grid',
     itemId: 'networkGrid',
-    store: Ext.create('CC.store.Networks'),
+    store: Ext.create('cc.store.Networks'),
     loadMask: true,
     width: 300,
     columns: [{
@@ -54,7 +54,7 @@ Ext.define('CC.view.NetworkSelectionWindow', {
     listeners: {
       itemclick: function(dv, record, item, index, e) {
         // fire event to load clicked on network
-        CC.util.EventManager.fireEvent('app:load-network', record.get('id'));
+        cc.util.EventManager.fireEvent('app:load-network', record.get('id'));
         // close grid
         Ext.getCmp('network-selection-window').close();   
       }                                    
@@ -64,6 +64,6 @@ Ext.define('CC.view.NetworkSelectionWindow', {
   constructor: function () {
     this.callParent(arguments);
     // fire event to load network list
-    CC.util.EventManager.fireEvent('app:list-networks', this);
+    cc.util.EventManager.fireEvent('app:list-networks', this);
   }
 });

@@ -2,43 +2,43 @@
  * Connected Corridors Main Application View Container
  *
  */
-Ext.define('CC.view.MainAppView', {
+Ext.define('cc.view.MainAppView', {
   extend: 'Ext.container.Viewport',
 
   requires: [
     'Ext.panel.Panel',
     // Views
-    'CC.view.FormBasicView',
-    'CC.view.NetworkSelectionWindow',
-    'CC.view.MainMapPanel',
-    'CC.view.MapTileControlPanel',
-    'CC.view.MapTileControlMenu',
-    'CC.view.MapOverLayView',
-    'CC.view.MenuCheckItem',
-    'CC.view.MenuCheckItem',
-    'CC.view.MapOverLayView',
-    'CC.view.LoginBarPanel',
-    'CC.view.LoginView',
-    'CC.view.MenuBarPanel',
-    'CC.view.MenuItem',
-    'CC.view.TreeView',
+    'cc.view.FormBasicView',
+    'cc.view.NetworkSelectionWindow',
+    'cc.view.MainMapPanel',
+    'cc.view.MapTileControlPanel',
+    'cc.view.MapTileControlMenu',
+    'cc.view.MapOverLayView',
+    'cc.view.MenuCheckItem',
+    'cc.view.MenuCheckItem',
+    'cc.view.MapOverLayView',
+    'cc.view.LoginBarPanel',
+    'cc.view.LoginView',
+    'cc.view.MenuBarPanel',
+    'cc.view.MenuItem',
+    'cc.view.TreeView',
     
     // Controllers
-    'CC.controller.MainMapController',
-    'CC.controller.NetworkController',
-    'CC.controller.LoginController',
+    'cc.controller.MainMapController',
+    'cc.controller.NetworkController',
+    'cc.controller.LoginController',
     
     // Models
-    'CC.model.UserModel',
-    'CC.model.NetworkModel',
-    'CC.model.Calibration',
+    'cc.model.UserModel',
+    'cc.model.NetworkModel',
+    'cc.model.Calibration',
     
     // Stores
-    'CC.store.Networks',
-    'CC.store.Calibrations',
+    'cc.store.Networks',
+    'cc.store.Calibrations',
     
     //util
-    'CC.util.GenerateNavigation'
+    'cc.util.GenerateNavigation'
   ],
   layout: 'border',
   bodyBorder: false,
@@ -79,7 +79,7 @@ Ext.define('CC.view.MainAppView', {
             collapsed: true,
             hideCollapseTool: false
           },
-          items: CC.util.GenerateNavigation.getPanelTitles()
+          items: cc.util.GenerateNavigation.getPanelTitles()
         },
         {
           title: 'Forms and Reporting',
@@ -128,7 +128,7 @@ Ext.define('CC.view.MainAppView', {
     this.callParent(arguments);
   },
   createStores: function(){
-    Ext.create('CC.store.Calibrations');
+    Ext.create('cc.store.Calibrations');
   }
   
 });

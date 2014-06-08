@@ -2,7 +2,7 @@
  * This panel holds the map tile controls which is layed on top of the main map panel. 
  *
  */
-Ext.define('CC.view.MapTileControlPanel', {
+Ext.define('cc.view.MapTileControlPanel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.MapTileControl',
   height: 35,

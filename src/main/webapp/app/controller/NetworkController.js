@@ -2,7 +2,7 @@
  * Network Controller.  Populates controller list by sending ajax request
  * to api to get list of networks.
  */
-Ext.define('CC.controller.NetworkController', {
+Ext.define('cc.controller.NetworkController', {
   extend: 'Ext.window.Window', 
   alias : 'widget.NetworkController',
   extend : 'Ext.app.Controller', 
@@ -16,16 +16,16 @@ Ext.define('CC.controller.NetworkController', {
     }
   ],
   init: function() { 
-    CC.util.EventManager.on('app:list-networks', this.listNetworks, this); 
+    cc.util.EventManager.on('app:list-networks', this.listNetworks, this); 
   }, 
   listNetworks : function() { 
     Ext.Ajax.request({
         scope: this,
-        url: CC.Globals.WEB_SERVICE_URL + 'project/1/scenario/1/network/',
+        url: cc.Globals.WEB_SERVICE_URL + 'project/1/scenario/1/network/',
         method: 'GET',
         headers: {
-          'Authorization': CC.model.UserModel.authToken,
-          'DB': CC.model.UserModel.database
+          'Authorization': cc.model.UserModel.authToken,
+          'DB': cc.model.UserModel.database
         },
         success: function(responseObject){
           var text = responseObject.responseText;

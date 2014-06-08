@@ -16,13 +16,13 @@ Ext.application({
   // Adds, global Components/Variables used throughout Application
   requires: [
     // utils
-    'CC.util.EventManager',
-    'CC.Globals',
-    'CC.store.Networks'
+    'cc.util.EventManager',
+    'cc.Globals',
+    'cc.store.Networks'
   ],
   // View ExtJs files required by Application
   views: [
-    'FileUploadFormView',
+    'FileUploadForm',
     'LoginView',
     'MainAppView',
     'MainMapPanel',
@@ -30,15 +30,16 @@ Ext.application({
   ],
   // Controller ExtJs files required by Controller
   controllers: [
+    'FileUpload',
     'MainMapController',
     'NetworkController',
-    'LoginController'
+    'LoginController',
   ],
   // CC for Connected Corridors
-  name: 'CC',
+  name: 'cc',
   // Application Launch Point, which renders Main Application view to body
   launch: function() {
-    Ext.create('CC.view.MainAppView', {renderTo: Ext.getBody()});
+    Ext.create('cc.view.MainAppView', {renderTo: Ext.getBody()});
   }
 
 });

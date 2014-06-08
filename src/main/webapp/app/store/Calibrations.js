@@ -1,13 +1,13 @@
-Ext.define('CC.store.Calibrations', {
+Ext.define('cc.store.Calibrations', {
     extend: 'Ext.data.Store',
-    requires: ['CC.model.Calibration'],
-    model: 'CC.model.Calibration',
+    requires: ['cc.model.Calibration'],
+    model: 'cc.model.Calibration',
     storeId: 'calibrations',
     sorters:[{
       property:'name',
       direction:'ASC'
     }],
     loadStore: function(){
-      this.loadData(CC.Globals.PROJECT.project.scenarioElements.calibrations)
+      this.loadData(cc.Globals.PROJECT.project.scenarioElements.calibrations)
     }
 });

@@ -1,7 +1,7 @@
 /**
  * Model to represent high level network information.
  */
-Ext.define('CC.model.NetworkModel', {
+Ext.define('cc.model.NetworkModel', {
   extend: 'Ext.data.Model',
   fields: [{
     name: 'description',

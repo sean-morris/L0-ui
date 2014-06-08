@@ -1,7 +1,7 @@
 /**
  * Controller to manage loading and rendering of map links and nodes.
  */
-Ext.define('CC.controller.MainMapController', {
+Ext.define('cc.controller.MainMapController', {
 
     extend: 'Ext.app.Controller',
     alias: 'widget.MainMapController',
@@ -18,18 +18,18 @@ Ext.define('CC.controller.MainMapController', {
 
     init: function() {
       // Add event listeners here
-      CC.util.EventManager.on('app:load-network', this.loadNetwork, this);
+      cc.util.EventManager.on('app:load-network', this.loadNetwork, this);
     },
 
     loadNetwork: function(networkId) {
 
       Ext.Ajax.request({
         scope: this,
-        url: CC.Globals.WEB_SERVICE_URL + 'project/1/scenario/1/network/'+networkId+'/detail/5',
+        url: cc.Globals.WEB_SERVICE_URL + 'project/1/scenario/1/network/'+networkId+'/detail/5',
         method: 'GET',
         headers: {
-          'Authorization': CC.model.UserModel.authToken,
-          'DB': CC.model.UserModel.database
+          'Authorization': cc.model.UserModel.authToken,
+          'DB': cc.model.UserModel.database
         },
         success: function(responseObject){
           var text = responseObject.responseText;

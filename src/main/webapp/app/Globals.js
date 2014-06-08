@@ -1,11 +1,11 @@
-// Define Globals here under the CC.Globals namespace
-Ext.ns('CC.Globals');
-CC.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';
+// Define Globals here under the cc.Globals namespace
+Ext.ns('cc.Globals');
+cc.Globals.WEB_SERVICE_URL = '/via-rest-api-new-ui/';
 
-CC.Globals.PROJECT = {};
-CC.Globals.GOOGLE = 'google';
-CC.Globals.NOKIA = 'nokia';
-CC.Globals.DATA = {
+cc.Globals.PROJECT = {};
+cc.Globals.GOOGLE = 'google';
+cc.Globals.NOKIA = 'nokia';
+cc.Globals.DATA = {
           "type": "FeatureCollection",
           "features": [
             {

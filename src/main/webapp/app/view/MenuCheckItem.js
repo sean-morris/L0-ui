@@ -3,7 +3,7 @@
  * override setChecked method so that only one item 
  * can be checked at a time.
  */
-Ext.define('CC.view.MenuCheckItem', {
+Ext.define('cc.view.MenuCheckItem', {
   extend: 'Ext.menu.CheckItem',
   alias: 'widget.MenuCheckItem',
   onClick: function(e) {
@@ -30,8 +30,8 @@ Ext.define('CC.view.MenuCheckItem', {
       me.setChecked(true);
 
       // fire event to change map tiles
-      CC.util.EventManager.fireEvent('app:change-map-tile', me);
-      //CC.util.EventManager.fireEvent('app:load-network', 100001);
+      cc.util.EventManager.fireEvent('app:change-map-tile', me);
+      //cc.util.EventManager.fireEvent('app:load-network', 100001);
     }
   }
 });

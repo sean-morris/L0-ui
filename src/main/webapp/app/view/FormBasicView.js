@@ -8,7 +8,7 @@ var vTypes = Ext.create('Ext.data.Store', {
     ]
 });
 
-Ext.define('CC.view.FormBasicView', {
+Ext.define('cc.view.FormBasicView', {
   extend: 'Ext.form.Panel',
   alias: 'widget.FormBasicView',
   xtype: 'FormBasicView',

@@ -2,7 +2,7 @@
  * This panel holds the map tile controls which is layed on top of the main map panel. 
  *
  */
-Ext.define('CC.view.LoginBarPanel', {
+Ext.define('cc.view.LoginBarPanel', {
   extend: 'Ext.panel.Panel',
   alias: 'widget.LoginBarPanel',
   height: 35,
@@ -41,6 +41,6 @@ Ext.define('CC.view.LoginBarPanel', {
   // Function to open log screen into CC system
   logIn: function() {
     // open log in screen
-    var loginWindow = new CC.view.LoginView();
+    var loginWindow = new cc.view.LoginView();
   }
 });

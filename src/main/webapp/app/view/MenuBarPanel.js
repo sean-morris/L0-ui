@@ -1,7 +1,7 @@
 /**
  * This panel holds the menu bar in the north section of the layout
  */
-Ext.define('CC.view.MenuBarPanel', {
+Ext.define('cc.view.MenuBarPanel', {
   extend: 'Ext.toolbar.Toolbar',
   alias: 'widget.MenuBarPanel',
   border: false,
@@ -17,7 +17,7 @@ Ext.define('CC.view.MenuBarPanel', {
             xtype: 'MenuItem',
             text: "Open Project",
             func: function(){
-              new CC.view.FileUploadFormView();
+              new cc.view.FileUploadFormView();
             }
           },
           {

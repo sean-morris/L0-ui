@@ -1,7 +1,7 @@
 /**
  * CC Login Window
  */ 
-Ext.define('CC.view.LoginView', { 
+Ext.define('cc.view.LoginView', { 
   extend: 'Ext.window.Window', 
   alias : 'widget.LoginView',
 
@@ -70,7 +70,7 @@ Ext.define('CC.view.LoginView', {
     listeners :{ 
       click: function() { 
         // fire login event which login controller will handle by attempting to log in
-        CC.util.EventManager.fireEvent('app:login');
+        cc.util.EventManager.fireEvent('app:login');
       }
     } 
   }] 

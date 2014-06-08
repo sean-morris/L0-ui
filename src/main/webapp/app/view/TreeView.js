@@ -14,7 +14,7 @@ var store = Ext.create('Ext.data.TreeStore', {
         ]
     }
 });     
-Ext.define('CC.view.TreeView', {
+Ext.define('cc.view.TreeView', {
     extend: 'Ext.tree.Panel',
     alias: 'widget.TreeView',
     xtype: 'TreeView',

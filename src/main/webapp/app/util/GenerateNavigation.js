@@ -1,7 +1,7 @@
 /**
  *
  */
- Ext.define('CC.util.GenerateNavigation', {
+ Ext.define('cc.util.GenerateNavigation', {
   alias: 'widget.GenerateNavigation',
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File > Open Project</span>',
@@ -20,7 +20,7 @@
               rootVisible: false,
               border: 0,
               useArrows: true,
-              store:  CC.util.GenerateNavigation.getStore(s, store)
+              store:  cc.util.GenerateNavigation.getStore(s, store)
           };
           menus.push(menuConfig);      
       });
@@ -34,7 +34,7 @@
             children: [
                {
                   text:nodeName, 
-                  children: CC.util.GenerateNavigation.getChildren(store)    
+                  children: cc.util.GenerateNavigation.getChildren(store)    
                }
             ]
         }

@@ -3,7 +3,7 @@
  * of map (e.g. Google, Nokia, etc).
  *
  */
-Ext.define('CC.view.MapOverLayView', {
+Ext.define('cc.view.MapOverLayView', {
   alias: 'widget.MapOverLayView',
   
   constructor: function(context) {
@@ -18,7 +18,7 @@ Ext.define('CC.view.MapOverLayView', {
                      .scale(this.scale)
                      .translate([this.width / 2, this.height / 2]);
     this.path = d3.geo.path().projection(this.projection);
-    var bounds  = this.path.bounds(CC.Globals.DATA);
+    var bounds  = this.path.bounds(cc.Globals.DATA);
     var hscale  = scale*this.width  / (bounds[1][0] - bounds[0][0]);
     var vscale  = scale*this.height / (bounds[1][1] - bounds[0][1]);
     var scale   = (hscale < vscale) ? hscale : vscale;
@@ -32,7 +32,7 @@ Ext.define('CC.view.MapOverLayView', {
     this.svg = this.svg.append("g");
     
     // draw default network
-    this.drawNetwork(context.center, CC.Globals.DATA, CC.Globals.DATA.features[0].geometry.coordinates);
+    this.drawNetwork(context.center, cc.Globals.DATA, cc.Globals.DATA.features[0].geometry.coordinates);
     var self = this;
     this.zoom = d3.behavior.zoom()
                   .on("zoom", function(){

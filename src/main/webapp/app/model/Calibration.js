@@ -1,4 +1,4 @@
-Ext.define('CC.model.Calibration', {
+Ext.define('cc.model.Calibration', {
   extend: 'Ext.data.Model',
 
   fields: [{
