@@ -3,8 +3,6 @@ Ext.define('cc.view.MenuItem', {
   alias: 'widget.MenuItem',
   cls: 'menu-item',
   onClick: function(e) {
-    var me = this;
-    new cc.view.FileUploadForm();
-  }, 
-  
+    Ext.create('cc.view.FileUploadForm');
+  },
 });
