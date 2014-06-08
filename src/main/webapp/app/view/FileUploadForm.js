@@ -34,6 +34,8 @@ Ext.define('cc.view.FileUploadForm', {
   }],
   buttons: [{
     text: 'Upload',
-    action: 'upload'
+    id: 'upload',
+    action: 'upload',
+    disabled : true
   }],
 });

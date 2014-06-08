@@ -23,7 +23,10 @@ Ext.define('cc.controller.FileUpload', {
           click: this.manageFile
       },
       '#form-file' : {
-          change: this.hideFakePath
+          change: function(field, value){
+            Ext.getCmp('upload').enable();
+            this.hideFakePath(field, value);
+          }
       }
     }); 
   }, 
