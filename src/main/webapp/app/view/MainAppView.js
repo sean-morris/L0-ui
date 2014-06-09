@@ -4,42 +4,6 @@
  */
 Ext.define('cc.view.MainAppView', {
   extend: 'Ext.container.Viewport',
-
-  requires: [
-    'Ext.panel.Panel',
-    // Views
-    'cc.view.FormBasicView',
-    'cc.view.NetworkSelectionWindow',
-    'cc.view.MainMapPanel',
-    'cc.view.MapTileControlPanel',
-    'cc.view.MapTileControlMenu',
-    'cc.view.MapOverLayView',
-    'cc.view.MenuCheckItem',
-    'cc.view.MenuCheckItem',
-    'cc.view.MapOverLayView',
-    'cc.view.LoginBarPanel',
-    'cc.view.LoginView',
-    'cc.view.MenuBarPanel',
-    'cc.view.MenuItem',
-    'cc.view.TreeView',
-    
-    // Controllers
-    'cc.controller.MainMapController',
-    'cc.controller.NetworkController',
-    'cc.controller.LoginController',
-    
-    // Models
-    'cc.model.UserModel',
-    'cc.model.NetworkModel',
-    'cc.model.Calibration',
-    
-    // Stores
-    'cc.store.Networks',
-    'cc.store.Calibrations',
-    
-    //util
-    'cc.util.GenerateNavigation'
-  ],
   layout: 'border',
   bodyBorder: false,
   defaults: {

@@ -10,33 +10,45 @@ Ext.Loader.setConfig({
   disableCaching: false
 });
 
-// Attach Main Application view
 Ext.application({
+  name: 'cc',
 
-  // Adds, global Components/Variables used throughout Application
   requires: [
-    // utils
     'cc.util.EventManager',
     'cc.Globals',
-    'cc.store.Networks'
+    'cc.util.GenerateNavigation'    
   ],
-  // View ExtJs files required by Application
+  models : [
+    'UserModel',
+    'NetworkModel',
+    'Calibration',
+  ],
   views: [
     'FileUploadForm',
+    'FormBasicView',
+    'LoginBarPanel',
     'LoginView',
     'MainAppView',
     'MainMapPanel',
-    'MapOverLayView'
+    'MapOverLayView',
+    'MapTileControlPanel',
+    'MapTileControlMenu',
+    'NetworkSelectionWindow',
+    'MenuBarPanel',
+    'MenuCheckItem',
+    'MenuItem',
+    'TreeView',
   ],
-  // Controller ExtJs files required by Controller
   controllers: [
     'FileUpload',
+    'LoginController',
     'MainMapController',
     'NetworkController',
-    'LoginController',
   ],
-  // CC for Connected Corridors
-  name: 'cc',
+  stores: [
+    'cc.store.Networks',
+    'cc.store.Calibrations',
+  ],
   // Application Launch Point, which renders Main Application view to body
   launch: function() {
     Ext.create('cc.view.MainAppView', {renderTo: Ext.getBody()});
