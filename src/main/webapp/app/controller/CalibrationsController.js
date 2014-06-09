@@ -11,5 +11,14 @@ Ext.define('cc.controller.CalibrationsController', {
     }, 
     load: function() {
       this.getCalibrationsStore().load();
+      this.renderTreeNav();
+    },
+    renderTreeNav: function(){
+      var nav = cc.util.TreeNavigation.writeNav({
+          store: this.getCalibrationsStore(),
+          name: "Calibrations"
+      });
+      Ext.getCmp('panelOne').update('');
+      Ext.getCmp('panelOne').add(nav);
     }
 })

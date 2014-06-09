@@ -16,7 +16,7 @@ Ext.application({
   requires: [
     'cc.util.EventManager',
     'cc.Globals',
-    'cc.util.GenerateNavigation',
+    'cc.util.TreeNavigation',
   ],
   models : [
     'UserModel',
@@ -31,7 +31,6 @@ Ext.application({
     'MenuBarPanel',
     'MenuCheckItem',
     'MenuItem',
-    'TreeView',
   ],
   controllers: [
     'CalibrationsController',

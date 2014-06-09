@@ -43,7 +43,7 @@ Ext.define('cc.view.MainAppView', {
             collapsed: true,
             hideCollapseTool: false
           },
-          items: cc.util.GenerateNavigation.getPanelTitles()
+          items: cc.util.TreeNavigation.getPanelTitles()
         },
         {
           title: 'Forms and Reporting',

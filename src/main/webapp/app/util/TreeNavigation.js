@@ -1,45 +1,35 @@
 /**
  *
  */
- Ext.define('cc.util.GenerateNavigation', {
-  alias: 'widget.GenerateNavigation',
+ Ext.define('cc.util.TreeNavigation', {
+  alias: 'widget.TreeNavigation',
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File > Open Project</span>',
-  writeNav: function(){
-      var stores = ["Calibrations"];
-      var menus = [];
-      stores.forEach(function(store){
-          var s = Ext.data.StoreManager.get(store.toLowerCase());
-          s.loadStore();
-          var menuConfig = {
-              xtype: 'treepanel',
-              showSeparator: false,
-              floating: false,
-              hideHeader: true,
-              collapsed: false,
-              rootVisible: false,
-              border: 0,
-              useArrows: true,
-              store:  cc.util.GenerateNavigation.getStore(s, store)
-          };
-          menus.push(menuConfig);      
-      });
-      Ext.getCmp('panelOne').update('');
-      Ext.getCmp('panelOne').add(menus[0]);
+  writeNav: function(params){
+    return {
+      xtype: 'treepanel',
+      showSeparator: false,
+      floating: false,
+      hideHeader: true,
+      collapsed: false,
+      rootVisible: false,
+      border: 0,
+      useArrows: true,
+      store: cc.util.TreeNavigation.getStore(params.store, params.name)
+    };
   },
   getStore: function(store, nodeName){
-      var store = Ext.create('Ext.data.TreeStore', {
+      return Ext.create('Ext.data.TreeStore', {
         root: {
             expanded: true,
             children: [
                {
                   text:nodeName, 
-                  children: cc.util.GenerateNavigation.getChildren(store)    
+                  children: cc.util.TreeNavigation.getChildren(store)    
                }
             ]
         }
     });
-    return store;
   },
   getChildren: function(store){
     var chi = [];
