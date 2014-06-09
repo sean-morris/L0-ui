@@ -47,6 +47,7 @@ Ext.define('cc.view.MainAppView', {
         },
         {
           title: 'Forms and Reporting',
+          id: 'centerRegion',
           region:'center',
           collapseDirection: 'left',
           floatable: false,
@@ -55,7 +56,7 @@ Ext.define('cc.view.MainAppView', {
           width: '40%',
           items: [
             {
-              xtype: 'FormBasicView'
+              //xtype: 'FormBasicView'
             }
           ]
         },

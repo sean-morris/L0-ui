@@ -53,7 +53,11 @@
               [{
                   type:'save',
                   tooltip: 'New Scenario',
-                  handler: function(){ alert("open form"); }
+                  handler: function(){ 
+                    var f = Ext.create("cc.view.ScenarioForm");
+                    Ext.getCmp("centerRegion").removeAll(true);
+                    Ext.getCmp("centerRegion").add(f);
+                  }
                 }
               ]
           }, {
