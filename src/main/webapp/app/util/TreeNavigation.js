@@ -4,7 +4,8 @@
  Ext.define('cc.util.TreeNavigation', {
   alias: 'widget.TreeNavigation',
   singleton: true,
-  beginText: '<span class="nav-begin-text">To populate Navigation:</br>File > Open Project</span>',
+  beginText: '<span class="nav-begin-text">To populate Navigation:</br>File \
+                > Open Project</span>',
   writeNav: function(params){
     return {
       xtype: 'treepanel',
@@ -41,11 +42,12 @@
   getPanelTitles: function(){
    return [{
             title: 'Scenario Elements',
-            id: 'panelOne',
+            id: 'scenarioElements',
             collapsed: false,
             html: this.beginText,
           }, {
             title: 'Scenarios',
+            id: 'scenarios',
             collapsed: true,
             tools: 
               [{
@@ -56,10 +58,12 @@
               ]
           }, {
             title: 'Runs',
+            id: 'runs',
             collapsed: true,
           },
           {
             title: 'Reports',
+            id: 'reports',
             collapsed: true,
           }
     ]

@@ -1,24 +1,24 @@
-Ext.define('cc.controller.CalibrationsController', {
+Ext.define('cc.controller.RunsController', {
     extend: 'Ext.app.Controller',
     models: [
-      'Calibration'
+      'Run'
     ],
     stores:[
-      'Calibrations'
+      'Runs'
     ],
     init: function() {
       cc.util.EventManager.on('stores:load', this.load, this);
     }, 
     load: function() {
-      this.getCalibrationsStore().load();
+      this.getRunsStore().load();
       this.renderTreeNav();
     },
     renderTreeNav: function(){
       var nav = cc.util.TreeNavigation.writeNav({
-          store: this.getCalibrationsStore(),
-          name: "Calibrations"
+          store: this.getRunsStore(),
+          name: "Runs"
       });
-      Ext.getCmp('scenarioElements').update('');
-      Ext.getCmp('scenarioElements').add(nav);
+      Ext.getCmp('runs').update('');
+      Ext.getCmp('runs').add(nav);
     }
 })

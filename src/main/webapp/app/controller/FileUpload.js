@@ -38,7 +38,6 @@ Ext.define('cc.controller.FileUpload', {
       cc.data = JSON.parse(e.target.result);
       me.getUploadFormWindow().close();
       cc.util.EventManager.fireEvent('stores:load');
-      //cc.util.GenerateNavigation.writeNav();
     };
     reader.onerror = function(event){
       Ext.MessageBox.show({

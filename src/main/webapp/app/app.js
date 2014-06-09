@@ -38,6 +38,9 @@ Ext.application({
     'LoginController',
     'MainMapController',
     'NetworkController',
+    'RunsController',
+    'ScenariosController',
+    'TrafficManagementsController',
   ],
   // Application Launch Point, which renders Main Application view to body
   launch: function() {

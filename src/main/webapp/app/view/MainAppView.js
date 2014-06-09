@@ -47,8 +47,10 @@ Ext.define('cc.view.MainAppView', {
         },
         {
           title: 'Forms and Reporting',
-          region:'east',
+          region:'center',
+          collapseDirection: 'left',
           floatable: false,
+          layout: 'fit',
           margins: '5 5 5 0',
           width: '40%',
           items: [
@@ -59,8 +61,9 @@ Ext.define('cc.view.MainAppView', {
         },
         {
           title: 'Map',
-          region:'center',
+          region:'east',
           collapseDirection: 'left',
+          flex: 1,
           floatable: false,
           margins: '5 0 5 0',
           layout: 'fit',

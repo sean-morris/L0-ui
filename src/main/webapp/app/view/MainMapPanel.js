@@ -55,7 +55,7 @@ Ext.define('cc.view.MainMapPanel', {
       var svgPlace = "#" + me.body.dom.id;
       svgPlace += " > div:first-child > div:first-child > div:first-child";
       
-      me.addOverLay(svgPlace);
+      //me.addOverLay(svgPlace);
 
     });
     //is this doing anything?
