@@ -2,10 +2,11 @@
  * Controller to manage loading and rendering of map links and nodes.
  */
 Ext.define('cc.controller.MainMapController', {
-
     extend: 'Ext.app.Controller',
     alias: 'widget.MainMapController',
-
+    views: [
+      'MainMapPanel'
+    ],
     refs: [
       // Controller references, which query ExtJS for active component names
       // on selector.  Can then be accessed within controller by ref name.

@@ -16,20 +16,14 @@ Ext.application({
   requires: [
     'cc.util.EventManager',
     'cc.Globals',
-    'cc.util.GenerateNavigation'    
+    'cc.util.GenerateNavigation',
   ],
   models : [
     'UserModel',
-    'NetworkModel',
-    'Calibration',
   ],
   views: [
-    'FileUploadForm',
     'FormBasicView',
-    'LoginBarPanel',
-    'LoginView',
     'MainAppView',
-    'MainMapPanel',
     'MapOverLayView',
     'MapTileControlPanel',
     'MapTileControlMenu',
@@ -40,14 +34,11 @@ Ext.application({
     'TreeView',
   ],
   controllers: [
+    'CalibrationsController',
     'FileUpload',
     'LoginController',
     'MainMapController',
     'NetworkController',
-  ],
-  stores: [
-    'cc.store.Networks',
-    'cc.store.Calibrations',
   ],
   // Application Launch Point, which renders Main Application view to body
   launch: function() {

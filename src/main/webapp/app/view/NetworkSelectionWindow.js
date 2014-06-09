@@ -26,7 +26,7 @@ Ext.define('cc.view.NetworkSelectionWindow', {
   items: [{ 
     xtype: 'grid',
     itemId: 'networkGrid',
-    store: Ext.create('cc.store.Networks'),
+    //store: Ext.create('cc.store.Networks'),
     loadMask: true,
     width: 300,
     columns: [{

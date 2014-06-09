@@ -3,7 +3,11 @@
  * authorize user credentials.
  */ 
 Ext.define('cc.controller.LoginController', { 
-  extend : 'Ext.app.Controller', 
+  extend : 'Ext.app.Controller',
+  views: [
+    'LoginView',
+    'LoginBarPanel'
+  ],
   refs: [
     // Controller references, which query ExtJS for active component names
     // on selector.  Can then be accessed within controller by ref name.

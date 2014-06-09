@@ -37,11 +37,12 @@ Ext.define('cc.controller.FileUpload', {
     reader.onload = function(e){
       cc.data = JSON.parse(e.target.result);
       me.getUploadFormWindow().close();
+      cc.util.EventManager.fireEvent('stores:load');
       //cc.util.GenerateNavigation.writeNav();
     };
     reader.onerror = function(event){
       Ext.MessageBox.show({
-         title: 'File failed to Load',
+         title: 'File Load Error',
          msg: 'The file failed to load.',
          buttons: Ext.MessageBox.OK,
          animateTarget: 'mb9',

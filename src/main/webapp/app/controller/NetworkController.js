@@ -5,7 +5,10 @@
 Ext.define('cc.controller.NetworkController', {
   extend: 'Ext.window.Window', 
   alias : 'widget.NetworkController',
-  extend : 'Ext.app.Controller', 
+  extend : 'Ext.app.Controller',
+  stores:[
+      'Networks'
+  ],
   refs: [
     // Controller references, which query ExtJS for active component names
     // on selector.  Can then be accessed within controller by ref name.
