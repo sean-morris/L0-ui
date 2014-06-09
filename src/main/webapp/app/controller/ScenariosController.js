@@ -1,5 +1,8 @@
 Ext.define('cc.controller.ScenariosController', {
     extend: 'Ext.app.Controller',
+    views:[
+      'ScenarioForm'
+    ],
     models: [
       'Scenario'
     ],
