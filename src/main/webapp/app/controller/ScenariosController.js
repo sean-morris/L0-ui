@@ -40,20 +40,34 @@ Ext.define('cc.controller.ScenariosController', {
         this.getScenariosStore().add(f.model);
         this.renderTreeNav();
       }
-      f.close();
     },
     onAccordianClickNewScenario: function(){
-      var f = Ext.widget("ScenarioForm");
+      if(this.isSavedAndClose()){
+        this.renderForm(Ext.widget("ScenarioForm"));
+      }
+    },
+    onTreeItemClick: function(view, record) {
+      if(record.data.parentId != "root" && (this.isSavedAndClose())){
+        var f = Ext.widget("ScenarioForm", {
+          title: "Edit: " + record.data.text,
+          model: record.raw.model
+        });
+        this.renderForm(f);
+      }
+    },
+    renderForm : function(f){
       this.getCenterRegion().removeAll(true);
       this.getCenterRegion().add(f);
     },
-    onTreeItemClick: function(view, record) {
-      var f = Ext.widget("ScenarioForm", {
-        title: "Edit: " + record.data.text,
-        model: record.raw.model
-      });
-      this.getCenterRegion().removeAll(true);
-      this.getCenterRegion().add(f);
+    isSavedAndClose: function(){
+      var f = this.getScenarioForm();
+      if(f != null && f.isDirty())
+        return false;
+      
+      if(f != null && !f.isDirty())
+        f.close();
+      
+      return true;
     },
     load: function() {
       this.getScenariosStore().load();
@@ -61,8 +75,8 @@ Ext.define('cc.controller.ScenariosController', {
     },
     renderTreeNav: function(){
       var nav = cc.util.TreeNavigation.writeNav({
-          store: this.getScenariosStore(),
-          name: "Scenarios"
+        store: this.getScenariosStore(),
+        name: "Scenarios"
       });
       Ext.getCmp('scenarios').removeAll();
       Ext.getCmp('scenarios').add(nav);

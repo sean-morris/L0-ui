@@ -6,6 +6,7 @@ Ext.define('cc.view.ScenarioForm', {
   bodyPadding: 5,
   autoScroll: true,
   width: '100%',
+  closable: true,
   fieldDefaults: {
     labelAlign: 'right',
     labelWidth: 150,

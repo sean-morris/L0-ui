@@ -13,7 +13,6 @@
       showSeparator: false,
       floating: false,
       hideHeader: true,
-      collapsed: false,
       rootVisible: false,
       border: 0,
       useArrows: true,
@@ -22,15 +21,14 @@
   },
   getStore: function(store, nodeName){
       return Ext.create('Ext.data.TreeStore', {
-        model: 'Scenario',
         root: {
-            expanded: true,
-            children: [
-               {
-                  text:nodeName, 
-                  children: cc.util.TreeNavigation.getChildren(store)    
-               }
-            ]
+          children: [
+            {
+              text:nodeName,
+              expanded: true,
+              children: cc.util.TreeNavigation.getChildren(store)    
+            }
+          ]
         }
     });
   },
@@ -53,15 +51,20 @@
             collapsed: true,
             tools: 
               [{
-                  type: 'save',
-                  id: 'new-scenario',
-                  tooltip: 'New Scenario',
-                }
-              ]
+                type: 'save',
+                id: 'new-scenario',
+                tooltip: 'New Scenario',
+              }]
           }, {
             title: 'Runs',
             id: 'runs',
             collapsed: true,
+            tools:  
+              [{
+                type: 'save',
+                id: 'new-run',
+                tooltip: 'New Run',
+              }]
           },
           {
             title: 'Reports',
