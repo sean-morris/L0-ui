@@ -16,8 +16,4 @@ Ext.define('cc.model.Scenario', {
     name: 'trafficMPId',
     type: 'int'
   }],
-  save: function(){
-    
-    return true;
-  }
 });

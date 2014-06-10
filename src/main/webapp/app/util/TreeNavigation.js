@@ -9,6 +9,7 @@
   writeNav: function(params){
     return {
       xtype: 'treepanel',
+      id: params.name.toLowerCase() + '-tree',
       showSeparator: false,
       floating: false,
       hideHeader: true,
@@ -21,6 +22,7 @@
   },
   getStore: function(store, nodeName){
       return Ext.create('Ext.data.TreeStore', {
+        model: 'Scenario',
         root: {
             expanded: true,
             children: [
@@ -35,7 +37,7 @@
   getChildren: function(store){
     var chi = [];
     store.getRange().forEach(function(child){
-      chi.push({text: child.data.name, leaf: true});
+      chi.push({text: child.data.name, leaf: true, model:child});
     });
     return chi;
   },
@@ -51,13 +53,9 @@
             collapsed: true,
             tools: 
               [{
-                  type:'save',
+                  type: 'save',
+                  id: 'new-scenario',
                   tooltip: 'New Scenario',
-                  handler: function(){ 
-                    var f = Ext.create("cc.view.ScenarioForm");
-                    Ext.getCmp("centerRegion").removeAll(true);
-                    Ext.getCmp("centerRegion").add(f);
-                  }
                 }
               ]
           }, {

@@ -31,20 +31,15 @@ Ext.define('cc.view.PanelForm', {
             }
 
         } else {
-
             //Bind the provided model to be updated
             this.bindModel(this.model);
-
         }
-
         this.addEvents('loadsuccess', 'loadfailure', 'savesuccess', 'savefailure');
     },
-
     bindModel: function(model) {
         this.model = model;
         this.loadRecord(model);
     },
-
     commit: function(callback, scope) {
         if (this.form.isDirty()) {
             this.form.updateRecord(this.model);
@@ -64,12 +59,10 @@ Ext.define('cc.view.PanelForm', {
             });
         }
     },
-
     onModelLoadSuccess: function(record, operation) {
         this.bindModel(record);
         this.fireEvent('loadsuccess', this, record, operation);
     },
-
     onModelLoadFailure: function(record, operation) {
         this.fireEvent('loadfailure', this, record, operation);
     }

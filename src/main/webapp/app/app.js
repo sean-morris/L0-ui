@@ -22,7 +22,6 @@ Ext.application({
     'UserModel',
   ],
   views: [
-    'FormBasicView',
     'MainAppView',
     'MapOverLayView',
     'MapTileControlPanel',
@@ -44,7 +43,6 @@ Ext.application({
   ],
   // Application Launch Point, which renders Main Application view to body
   launch: function() {
-    Ext.create('cc.view.MainAppView', {renderTo: Ext.getBody()});
+    Ext.widget('MainAppView', {renderTo: Ext.getBody()});
   }
-
 });

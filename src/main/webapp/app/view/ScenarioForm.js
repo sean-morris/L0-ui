@@ -3,14 +3,13 @@ Ext.define('cc.view.ScenarioForm', {
   alias: 'widget.ScenarioForm',
   model: 'cc.model.Scenario',
   id: 'scenario-form',
-  title: 'Scenario Form',
   bodyPadding: 5,
   autoScroll: true,
   width: '100%',
   fieldDefaults: {
-        labelAlign: 'right',
-        labelWidth: 150,
-        msgTarget: 'side'
+    labelAlign: 'right',
+    labelWidth: 150,
+    msgTarget: 'side'
   },
   initComponent: function() {
     this.items = [
@@ -36,9 +35,7 @@ Ext.define('cc.view.ScenarioForm', {
       {
         xtype: 'button',
         text: 'Save Scenario',
-        action: 'save',
-        //handler: this.commit,
-        scope: this
+        action: 'save'
       }
     ]
     this.callParent();

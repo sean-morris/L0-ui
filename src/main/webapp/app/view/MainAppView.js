@@ -4,6 +4,7 @@
  */
 Ext.define('cc.view.MainAppView', {
   extend: 'Ext.container.Viewport',
+  alias: 'widget.MainAppView',
   layout: 'border',
   bodyBorder: false,
   defaults: {
@@ -54,11 +55,6 @@ Ext.define('cc.view.MainAppView', {
           layout: 'fit',
           margins: '5 5 5 0',
           width: '40%',
-          items: [
-            {
-              //xtype: 'FormBasicView'
-            }
-          ]
         },
         {
           title: 'Map',
@@ -92,11 +88,6 @@ Ext.define('cc.view.MainAppView', {
           ]
         },
     ];
-    this.createStores();
     this.callParent(arguments);
-  },
-  createStores: function(){
-    Ext.create('cc.store.Calibrations');
-  }
-  
+  },  
 });
