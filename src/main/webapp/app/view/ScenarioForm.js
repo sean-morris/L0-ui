@@ -7,6 +7,7 @@ Ext.define('cc.view.ScenarioForm', {
   autoScroll: true,
   width: '100%',
   closable: true,
+  trackResetOnLoad: true,
   fieldDefaults: {
     labelAlign: 'right',
     labelWidth: 150,
@@ -28,6 +29,12 @@ Ext.define('cc.view.ScenarioForm', {
         xtype: 'textfield',
         fieldLabel: 'Calibration',
         name: 'calibrationId'
+        // xtype: 'combobox',
+        // fieldLabel: 'Calibration',
+        // displayField: 'name',
+        // store:,
+        // valueField: 'id',
+        // name: 'calibrationId'
       },{
         xtype: 'textfield',
         fieldLabel: 'Traffic Management',

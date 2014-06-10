@@ -37,6 +37,7 @@ Ext.define('cc.controller.ScenariosController', {
       var f = this.getScenarioForm();
       if (f.isDirty()) {
         f.updateRecord(f.model);
+        this.setDirtyFalse(f);
         this.getScenariosStore().add(f.model);
         this.renderTreeNav();
       }
@@ -80,5 +81,13 @@ Ext.define('cc.controller.ScenariosController', {
       });
       Ext.getCmp('scenarios').removeAll();
       Ext.getCmp('scenarios').add(nav);
+    },
+    setDirtyFalse: function(f){
+      //a bit of a hack to force saved fields to be clean(not dirty)
+      f.items.each(function(f){
+            if(f.isDirty){
+              f.originalValue = f.getValue();
+            }
+      });   
     }
 })
