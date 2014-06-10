@@ -2,6 +2,7 @@ Ext.define('cc.view.ScenarioForm', {
   extend: 'cc.view.PanelForm',
   alias: 'widget.ScenarioForm',
   model: 'cc.model.Scenario',
+  id: 'scenario-form',
   title: 'Scenario Form',
   bodyPadding: 5,
   autoScroll: true,
@@ -11,7 +12,8 @@ Ext.define('cc.view.ScenarioForm', {
         labelWidth: 150,
         msgTarget: 'side'
   },
-  items:[
+  initComponent: function() {
+    this.items = [
       {
         xtype: 'textfield',
         fieldLabel: 'Name',
@@ -20,7 +22,7 @@ Ext.define('cc.view.ScenarioForm', {
       {
         xtype: 'textfield',
         fieldLabel: 'Description',
-        name: 'desc'
+        name: 'description'
       },
       {
         xtype: 'textfield',
@@ -29,13 +31,16 @@ Ext.define('cc.view.ScenarioForm', {
       },{
         xtype: 'textfield',
         fieldLabel: 'Traffic Management',
-        name: 'trafficManagementId'
+        name: 'trafficMPId'
       },
       {
         xtype: 'button',
         text: 'Save Scenario',
-        handler: this.commit,
+        action: 'save',
+        //handler: this.commit,
         scope: this
       }
     ]
+    this.callParent();
+  }
 });

@@ -1,6 +1,5 @@
 Ext.define('cc.view.PanelForm', {
     extend: 'Ext.form.Panel',
-
     /**
      * Can be a reference to a model instance or a model class name.
      */
