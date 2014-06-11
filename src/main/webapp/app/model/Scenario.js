@@ -13,7 +13,7 @@ Ext.define('cc.model.Scenario', {
     name: 'calibrationId',
     type: 'int'
   },{
-    name: 'trafficMPId',
+    name: 'trafficMId',
     type: 'int'
   }],
 });

@@ -7,7 +7,7 @@ Ext.define('cc.controller.ScenariosController', {
       'Scenario'
     ],
     stores:[
-      'Scenarios'
+      'Scenarios', 'Calibrations', 'TrafficManagements'
     ],
     refs: [
       {
@@ -44,14 +44,20 @@ Ext.define('cc.controller.ScenariosController', {
     },
     onAccordianClickNewScenario: function(){
       if(this.isSavedAndClose()){
-        this.renderForm(Ext.widget("ScenarioForm"));
+        var f = Ext.widget("ScenarioForm", {
+                  calStore: this.getCalibrationsStore(),
+                  tmStore: this.getTrafficManagementsStore(),
+                });
+        this.renderForm(f);
       }
     },
     onTreeItemClick: function(view, record) {
       if(record.data.parentId != "root" && (this.isSavedAndClose())){
         var f = Ext.widget("ScenarioForm", {
           title: "Edit: " + record.data.text,
-          model: record.raw.model
+          model: record.raw.model,
+          calStore: this.getCalibrationsStore(),
+          tmStore: this.getTrafficManagementsStore(),
         });
         this.renderForm(f);
       }
@@ -85,9 +91,9 @@ Ext.define('cc.controller.ScenariosController', {
     setDirtyFalse: function(f){
       //a bit of a hack to force saved fields to be clean(not dirty)
       f.items.each(function(f){
-            if(f.isDirty){
-              f.originalValue = f.getValue();
-            }
+        if(f.isDirty){
+          f.originalValue = f.getValue();
+        }
       });   
     }
 })
