@@ -31,17 +31,15 @@ Ext.define('cc.controller.RunsController', {
         scope: this,
           url: cc.Globals.WEB_SERVICE_URL + 'run',
           method: 'GET',
-          // pass username, password and database in request header
+          // data to be passed to service here
           headers: {
-            'Authorization': cc.model.UserModel.authToken,
-            'DB': cc.model.UserModel.database
+
           },
           success: function(responseObject, opts) {
-            console.log("ssss");
+            console.log("Run call made successfully");
           },
           failure: function(response, opts) {
-            // TODO add error message to login view
-            alert('Failed to login. ' + response.statusText);
+            console.log("Run call blown");
           }
       });
     }
