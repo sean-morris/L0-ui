@@ -30,8 +30,19 @@ Ext.define('cc.controller.ScenariosController', {
         },
         '#scenarios-tree' : {
           itemclick: this.onTreeItemClick
+        },
+        '#combo-calib, #combo-traffic' : {
+          render: this.renderEmptyCombo
         }
       });
+    },
+    renderEmptyCombo: function(box){
+      var v = box.value;
+      if (!v || v == 0 || box.getStore().getById(v) == null){
+        box.setValue(box.emptyText);
+        var f = this.getScenarioForm();
+        this.setDirtyFalse(f); //emptyText still means it is not dirty
+      }
     },
     onButtonClickSave: function(){
       var f = this.getScenarioForm();

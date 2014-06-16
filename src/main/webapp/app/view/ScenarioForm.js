@@ -7,6 +7,7 @@ Ext.define('cc.view.ScenarioForm', {
   autoScroll: true,
   width: '100%',
   closable: true,
+  title: "New Scenario Form",
   fieldDefaults: {
     labelAlign: 'right',
     labelWidth: 150,
@@ -26,26 +27,22 @@ Ext.define('cc.view.ScenarioForm', {
       },
       {
         xtype: 'combobox',
+        id: 'combo-calib',
         fieldLabel: 'Calibration',
         displayField: 'name',
         emptyText: 'Select One...',
         store: this.calStore,
         valueField: 'id',
         name: 'calibrationId',
-        listeners: {
-          render: this.renderEmptyCombo
-        }
       },{
         xtype: 'combobox',
+        id: 'combo-traffic',
         fieldLabel: 'Traffic Management',
         displayField: 'name',
         emptyText: 'Select One...',
         store: this.tmStore,
         valueField: 'id',
         name: 'trafficMId',
-        listeners: {
-          render: this.renderEmptyCombo
-        }
       },
       {
         xtype: 'button',
@@ -55,9 +52,4 @@ Ext.define('cc.view.ScenarioForm', {
     ]
     this.callParent();
   },
-  renderEmptyCombo: function(){
-    var v = this.value;
-    if (!v || v == 0 || this.getStore().getById(v) == null)
-      this.setValue(this.emptyText);
-  }
 });
