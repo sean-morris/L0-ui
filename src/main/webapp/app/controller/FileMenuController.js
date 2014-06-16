@@ -3,7 +3,7 @@
   *  The file menu item 'File > Open Project' instantiates the FileUploadForm
   *  which is handled by this controller.
 **/
-Ext.define('cc.controller.FileUpload', {
+Ext.define('cc.controller.FileMenuController', {
   extend: 'Ext.app.Controller',
   views: [
     'FileUploadForm'
@@ -20,17 +20,25 @@ Ext.define('cc.controller.FileUpload', {
   init: function() {
     this.control({
       'FileUploadForm button[action=upload]':{
-          click: this.manageFile
+        click: this.uploadFile
       },
       '#form-file' : {
-          change: function(field, value){
-            Ext.getCmp('upload').enable();
-            this.hideFakePath(field, value);
-          }
+        change: function(field, value){
+          Ext.getCmp('upload').enable();
+          this.hideFakePath(field, value);
+        }
+      },
+      '#menu-save' : {
+        click: this.exportFile
+      },
+      '#menu-open' : {
+        click: function() {
+          Ext.widget('FileUploadForm');
+        }
       }
     }); 
   }, 
-  manageFile: function() {
+  uploadFile: function() {
     var me = this;
     var f = this.getDataFile().fileInputEl.dom.files[0];
     var reader = new FileReader();
@@ -49,6 +57,9 @@ Ext.define('cc.controller.FileUpload', {
      });
     };
     reader.readAsText(f);
+  },
+  exportFile: function() {
+    
   },
   hideFakePath: function(field, value){
     var n = Ext.DomQuery.selectNode('input[id='+field.getInputId()+']');

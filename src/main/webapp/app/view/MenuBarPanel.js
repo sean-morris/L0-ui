@@ -14,18 +14,17 @@ Ext.define('cc.view.MenuBarPanel', {
         cls: 'menubar-item',
         menu: [
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Open Project",
-            func: function(){
-              new cc.view.FileUploadFormView();
-            }
+            id: 'menu-open',
           },
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Save Project",
+            id: 'menu-save',
           },
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Import Data",
           }
         ]
@@ -36,16 +35,19 @@ Ext.define('cc.view.MenuBarPanel', {
         cls: 'menubar-item',
         menu: [
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Documentation",
+            cls: 'menu-item',
           },
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Contact",
+            cls: 'menu-item',
           },
           {
-            xtype: 'MenuItem',
+            xtype: 'menuitem',
             text: "Version Info",
+            cls: 'menu-item',
           }
         ]
       },

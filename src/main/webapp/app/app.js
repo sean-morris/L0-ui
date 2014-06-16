@@ -29,11 +29,10 @@ Ext.application({
     'NetworkSelectionWindow',
     'MenuBarPanel',
     'MenuCheckItem',
-    'MenuItem',
   ],
   controllers: [
     'CalibrationsController',
-    'FileUpload',
+    'FileMenuController',
     'LoginController',
     'MainMapController',
     'NetworkController',
