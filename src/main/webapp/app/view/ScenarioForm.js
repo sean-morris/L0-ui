@@ -32,6 +32,9 @@ Ext.define('cc.view.ScenarioForm', {
         store: this.calStore,
         valueField: 'id',
         name: 'calibrationId',
+        listeners: {
+          render: this.renderEmptyCombo
+        }
       },{
         xtype: 'combobox',
         fieldLabel: 'Traffic Management',
@@ -40,6 +43,9 @@ Ext.define('cc.view.ScenarioForm', {
         store: this.tmStore,
         valueField: 'id',
         name: 'trafficMId',
+        listeners: {
+          render: this.renderEmptyCombo
+        }
       },
       {
         xtype: 'button',
@@ -49,4 +55,9 @@ Ext.define('cc.view.ScenarioForm', {
     ]
     this.callParent();
   },
+  renderEmptyCombo: function(){
+    var v = this.value;
+    if (!v || v == 0 || this.getStore().getById(v) == null)
+      this.setValue(this.emptyText);
+  }
 });
