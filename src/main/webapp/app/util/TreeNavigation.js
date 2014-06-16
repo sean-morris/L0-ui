@@ -64,7 +64,11 @@
                 type: 'save',
                 id: 'new-run',
                 tooltip: 'New Run',
-              }]
+              },{
+                type: 'gear',
+                id: 'execute-run',
+                tooltip: 'Execute Run',
+              },]
           },
           {
             title: 'Reports',
