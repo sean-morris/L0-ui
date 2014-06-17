@@ -31,16 +31,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletContext;
 
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.OutputKeys;
 
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.StringReader;
-import java.io.StringWriter;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -94,9 +87,9 @@ public class DownloadServlet extends HttpServlet {
   {
     try{
       response.setContentType("text/plain");
-      response.setHeader("Content-Disposition","attachment;filename=project.json");
+      response.setHeader("Content-Disposition","attachment;filename=project.txt");
       ServletContext ctx = getServletContext();
-      InputStream is = ctx.getResourceAsStream("/temp-download/project.json");
+      InputStream is = ctx.getResourceAsStream("/project.txt");
  
       int read=0;
       byte[] bytes = new byte[1024];
@@ -113,10 +106,10 @@ public class DownloadServlet extends HttpServlet {
   }
   
   /**
-  * Takes the request object, gets the xml data and writes it to the file system
-  * after formatting the xml
+  * Takes the request object, gets the json data and writes it to the file system
+  * after formatting the json
   *
-  * @param request The HttpServletRequest object holds xml file contents
+  * @param request The HttpServletRequest object holds json file contents
   */
   private void getPostData(HttpServletRequest req) {
     StringBuilder sb = new StringBuilder();
@@ -131,30 +124,23 @@ public class DownloadServlet extends HttpServlet {
         } 
         reader.close();
 
-        formatXML(sb.toString());
+        formatJSON(sb.toString());
     } catch(Exception e) {
         e.printStackTrace();
     }
   }
   
   /**
-  * A helper method used to format and write the xml to the file system.
+  * A helper method used to format and write the json to the file system.
   *
-  * @param unformattedXML The string of xml not formatted
+  * @param jsonString The string of json not formatted
   */
-  public void formatXML(String unformattedXml) {
+  public void formatJSON(String jsonString) {
       try {
-        StreamSource xmlInput = new StreamSource(new StringReader(unformattedXml));
-        StringWriter stringWriter = new StringWriter();
-        StreamResult xmlOutput = new StreamResult(stringWriter);
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        transformerFactory.setAttribute("indent-number", 2);
-        Transformer transformer = transformerFactory.newTransformer(); 
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.transform(xmlInput, xmlOutput);
+
         ServletContext ctx = getServletContext();
-        FileWriter fw = new FileWriter(ctx.getRealPath(".") + "/temp-download/project.json");
-        fw.write(xmlOutput.getWriter().toString().trim());
+        FileWriter fw = new FileWriter(ctx.getRealPath(".") + "/project.txt");
+        fw.write(jsonString);
         fw.close();
       } catch (Exception e) {
         throw new RuntimeException(e);
