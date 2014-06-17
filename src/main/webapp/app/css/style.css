@@ -52,3 +52,19 @@ body {
 .nav-elem {
     text-align:left;
 }
+
+.main-panels .x-tool
+{
+  left: auto !important;
+  right: 0 !important;
+  padding-right: 20px;
+}
+.nav-panels .x-tool
+{
+  left: 0 !important;
+  padding-left: 182px;
+}
+.nav-panels .x-panel-header-text-container
+{
+  text-align: left !important;
+}

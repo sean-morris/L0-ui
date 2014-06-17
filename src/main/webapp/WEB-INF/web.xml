@@ -13,23 +13,7 @@
     <url-pattern>/Download.do</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>L0 REST Service</servlet-name>
-    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-    <init-param>
-      <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>edu.berkeley.path.beats_gui</param-value>
-    </init-param>
-    <init-param>
-      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-      <param-value>true</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>L0 REST Service</servlet-name>
-    <url-pattern>/*</url-pattern>
-  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>app/main.html</welcome-file>
   </welcome-file-list>

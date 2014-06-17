@@ -22,9 +22,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
     </dependency>
      <dependency>
       <groupId>com.sun.jersey</groupId>
-      <artifactId>jersey-core</artifactId>
+      <artifactId>jersey-server</artifactId>
       <version>1.9</version>
     </dependency>
+
     <dependency>
       <groupId>edu.berkeley.path</groupId>
       <artifactId>via-rest-api</artifactId>

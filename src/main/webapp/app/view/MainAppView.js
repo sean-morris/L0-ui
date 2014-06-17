@@ -10,7 +10,8 @@ Ext.define('cc.view.MainAppView', {
   defaults: {
     collapsible: true,
     split: true,
-    bodyPadding: 15
+    bodyPadding: 15,
+    cls: 'main-panels'
   },
   initComponent: function() {
     this.items = [
@@ -42,7 +43,8 @@ Ext.define('cc.view.MainAppView', {
           },
           defaults: {
             collapsed: true,
-            hideCollapseTool: false
+            hideCollapseTool: false,
+            cls: 'nav-panels'
           },
           items: cc.util.TreeNavigation.getPanelTitles()
         },
