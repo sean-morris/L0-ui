@@ -1,0 +1,65 @@
+{
+    "title": "Gabriel's Project",
+    "project": {   
+        "scenarioElements": {
+            "calibrations": [
+                {
+                  "id": 5,
+                  "name": "calibration-1",
+                  "path": "/path/to/calibration-1"
+                },
+                {
+                  "id": 6,
+                  "name": "calibration-2",
+                  "path": "/path/to/calibration-2"
+                }
+            ],
+            "trafficManagements": [
+                {
+                  "id": 5,
+                  "name": "tm-1",
+                  "path": "/path/to/tm-1"
+                },
+                {
+                  "id": 6,
+                  "name": "tm-2",
+                  "path": "/path/to/tm-2"
+                }
+            ]
+        },
+        "scenarios": [
+                {
+                  "id": 5,
+                  "name": "Scenario-1",
+                  "description": "Desc of Scenario-1",
+                  "calibrationId": 6,
+                  "trafficMId" : 6
+                },
+                {
+                  "id": 6,
+                  "name": "Scenario-2",
+                  "description": "Desc of Scenario-2",
+                  "calibrationId": 5,
+                  "trafficMId" : 5
+                }
+        ],
+        "runs": [
+              {
+                  "id": 5,
+                  "name": "Run-1",
+                  "desc": "Desc of Run-1"
+              },
+              {
+                  "id": 6,
+                  "name": "Run-2",
+                  "desc": "Desc of Run-2"
+              }
+        ],
+        "reports": {
+            "names": [
+                "a",
+                "b"
+            ]
+        }
+    }
+}
