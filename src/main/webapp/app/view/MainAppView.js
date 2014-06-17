@@ -66,15 +66,6 @@ Ext.define('cc.view.MainAppView', {
           layout: 'fit',
           width: '40%',
           items: [
-            // {
-            //              //xtype: 'LoginBarPanel'
-            //            },
-            //            {
-            //              //xtype: 'MapTileControl'
-            //            },
-            //            {
-            //              //xtype: 'MapTileControlMenu'
-            //            },
             {
               xtype: 'MainMapPanel',
 
