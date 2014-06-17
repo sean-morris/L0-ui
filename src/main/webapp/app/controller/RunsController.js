@@ -28,8 +28,8 @@ Ext.define('cc.controller.RunsController', {
     },
     launchRun : function() {
       Ext.Ajax.request({
-        scope: this,
-          url: cc.Globals.WEB_SERVICE_URL + 'run',
+          scope: this,
+          url: 'run',
           method: 'GET',
           // data to be passed to service here
           headers: {
