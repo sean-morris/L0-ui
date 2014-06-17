@@ -59,7 +59,21 @@ Ext.define('cc.controller.FileMenuController', {
     reader.readAsText(f);
   },
   exportFile: function() {
-    
+    Ext.Ajax.request({
+      scope: this,
+        url: cc.Globals.WEB_SERVICE_URL + 'download',
+        method: 'GET',
+        // data to be passed to service here
+        headers: {
+
+        },
+        success: function(responseObject, opts) {
+          console.log("Run call made successfully");
+        },
+        failure: function(response, opts) {
+          console.log("Run call blown");
+        }
+    });
   },
   hideFakePath: function(field, value){
     var n = Ext.DomQuery.selectNode('input[id='+field.getInputId()+']');
