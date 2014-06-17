@@ -29,7 +29,7 @@ Ext.define('cc.controller.FileMenuController', {
         }
       },
       '#menu-save' : {
-        click: this.exportFile
+        click: this.exportProjectFile
       },
       '#menu-open' : {
         click: function() {
@@ -43,7 +43,7 @@ Ext.define('cc.controller.FileMenuController', {
     var f = this.getDataFile().fileInputEl.dom.files[0];
     var reader = new FileReader();
     reader.onload = function(e){
-      cc.data = JSON.parse(e.target.result);
+      cc.data = Ext.JSON.decode(e.target.result);
       me.getUploadFormWindow().close();
       cc.util.EventManager.fireEvent('stores:load');
     };
@@ -58,8 +58,25 @@ Ext.define('cc.controller.FileMenuController', {
     };
     reader.readAsText(f);
   },
-  exportFile: function() {
-    
+  exportProjectFile: function() {
+      var servletPath, xhReq;
+      servletPath = "Download.do";
+      xhReq = new XMLHttpRequest();
+      xhReq.open("post", servletPath, false);
+      xhReq.setRequestHeader('Content-Type', "text/json");
+      xhReq.onreadystatechange = function() {
+        if(xhReq.readyState == 4){
+          var elemIF = Ext.DomQuery.selectNode("#download-iframe")
+          if(elemIF != null)
+            elemIF.remove();
+          elemIF = document.createElement("iframe");
+          elemIF.id = "download-iframe";
+          elemIF.src = servletPath;
+          elemIF.style.display = "none";
+          Ext.getBody().appendChild(elemIF);
+        }
+      };
+      return xhReq.send(Ext.JSON.encode(cc.data));
   },
   hideFakePath: function(field, value){
     var n = Ext.DomQuery.selectNode('input[id='+field.getInputId()+']');
