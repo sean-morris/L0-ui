@@ -4,6 +4,7 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    version="2.5">
+  
    <servlet>
     <servlet-name>Download</servlet-name>
     <servlet-class>edu.berkeley.path.beats_gui.DownloadServlet</servlet-class>
@@ -12,10 +13,9 @@
     <servlet-name>Download</servlet-name>
     <url-pattern>/Download.do</url-pattern>
   </servlet-mapping>
-  
-<!--
+ 
   <servlet>
-    <servlet-name>L0 REST Service</servlet-name>
+    <servlet-name>REST Service</servlet-name>
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
@@ -28,10 +28,10 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>L0 REST Service</servlet-name>
-    <url-pattern>/*</url-pattern>
+    <servlet-name>REST Service</servlet-name>
+    <url-pattern>/run</url-pattern>
   </servlet-mapping>
--->
+  
   <welcome-file-list>
     <welcome-file>app/main.html</welcome-file>
   </welcome-file-list>

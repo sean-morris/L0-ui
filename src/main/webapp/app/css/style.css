@@ -52,7 +52,18 @@ body {
 .nav-elem {
     text-align:left;
 }
-
+.x-tool
+{
+  left: auto !important;
+  right: 0 !important;
+  padding-right: 20px;
+}
+#new-run-tool, #new-scenario-tool{
+  padding-right: 40px;
+}
+#execute-run-tool{
+  padding-right: 60px;
+}
 .nav-panels .x-panel-header-text-container
 {
   text-align: left !important;

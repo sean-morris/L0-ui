@@ -52,7 +52,7 @@
             tools: 
               [{
                 type: 'save',
-                id: 'new-scenario',
+                id: 'new-scenario-tool',
                 tooltip: 'New Scenario',
               }]
           }, {
@@ -62,11 +62,11 @@
             tools:  
               [{
                 type: 'save',
-                id: 'new-run',
+                id: 'new-run-tool',
                 tooltip: 'New Run',
               },{
                 type: 'gear',
-                id: 'execute-run',
+                id: 'execute-run-tool',
                 tooltip: 'Execute Run',
               },]
           },

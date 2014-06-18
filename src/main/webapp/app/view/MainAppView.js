@@ -69,15 +69,14 @@ Ext.define('cc.view.MainAppView', {
           width: '40%',
           items: [
             {
-              xtype: 'MainMapPanel',
+             xtype: 'MainMapPanel',
 
-              // set default map center to Berkeley co-ordinates
-              center: {
-                lat: 40.714448123932996,
-                lng: -74.010074230999976
-              },
-             
-            }
+             // set default map center to Berkeley co-ordinates
+             center: {
+               lat: 40.714448123932996,
+               lng: -74.010074230999976
+             },
+           }
           ]
         },
     ];
