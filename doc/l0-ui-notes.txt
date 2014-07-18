@@ -1,0 +1,89 @@
+Network
+	store					-
+	
+Calibration
+	model
+		id					*
+		name				*
+		path				*
+	store
+		load				*
+	controller
+		init				*
+		load				*
+		renderTreeNav		*
+
+TrafficManagement
+	model
+		id					*
+		name				*
+		path				*
+	store
+		load				*
+	controller
+		init				*
+		load				*
+		renderTreeNav		*
+
+Scenario
+	model
+		id					*
+		name				*
+		description			*
+		calibrationId		*
+		defaultValue		*
+		trafficMId			*
+	store
+		load				*
+	controller
+		init				*
+		renderEmptyCombo	-
+		onButtonClickSave	-
+		onAccordianClickNewScenario	-
+		onTreeItemClick		-
+		renderForm			-
+		isSavedAndClose		-
+		load				*
+		renderTreeNav		*
+		setDirtyFalse
+
+Run
+	model
+		id					*
+		name				*
+		description			*
+		startTime			*
+		endTime				*
+		dt					*
+		ensembleSize		*
+		scenarioId			*
+		alreadyRun			*
+	store
+		load				*
+	controller
+		init				*
+		load				*
+		renderTreeNav		*
+		launchRun			-
+	
+OTHER
+=====
+
+Controller
+	FileMenu
+		init
+		uploadFile
+		exportProjectFile
+		hideFakePath
+	MainMap
+		initi
+		loadNetwork
+Util
+	EventManager
+	TreeNavigation
+View
+	FileUploadForm
+	MainAppView
+	MainMapPanel
+	MenuBarPanel
+	PanelForm
