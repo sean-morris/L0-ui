@@ -6,6 +6,8 @@ Ext.define('cc.controller.CalibrationsController', {
     stores:[
       'Calibrations'
     ],
+	
+	// init / load / render .....................
     init: function() {
       cc.util.EventManager.on('stores:load', this.load, this);
     }, 
@@ -21,4 +23,5 @@ Ext.define('cc.controller.CalibrationsController', {
       Ext.getCmp('scenarioElements').update('');
       Ext.getCmp('scenarioElements').add(nav);
     }
+	
 })

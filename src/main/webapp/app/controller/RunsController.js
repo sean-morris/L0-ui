@@ -6,6 +6,8 @@ Ext.define('cc.controller.RunsController', {
     stores:[
       'Runs'
     ],
+	
+	// init / load / render .....................
     init: function() {
       cc.util.EventManager.on('stores:load', this.load, this);
       this.control({
@@ -26,6 +28,8 @@ Ext.define('cc.controller.RunsController', {
       Ext.getCmp('runs').update('');
       Ext.getCmp('runs').add(nav);
     },
+	
+	// launch beats .....................
     launchRun : function() {
       Ext.Ajax.request({
           scope: this,

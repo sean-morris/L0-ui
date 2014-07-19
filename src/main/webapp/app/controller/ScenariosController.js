@@ -19,6 +19,8 @@ Ext.define('cc.controller.ScenariosController', {
         selector : '#centerRegion'
       },
     ],
+	
+	// init / load / render .....................
     init: function() {
       cc.util.EventManager.on('stores:load', this.load, this);
       this.control({
@@ -36,23 +38,22 @@ Ext.define('cc.controller.ScenariosController', {
         }
       });
     },
-    renderEmptyCombo: function(box){
-      var v = box.value;
-      if (!v || v == 0 || box.getStore().getById(v) == null){
-        box.setValue(box.emptyText);
-        var f = this.getScenarioForm();
-        this.setDirtyFalse(f); //emptyText still means it is not dirty
-      }
+	
+    load: function() {
+      this.getScenariosStore().load();
+      this.renderTreeNav();
     },
-    onButtonClickSave: function(){
-      var f = this.getScenarioForm();
-      if (f.isDirty()) {
-        f.updateRecord(f.model);
-        this.setDirtyFalse(f);
-        this.getScenariosStore().add(f.model);
-        this.renderTreeNav();
-      }
+	
+    renderTreeNav: function(){
+      var nav = cc.util.TreeNavigation.writeNav({
+        store: this.getScenariosStore(),
+        name: "Scenarios"
+      });
+      Ext.getCmp('scenarios').removeAll();
+      Ext.getCmp('scenarios').add(nav);
     },
+	
+	// tree ......................
     onAccordianClickNewScenario: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("ScenarioForm", {
@@ -62,6 +63,7 @@ Ext.define('cc.controller.ScenariosController', {
         this.renderForm(f);
       }
     },
+	
     onTreeItemClick: function(view, record) {
       if(record.data.parentId != "root" && (this.isSavedAndClose())){
         var f = Ext.widget("ScenarioForm", {
@@ -73,32 +75,42 @@ Ext.define('cc.controller.ScenariosController', {
         this.renderForm(f);
       }
     },
+	
+	// form ...................................
+    renderEmptyCombo: function(box){
+      var v = box.value;
+      if (!v || v == 0 || box.getStore().getById(v) == null){
+        box.setValue(box.emptyText);
+        var f = this.getScenarioForm();
+        this.setDirtyFalse(f); //emptyText still means it is not dirty
+      }
+    },
+	
+    onButtonClickSave: function(){
+      var f = this.getScenarioForm();
+      if (f.isDirty()) {
+        f.updateRecord(f.model);
+        this.setDirtyFalse(f);
+        this.getScenariosStore().add(f.model);
+        this.renderTreeNav();
+      }
+    },
+	
     renderForm : function(f){
       this.getCenterRegion().removeAll(true);
       this.getCenterRegion().add(f);
     },
+	
+	// auxiliary ...................................
     isSavedAndClose: function(){
       var f = this.getScenarioForm();
       if(f != null && f.isDirty())
         return false;
-      
       if(f != null && !f.isDirty())
         f.close();
-      
       return true;
     },
-    load: function() {
-      this.getScenariosStore().load();
-      this.renderTreeNav();
-    },
-    renderTreeNav: function(){
-      var nav = cc.util.TreeNavigation.writeNav({
-        store: this.getScenariosStore(),
-        name: "Scenarios"
-      });
-      Ext.getCmp('scenarios').removeAll();
-      Ext.getCmp('scenarios').add(nav);
-    },
+	
     setDirtyFalse: function(f){
       //a bit of a hack to force saved fields to be clean(not dirty)
       f.items.each(function(f){
@@ -107,4 +119,5 @@ Ext.define('cc.controller.ScenariosController', {
         }
       });   
     }
+	
 })

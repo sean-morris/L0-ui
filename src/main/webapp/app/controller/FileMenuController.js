@@ -17,6 +17,7 @@ Ext.define('cc.controller.FileMenuController', {
       selector: 'FileUploadForm'
     }
   ],
+  
   init: function() {
     this.control({
       'FileUploadForm button[action=upload]':{
@@ -38,6 +39,7 @@ Ext.define('cc.controller.FileMenuController', {
       }
     }); 
   }, 
+  
   uploadFile: function() {
     var me = this;
     var f = this.getDataFile().fileInputEl.dom.files[0];
@@ -58,6 +60,7 @@ Ext.define('cc.controller.FileMenuController', {
     };
     reader.readAsText(f);
   },
+  
   exportProjectFile: function() {
       var servletPath, xhReq;
       servletPath = "Download.do";
@@ -78,6 +81,7 @@ Ext.define('cc.controller.FileMenuController', {
       };
       return xhReq.send(Ext.JSON.encode(cc.data));
   },
+  
   hideFakePath: function(field, value){
     var n = Ext.DomQuery.selectNode('input[id='+field.getInputId()+']');
     n.value = value.replace("C:\\fakepath\\","");

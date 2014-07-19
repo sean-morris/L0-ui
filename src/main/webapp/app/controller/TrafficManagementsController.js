@@ -6,13 +6,17 @@ Ext.define('cc.controller.TrafficManagementsController', {
     stores:[
       'TrafficManagements'
     ],
+	
+	// init / load / render .....................
     init: function() {
       cc.util.EventManager.on('stores:load', this.load, this);
     }, 
+	
     load: function() {
       this.getTrafficManagementsStore().load();
       this.renderTreeNav();
     },
+	
     renderTreeNav: function(){
       var nav = cc.util.TreeNavigation.writeNav({
           store: this.getTrafficManagementsStore(),
