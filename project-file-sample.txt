@@ -13,7 +13,7 @@
                   "path": "/path/to/calibration-2"
                 }
         ],
-		"trafficManagements":[
+		"plans":[
                 {
                   "id": 5,
                   "name": "tm-1",
@@ -31,14 +31,14 @@
                   "name": "Scenario-1",
                   "description": "Desc of Scenario-1",
                   "calibrationId": 6,
-                  "trafficMId" : 6
+                  "planId" : 6
                 },
                 {
                   "id": 6,
                   "name": "Scenario-2",
                   "description": "Desc of Scenario-2",
                   "calibrationId": 5,
-                  "trafficMId" : 5
+                  "planId" : 5
                 }
         ],
         "runs": [

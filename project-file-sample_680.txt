@@ -13,7 +13,7 @@
 			  "path": "/data/680S_calibration.xml"
 			}
 		],
-		"trafficManagements": [
+		"plans": [
 			{
 			  "id": 1,
 			  "name": "680N, up ramp metering, no override",

@@ -7,7 +7,7 @@ Ext.define('cc.controller.ScenariosController', {
       'Scenario'
     ],
     stores:[
-      'Scenarios', 'Calibrations', 'TrafficManagements'
+      'Scenarios', 'Calibrations', 'Plans'
     ],
     refs: [
       {
@@ -33,7 +33,7 @@ Ext.define('cc.controller.ScenariosController', {
         '#scenarios-tree' : {
           itemclick: this.onTreeItemClick
         },
-        '#combo-calib, #combo-traffic' : {
+        '#combo-calib, #combo-plans' : {
           render: this.renderEmptyCombo
         }
       });
@@ -58,7 +58,7 @@ Ext.define('cc.controller.ScenariosController', {
       if(this.isSavedAndClose()){
         var f = Ext.widget("ScenarioForm", {
                   calStore: this.getCalibrationsStore(),
-                  tmStore: this.getTrafficManagementsStore(),
+                  tmStore: this.getPlansStore(),
                 });
         this.renderForm(f);
       }
@@ -70,7 +70,7 @@ Ext.define('cc.controller.ScenariosController', {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
           calStore: this.getCalibrationsStore(),
-          tmStore: this.getTrafficManagementsStore(),
+          tmStore: this.getPlansStore(),
         });
         this.renderForm(f);
       }

@@ -51,7 +51,7 @@
             //html: this.beginText,
           }, {
             title: 'Management strategies',
-            id: 'traffic-managements',
+            id: 'plans',
             collapsed: true,
             //html: this.beginText,
           }, {

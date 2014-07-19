@@ -1,10 +1,10 @@
-Ext.define('cc.controller.TrafficManagementsController', {
+Ext.define('cc.controller.PlansController', {
     extend: 'Ext.app.Controller',
     models: [
-      'TrafficManagement'
+      'Plan'
     ],
     stores:[
-      'TrafficManagements'
+      'Plans'
     ],
 	
 	// init / load / render .....................
@@ -13,16 +13,16 @@ Ext.define('cc.controller.TrafficManagementsController', {
     }, 
 	
     load: function() {
-      this.getTrafficManagementsStore().load();
+      this.getPlansStore().load();
       this.renderTreeNav();
     },
 	
     renderTreeNav: function(){
       var nav = cc.util.TreeNavigation.writeNav({
-          store: this.getTrafficManagementsStore(),
+          store: this.getPlansStore(),
           name: "Traffic Management"
       });
-      Ext.getCmp('traffic-managements').removeAll();
-      Ext.getCmp('traffic-managements').add(nav);
+      Ext.getCmp('plans').removeAll();
+      Ext.getCmp('plans').add(nav);
     }
 })

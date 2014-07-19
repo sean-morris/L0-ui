@@ -1,4 +1,4 @@
-Ext.define('cc.model.TrafficManagement', {
+Ext.define('cc.model.Plan', {
   extend: 'Ext.data.Model',
   fields: [{
     name: 'id',

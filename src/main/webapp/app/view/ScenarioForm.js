@@ -36,13 +36,13 @@ Ext.define('cc.view.ScenarioForm', {
         name: 'calibrationId',
       },{
         xtype: 'combobox',
-        id: 'combo-traffic',
+        id: 'combo-plan',
         fieldLabel: 'Traffic Management',
         displayField: 'name',
         emptyText: 'Select One...',
         store: this.tmStore,
         valueField: 'id',
-        name: 'trafficMId',
+        name: 'planId',
       },
       {
         xtype: 'button',

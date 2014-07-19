@@ -14,7 +14,7 @@ Ext.define('cc.model.Scenario', {
     type: 'int',
     defaultValue: null
   },{
-    name: 'trafficMId',
+    name: 'planId',
     type: 'int',
     defaultValue: null
   }],

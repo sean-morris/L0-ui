@@ -64,7 +64,7 @@ Ext.define('cc.controller.CalibrationsController', {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
           //calStore: this.getCalibrationsStore(),
-          //tmStore: this.getTrafficManagementsStore(),
+          //tmStore: this.getPlansStore(),
         });
         this.renderForm(f);
       }
