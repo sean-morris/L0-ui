@@ -7,6 +7,6 @@ Ext.define('cc.store.Calibrations', {
       direction:'ASC'
     }],
     load: function(){
-      this.loadData(cc.data.project.scenarioElements.calibrations)
+      this.loadData(cc.data.project.calibrations)
     }
 });

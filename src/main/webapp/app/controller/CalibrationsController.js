@@ -20,8 +20,8 @@ Ext.define('cc.controller.CalibrationsController', {
           store: this.getCalibrationsStore(),
           name: "Calibrations"
       });
-      Ext.getCmp('scenarioElements').update('');
-      Ext.getCmp('scenarioElements').add(nav);
+      Ext.getCmp('calibrations').removeAll();
+      Ext.getCmp('calibrations').add(nav);
     }
 	
 })

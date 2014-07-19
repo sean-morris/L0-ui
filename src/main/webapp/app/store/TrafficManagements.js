@@ -7,6 +7,6 @@ Ext.define('cc.store.TrafficManagements', {
       direction:'ASC'
     }],
     load: function(){
-      this.loadData(cc.data.project.scenarioElements.trafficManagements)
+      this.loadData(cc.data.project.trafficManagements)
     }
 });

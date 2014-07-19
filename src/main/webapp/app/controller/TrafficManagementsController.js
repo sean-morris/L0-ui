@@ -22,6 +22,7 @@ Ext.define('cc.controller.TrafficManagementsController', {
           store: this.getTrafficManagementsStore(),
           name: "Traffic Management"
       });
-      Ext.getCmp('scenarioElements').add(nav);
+      Ext.getCmp('traffic-managements').removeAll();
+      Ext.getCmp('traffic-managements').add(nav);
     }
 })

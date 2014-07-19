@@ -6,6 +6,7 @@
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File \
                 > Open Project</span>',
+				
   writeNav: function(params){
     return {
       xtype: 'treepanel',
@@ -19,6 +20,7 @@
       store: cc.util.TreeNavigation.getStore(params.store, params.name)
     };
   },
+  
   getStore: function(store, nodeName){
       return Ext.create('Ext.data.TreeStore', {
         root: {
@@ -32,6 +34,7 @@
         }
     });
   },
+  
   getChildren: function(store){
     var chi = [];
     store.getRange().forEach(function(child){
@@ -39,12 +42,18 @@
     });
     return chi;
   },
+  
   getPanelTitles: function(){
    return [{
-            title: 'Scenario Elements',
-            id: 'scenarioElements',
+            title: 'Calibrations',
+            id: 'calibrations',
             collapsed: false,
-            html: this.beginText,
+            //html: this.beginText,
+          }, {
+            title: 'Management strategies',
+            id: 'traffic-managements',
+            collapsed: true,
+            //html: this.beginText,
           }, {
             title: 'Scenarios',
             id: 'scenarios',

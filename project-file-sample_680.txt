@@ -1,62 +1,60 @@
 {
     "title": "Gabriel's Project",
     "project": {   
-        "scenarioElements": {
-            "calibrations": [
-                {
-                  "id": 1,
-                  "name": "680N",
-                  "path": "/data/680N_calibration.xml"
-                },
-                {
-                  "id": 2,
-                  "name": "680S",
-                  "path": "/data/680S_calibration.xml"
-                }
-            ],
-            "trafficManagements": [
-                {
-                  "id": 1,
-                  "name": "680N, up ramp metering, no override",
-                  "path": "/data/680N_rm_nooverride_up.xml"
-                },
-                {
-                  "id": 2,
-                  "name": "680N, dn ramp metering, no override",
-                  "path": "/data/680N_rm_nooverride_dn.xml"
-                },
-                {
-                  "id": 3,
-                  "name": "680N, up ramp metering, with override",
-                  "path": "/data/680N_rm_override_up.xml"
-                },
-                {
-                  "id": 4,
-                  "name": "680N, dn ramp metering, with override",
-                  "path": "/data/680N_rm_override_dn.xml"
-                },				
-                {
-                  "id": 5,
-                  "name": "680S, up ramp metering, no override",
-                  "path": "/data/680S_rm_nooverride_up.xml"
-                },
-                {
-                  "id": 6,
-                  "name": "680S, dn ramp metering, no override",
-                  "path": "/data/680S_rm_nooverride_dn.xml"
-                },
-                {
-                  "id": 7,
-                  "name": "680S, up ramp metering, with override",
-                  "path": "/data/680S_rm_override_up.xml"
-                },
-                {
-                  "id": 8,
-                  "name": "680S, dn ramp metering, with override",
-                  "path": "/data/680S_rm_override_dn.xml"
-                }
-            ]
-        },
+		"calibrations": [
+			{
+			  "id": 1,
+			  "name": "680N",
+			  "path": "/data/680N_calibration.xml"
+			},
+			{
+			  "id": 2,
+			  "name": "680S",
+			  "path": "/data/680S_calibration.xml"
+			}
+		],
+		"trafficManagements": [
+			{
+			  "id": 1,
+			  "name": "680N, up ramp metering, no override",
+			  "path": "/data/680N_rm_nooverride_up.xml"
+			},
+			{
+			  "id": 2,
+			  "name": "680N, dn ramp metering, no override",
+			  "path": "/data/680N_rm_nooverride_dn.xml"
+			},
+			{
+			  "id": 3,
+			  "name": "680N, up ramp metering, with override",
+			  "path": "/data/680N_rm_override_up.xml"
+			},
+			{
+			  "id": 4,
+			  "name": "680N, dn ramp metering, with override",
+			  "path": "/data/680N_rm_override_dn.xml"
+			},				
+			{
+			  "id": 5,
+			  "name": "680S, up ramp metering, no override",
+			  "path": "/data/680S_rm_nooverride_up.xml"
+			},
+			{
+			  "id": 6,
+			  "name": "680S, dn ramp metering, no override",
+			  "path": "/data/680S_rm_nooverride_dn.xml"
+			},
+			{
+			  "id": 7,
+			  "name": "680S, up ramp metering, with override",
+			  "path": "/data/680S_rm_override_up.xml"
+			},
+			{
+			  "id": 8,
+			  "name": "680S, dn ramp metering, with override",
+			  "path": "/data/680S_rm_override_dn.xml"
+			}
+		],
         "scenarios": [
         ],
         "runs": [
