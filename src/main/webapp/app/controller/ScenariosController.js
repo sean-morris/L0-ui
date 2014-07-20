@@ -58,7 +58,7 @@ Ext.define('cc.controller.ScenariosController', {
       if(this.isSavedAndClose()){
         var f = Ext.widget("ScenarioForm", {
                   calStore: this.getCalibrationsStore(),
-                  tmStore: this.getPlansStore(),
+                  planStore: this.getPlansStore(),
                 });
         this.renderForm(f);
       }
@@ -70,7 +70,7 @@ Ext.define('cc.controller.ScenariosController', {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
           calStore: this.getCalibrationsStore(),
-          tmStore: this.getPlansStore(),
+          planStore: this.getPlansStore(),
         });
         this.renderForm(f);
       }

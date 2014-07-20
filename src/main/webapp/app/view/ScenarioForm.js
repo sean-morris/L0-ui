@@ -40,7 +40,7 @@ Ext.define('cc.view.ScenarioForm', {
         fieldLabel: 'Traffic Management',
         displayField: 'name',
         emptyText: 'Select One...',
-        store: this.tmStore,
+        store: this.planStore,
         valueField: 'id',
         name: 'planId',
       },

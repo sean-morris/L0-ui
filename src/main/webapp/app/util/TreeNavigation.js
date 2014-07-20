@@ -52,7 +52,7 @@
           }, {
             title: 'Management strategies',
             id: 'plans',
-            collapsed: true,
+            collapsed: false,
             //html: this.beginText,
           }, {
             title: 'Scenarios',

@@ -63,8 +63,6 @@ Ext.define('cc.controller.CalibrationsController', {
         var f = Ext.widget("CalibrationForm", {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
-          //calStore: this.getCalibrationsStore(),
-          //tmStore: this.getPlansStore(),
         });
         this.renderForm(f);
       }
