@@ -30,7 +30,7 @@ Ext.define('cc.controller.PlansController', {
         '#new-plan' : {
           click: this.onAccordianClickNewPlan
         },
-        '#plans-tree' : {
+        '#plans-nav' : {
           itemclick: this.onTreeItemClick
         }
       });

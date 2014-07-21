@@ -30,7 +30,7 @@ Ext.define('cc.controller.ScenariosController', {
         '#new-scenario' : {
           click: this.onAccordianClickNewScenario
         },
-        '#scenarios-tree' : {
+        '#scenarios-nav' : {
           itemclick: this.onTreeItemClick
         },
         '#combo-calib, #combo-plans' : {

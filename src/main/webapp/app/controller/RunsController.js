@@ -30,7 +30,7 @@ Ext.define('cc.controller.RunsController', {
         '#new-run' : {
           click: this.onAccordianClickNewRun
         },
-        '#runs-tree' : {
+        '#runs-nav' : {
           itemclick: this.onTreeItemClick
         },
         '#combo-scenario' : {

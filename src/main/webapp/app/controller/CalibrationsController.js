@@ -30,7 +30,7 @@ Ext.define('cc.controller.CalibrationsController', {
         '#new-calibration' : {
           click: this.onAccordianClickNewCalibration
         },
-        '#calibrations-tree' : {
+        '#calibrations-nav' : {
           itemclick: this.onTreeItemClick
         }
       });

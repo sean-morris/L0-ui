@@ -6,11 +6,11 @@
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File \
                 > Open Project</span>',
-				
+	
   writeNav: function(params){
     return {
       xtype: 'treepanel',
-      id: params.name.toLowerCase() + '-tree',
+      id: params.name.toLowerCase() + '-nav',
       showSeparator: false,
       floating: false,
       hideHeader: true,
@@ -20,6 +20,23 @@
       store: cc.util.TreeNavigation.getStore(params.store, params.name)
     };
   },
+  		
+/*		
+  writeNav: function(params){
+    return {
+      xtype: 'gridpanel',
+      id: params.name.toLowerCase() + '-nav',
+      showSeparator: false,
+      floating: false,
+      hideHeader: true,
+      //rootVisible: false,
+      border: 0,
+      useArrows: true,
+	  columns: [{ text: 'Name',  dataIndex: 'name' } ],
+      store: params.store
+    };
+  },
+  */
   
   getStore: function(store, nodeName){
       return Ext.create('Ext.data.TreeStore', {
@@ -27,7 +44,7 @@
           children: [
             {
               text:nodeName,
-              expanded: true,
+              //expanded: true,
               children: cc.util.TreeNavigation.getChildren(store)    
             }
           ]
