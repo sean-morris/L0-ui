@@ -11,10 +11,10 @@ Ext.define('cc.model.Run', {
     type: 'string'
   },{
     name: 'startTime',
-    type: 'string'
+    type: 'date'
   },{
     name: 'endTime',
-    type: 'string'
+    type: 'date'
   },{
     name: 'dt',
     type: 'int'
