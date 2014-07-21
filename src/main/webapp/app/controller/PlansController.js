@@ -44,7 +44,7 @@ Ext.define('cc.controller.PlansController', {
     renderTreeNav: function(){
       var nav = cc.util.TreeNavigation.writeNav({
           store: this.getPlansStore(),
-          name: "Traffic Management"
+          name: "Plans"
       });
       Ext.getCmp('plans').removeAll();
       Ext.getCmp('plans').add(nav);

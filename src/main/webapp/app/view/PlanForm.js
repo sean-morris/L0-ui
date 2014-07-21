@@ -7,7 +7,7 @@ Ext.define('cc.view.PlanForm', {
   autoScroll: true,
   width: '100%',
   closable: true,
-  title: "New Traffic Management Form",
+  title: "New Plan Form",
   fieldDefaults: {
     labelAlign: 'right',
     labelWidth: 150,

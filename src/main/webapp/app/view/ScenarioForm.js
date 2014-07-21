@@ -37,7 +37,7 @@ Ext.define('cc.view.ScenarioForm', {
       },{
         xtype: 'combobox',
         id: 'combo-plan',
-        fieldLabel: 'Traffic Management',
+        fieldLabel: 'Plan',
         displayField: 'name',
         emptyText: 'Select One...',
         store: this.planStore,
