@@ -7,6 +7,9 @@ Ext.define('cc.model.Plan', {
     name: 'name',
     type: 'string'
   },{
+    name: 'description',
+    type: 'string'
+  },{
     name: 'path',
     type: 'string'
   }]

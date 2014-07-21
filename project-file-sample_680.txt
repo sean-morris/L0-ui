@@ -5,53 +5,63 @@
 			{
 			  "id": 1,
 			  "name": "680N",
+			  "description": "680N for 1/1/2000",
 			  "path": "/data/680N_calibration.xml"
 			},
 			{
 			  "id": 2,
 			  "name": "680S",
+			  "description": "680S for 1/1/2000",
 			  "path": "/data/680S_calibration.xml"
 			}
 		],
 		"plans": [
 			{
 			  "id": 1,
-			  "name": "680N, up ramp metering, no override",
+			  "description": "680N, up ramp metering, no override",
+			  "name": "plan A",
 			  "path": "/data/680N_rm_nooverride_up.xml"
 			},
 			{
 			  "id": 2,
-			  "name": "680N, dn ramp metering, no override",
+			  "description": "680N, dn ramp metering, no override",
+			  "name": "plan B	",
 			  "path": "/data/680N_rm_nooverride_dn.xml"
 			},
 			{
 			  "id": 3,
-			  "name": "680N, up ramp metering, with override",
+			  "description": "680N, up ramp metering, with override",
+			  "name": "plan C",
 			  "path": "/data/680N_rm_override_up.xml"
 			},
 			{
 			  "id": 4,
-			  "name": "680N, dn ramp metering, with override",
+			  "description": "680N, dn ramp metering, with override",
+			  "name": "plan D",
 			  "path": "/data/680N_rm_override_dn.xml"
 			},				
 			{
 			  "id": 5,
-			  "name": "680S, up ramp metering, no override",
+			  "description": "680S, up ramp metering, no override",
+			  "name": "plan E",
 			  "path": "/data/680S_rm_nooverride_up.xml"
 			},
 			{
 			  "id": 6,
-			  "name": "680S, dn ramp metering, no override",
+			  "description": "680S, dn ramp metering, no override",
+			  "name": "plan F",
 			  "path": "/data/680S_rm_nooverride_dn.xml"
 			},
 			{
 			  "id": 7,
-			  "name": "680S, up ramp metering, with override",
+			  "description": "680S, up ramp metering, with override",
+			  "name": "plan G",
 			  "path": "/data/680S_rm_override_up.xml"
 			},
 			{
 			  "id": 8,
-			  "name": "680S, dn ramp metering, with override",
+			  "description": "680S, dn ramp metering, with override",
+			  "name": "plan H",
 			  "path": "/data/680S_rm_override_dn.xml"
 			}
 		],

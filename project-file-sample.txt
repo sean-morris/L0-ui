@@ -5,11 +5,13 @@
                 {
                   "id": 5,
                   "name": "calibration-1",
+                  "description": "c1 bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
                   "path": "/path/to/calibration-1"
                 },
                 {
                   "id": 6,
                   "name": "calibration-2",
+                  "description": "c2",
                   "path": "/path/to/calibration-2"
                 }
         ],
@@ -17,11 +19,13 @@
                 {
                   "id": 5,
                   "name": "tm-1",
+                  "description": "t1",
                   "path": "/path/to/tm-1"
                 },
                 {
                   "id": 6,
                   "name": "tm-2",
+                  "description": "t2",
                   "path": "/path/to/tm-2"
                 }
         ],

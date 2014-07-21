@@ -21,9 +21,14 @@ Ext.define('cc.view.CalibrationForm', {
         name: 'name'
       },
       {
-        xtype: 'textfield',
+        xtype: 'textareafield',
         fieldLabel: 'Description',
         name: 'description'
+      },
+      {
+        xtype: 'filefield',
+        fieldLabel: 'Path',
+        name: 'path'
       },
       {
         xtype: 'button',

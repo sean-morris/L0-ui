@@ -1,3 +1,2 @@
-+ add descriprions to scenario elements, etc.
 + new scenario element
 + new project
