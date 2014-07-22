@@ -31,7 +31,7 @@ Ext.define('cc.controller.PlansController', {
           click: this.onAccordianClickNewPlan
         },
         '#plans-nav' : {
-          itemclick: this.onTreeItemClick
+          itemclick: this.onGridItemClick
         }
       });
     }, 
@@ -58,11 +58,23 @@ Ext.define('cc.controller.PlansController', {
       }
     },
 	
+	/*
     onTreeItemClick: function(view, record) {
       if(record.data.parentId != "root" && (this.isSavedAndClose())){
         var f = Ext.widget("PlanForm", {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
+        });
+        this.renderForm(f);
+      }
+    },
+	*/
+	
+    onGridItemClick: function(view, record) {
+      if(this.isSavedAndClose()){
+        var f = Ext.widget("PlanForm", {
+          title: "Edit: " + record.data.name,
+          model: record,
         });
         this.renderForm(f);
       }

@@ -31,7 +31,7 @@ Ext.define('cc.controller.RunsController', {
           click: this.onAccordianClickNewRun
         },
         '#runs-nav' : {
-          itemclick: this.onTreeItemClick
+          itemclick: this.onGridItemClick
         },
         '#combo-scenario' : {
           render: this.renderEmptyCombo
@@ -66,12 +66,24 @@ Ext.define('cc.controller.RunsController', {
       }
     },
 	
+	/*
     onTreeItemClick: function(view, record) {
       if(record.data.parentId != "root" && (this.isSavedAndClose())){
         var f = Ext.widget("RunForm", {
           title: "Edit: " + record.data.text,
           model: record.raw.model,
 		  scenariosStore: this.getScenariosStore(),
+        });
+        this.renderForm(f);
+      }
+    },
+	*/
+	
+    onGridItemClick: function(view, record) {
+      if(this.isSavedAndClose()){
+        var f = Ext.widget("RunForm", {
+          title: "Edit: " + record.data.name,
+          model: record,
         });
         this.renderForm(f);
       }

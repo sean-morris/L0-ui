@@ -31,7 +31,7 @@ Ext.define('cc.controller.ScenariosController', {
           click: this.onAccordianClickNewScenario
         },
         '#scenarios-nav' : {
-          itemclick: this.onTreeItemClick
+          itemclick: this.onGridItemClick
         },
         '#combo-calib, #combo-plans' : {
           render: this.renderEmptyCombo
@@ -64,6 +64,7 @@ Ext.define('cc.controller.ScenariosController', {
       }
     },
 	
+	/*
     onTreeItemClick: function(view, record) {
       if(record.data.parentId != "root" && (this.isSavedAndClose())){
         var f = Ext.widget("ScenarioForm", {
@@ -71,6 +72,17 @@ Ext.define('cc.controller.ScenariosController', {
           model: record.raw.model,
           calStore: this.getCalibrationsStore(),
           planStore: this.getPlansStore(),
+        });
+        this.renderForm(f);
+      }
+    },
+	*/
+	
+    onGridItemClick: function(view, record) {
+      if(this.isSavedAndClose()){
+        var f = Ext.widget("ScenarioForm", {
+          title: "Edit: " + record.data.name,
+          model: record,
         });
         this.renderForm(f);
       }

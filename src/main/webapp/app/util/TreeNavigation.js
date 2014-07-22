@@ -6,7 +6,8 @@
   singleton: true,
   beginText: '<span class="nav-begin-text">To populate Navigation:</br>File \
                 > Open Project</span>',
-	
+		
+/*	
   writeNav: function(params){
     return {
       xtype: 'treepanel',
@@ -20,24 +21,29 @@
       store: cc.util.TreeNavigation.getStore(params.store, params.name)
     };
   },
+  */
   		
-/*		
   writeNav: function(params){
     return {
       xtype: 'gridpanel',
       id: params.name.toLowerCase() + '-nav',
-      showSeparator: false,
-      floating: false,
-      hideHeader: true,
-      //rootVisible: false,
-      border: 0,
-      useArrows: true,
-	  columns: [{ text: 'Name',  dataIndex: 'name' } ],
-      store: params.store
+	  stateful: true,
+	  collapsible: false,
+	  multiSelect: false,
+	  border: false,
+	  hideHeaders: true,
+	  forceFit: true,
+	  height: 350,
+	  viewConfig: {
+		stripeRows: true,
+	  	enableTextSelection: false
+	   },
+	   columns: [{ text: '',  dataIndex: 'name' } ],
+       store: params.store
     };
   },
-  */
   
+  /*
   getStore: function(store, nodeName){
       return Ext.create('Ext.data.TreeStore', {
         root: {
@@ -51,6 +57,7 @@
         }
     });
   },
+  */
   
   getChildren: function(store){
     var chi = [];
@@ -64,27 +71,24 @@
    return [{
             title: 'Calibrations',
             id: 'calibrations',
-            collapsed: false,
-            //html: this.beginText,
           }, {
-            title: 'Management strategies',
+            title: 'Plans',
             id: 'plans',
-            collapsed: false,
-            //html: this.beginText,
           }, {
             title: 'Scenarios',
             id: 'scenarios',
-            collapsed: true,
+			/*
             tools: 
               [{
                 type: 'save',
                 id: 'new-scenario',
                 tooltip: 'New Scenario',
               }]
+			  */
           }, {
             title: 'Runs',
             id: 'runs',
-            collapsed: true,
+			/*
             tools:  
               [{
                 type: 'save',
@@ -95,11 +99,11 @@
                 id: 'execute-run',
                 tooltip: 'Execute Run',
               },]
+			  */
           },
           {
             title: 'Reports',
             id: 'reports',
-            collapsed: true,
           }
     ]
   }

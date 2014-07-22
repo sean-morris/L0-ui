@@ -32,17 +32,17 @@ Ext.define('cc.view.MainAppView', {
           id: 'nav-accordian',
           region:'west',
           floatable: false,
-          margins: '5 0 5 5',
+          //margins: '5 0 5 5',
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
           layout: {
-                 type: 'accordion',
-                 multi: true,
+            type: 'accordion',
+            multi: true,
           },
           defaults: {
             collapsed: true,
-            hideCollapseTool: false
+            hideCollapseTool: true,
           },
           items: cc.util.TreeNavigation.getPanelTitles()
         },
@@ -56,6 +56,7 @@ Ext.define('cc.view.MainAppView', {
           margins: '5 5 5 0',
           width: '40%',
         },
+		/*
         {
           title: 'Map',
           region:'east',
@@ -78,6 +79,7 @@ Ext.define('cc.view.MainAppView', {
             }
           ]
         },
+		*/
     ];
     this.callParent(arguments);
   },  
