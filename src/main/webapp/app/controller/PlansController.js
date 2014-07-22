@@ -27,8 +27,8 @@ Ext.define('cc.controller.PlansController', {
         '#plan-form button[action=save]' : {
           click: this.onButtonClickSave
         },
-        '#new-plan' : {
-          click: this.onAccordianClickNewPlan
+        '#menu-new-plan' : {
+          click: this.onNewPlan
         },
         '#plans-nav' : {
           itemclick: this.onGridItemClick
@@ -51,7 +51,7 @@ Ext.define('cc.controller.PlansController', {
     },
 	
 	// tree ......................
-    onAccordianClickNewPlan: function(){
+    onNewPlan: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("PlanForm");
         this.renderForm(f);

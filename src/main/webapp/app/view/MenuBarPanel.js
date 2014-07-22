@@ -31,6 +31,43 @@ Ext.define('cc.view.MenuBarPanel', {
       },
       {
         xtype: 'splitbutton',
+        text: 'New',
+        cls: 'menubar-item',
+        menu: [
+          {
+            xtype: 'menuitem',
+            text: "Project",
+            id: 'menu-new-project',
+          },
+          {
+            xtype: 'menuitem',
+            text: "Calibration",
+            id: 'menu-new-calibration',
+          },
+          {
+            xtype: 'menuitem',
+            text: "Plan",
+            id: 'menu-new-plan',
+          },
+          {
+            xtype: 'menuitem',
+            text: "Scenario",
+            id: 'menu-new-scenario',
+          },
+          {
+            xtype: 'menuitem',
+            text: "Run",
+            id: 'menu-new-run',
+          },
+          {
+            xtype: 'menuitem',
+            text: "Report",
+            id: 'menu-new-report',
+          },
+        ]
+      },
+      {
+        xtype: 'splitbutton',
         text: 'Help',
         cls: 'menubar-item',
         menu: [

@@ -27,8 +27,8 @@ Ext.define('cc.controller.RunsController', {
         '#run-form button[action=save]' : {
           click: this.onButtonClickSave
         },
-        '#new-run' : {
-          click: this.onAccordianClickNewRun
+        '#menu-new-run' : {
+          click: this.onNewRun
         },
         '#runs-nav' : {
           itemclick: this.onGridItemClick
@@ -57,7 +57,7 @@ Ext.define('cc.controller.RunsController', {
     },
 	
 	// tree ......................
-    onAccordianClickNewRun: function(){
+    onNewRun: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("RunForm", {
 			scenariosStore: this.getScenariosStore(),

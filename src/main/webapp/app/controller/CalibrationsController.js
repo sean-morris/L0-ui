@@ -1,7 +1,7 @@
 Ext.define('cc.controller.CalibrationsController', {
     extend: 'Ext.app.Controller',
     views:[
-      'CalibrationForm',
+      'CalibrationForm'
     ],
     models: [
       'Calibration'
@@ -27,12 +27,12 @@ Ext.define('cc.controller.CalibrationsController', {
         '#calibration-form button[action=save]' : {
           click: this.onButtonClickSave
         },
-        '#new-calibration' : {
-          click: this.onAccordianClickNewCalibration
-        },
         '#calibrations-nav' : {
           itemclick: this.onGridItemClick
-        }
+        },
+        '#menu-new-calibration' : {
+          click: this.onNewCalibration
+        },
       });
     }, 
 	
@@ -51,24 +51,12 @@ Ext.define('cc.controller.CalibrationsController', {
     },
 	
 	// tree ......................
-    onAccordianClickNewCalibration: function(){
+    onNewCalibration: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("CalibrationForm");
         this.renderForm(f);
       }
     },
-	
-	/*
-    onTreeItemClick: function(view, record) {
-      if(record.data.parentId != "root" && (this.isSavedAndClose())){
-        var f = Ext.widget("CalibrationForm", {
-          title: "Edit: " + record.data.text,
-          model: record.raw.model,
-        });
-        this.renderForm(f);
-      }
-    },
-	*/
 	
     onGridItemClick: function(view, record) {
       if(this.isSavedAndClose()){

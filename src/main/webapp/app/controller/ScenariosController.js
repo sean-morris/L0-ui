@@ -27,8 +27,8 @@ Ext.define('cc.controller.ScenariosController', {
         '#scenario-form button[action=save]' : {
           click: this.onButtonClickSave
         },
-        '#new-scenario' : {
-          click: this.onAccordianClickNewScenario
+        '#menu-new-scenario' : {
+          click: this.onNewScenario
         },
         '#scenarios-nav' : {
           itemclick: this.onGridItemClick
@@ -54,7 +54,7 @@ Ext.define('cc.controller.ScenariosController', {
     },
 	
 	// tree ......................
-    onAccordianClickNewScenario: function(){
+    onNewScenario: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("ScenarioForm", {
                   calStore: this.getCalibrationsStore(),
