@@ -25,14 +25,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 			<artifactId>jersey-core</artifactId>
 			<version>1.9</version>
 		</dependency>
-		<!--
 		<dependency>
 			<groupId>edu.berkeley.path</groupId>
 			<artifactId>via-rest-api</artifactId>
 			<version>0.101-SNAPSHOT</version>
 			<type>war</type>
 		</dependency>
-		-->
 	</dependencies>
 
 	<build>
@@ -58,7 +56,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 					</connectors>   
 				</configuration>
 			</plugin>
-			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -85,7 +82,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 					</execution>
 				</executions>
 			</plugin>
-			-->
 		</plugins>
 	</build>
 </project>
