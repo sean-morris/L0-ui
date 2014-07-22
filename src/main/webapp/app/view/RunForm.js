@@ -66,6 +66,7 @@ Ext.define('cc.view.RunForm', {
         store: this.scenariosStore,
         valueField: 'id',
         name: 'scenarioId',
+		anchor: '100%',
       },
       {
         xtype: 'button',

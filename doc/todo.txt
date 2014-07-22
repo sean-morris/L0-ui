@@ -1,7 +1,2 @@
-+ form for reports
-+ new calibration
-+ new plan
-+ new project
-+ save project
 + launch run
 + display network

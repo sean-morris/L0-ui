@@ -18,22 +18,26 @@ Ext.define('cc.view.PlanForm', {
       {
         xtype: 'textfield',
         fieldLabel: 'Name',
-        name: 'name'
+        name: 'name',
+		anchor: '100%',
       },
       {
         xtype: 'textareafield',
         fieldLabel: 'Description',
-        name: 'description'
+        name: 'description',
+		anchor: '100%',
       },
       {
         xtype: 'filefield',
         fieldLabel: 'Path',
-        name: 'path'
+        name: 'path',
+		anchor: '100%',
       },
       {
         xtype: 'button',
         text: 'Save Plan',
-        action: 'save'
+        action: 'save',
+		anchor: '100%',
       }
     ]
     this.callParent();

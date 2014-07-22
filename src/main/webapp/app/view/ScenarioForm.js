@@ -18,12 +18,14 @@ Ext.define('cc.view.ScenarioForm', {
       {
         xtype: 'textfield',
         fieldLabel: 'Name',
-        name: 'name'
+        name: 'name',
+		anchor: '100%',
       },
       {
         xtype: 'textfield',
         fieldLabel: 'Description',
-        name: 'description'
+        name: 'description',
+		anchor: '100%',
       },
       {
         xtype: 'combobox',
@@ -34,6 +36,7 @@ Ext.define('cc.view.ScenarioForm', {
         store: this.calStore,
         valueField: 'id',
         name: 'calibrationId',
+		anchor: '100%',
       },{
         xtype: 'combobox',
         id: 'combo-plan',
@@ -43,11 +46,13 @@ Ext.define('cc.view.ScenarioForm', {
         store: this.planStore,
         valueField: 'id',
         name: 'planId',
+		anchor: '100%',
       },
       {
         xtype: 'button',
         text: 'Save Scenario',
-        action: 'save'
+        action: 'save',
+		anchor: '100%',
       }
     ]
     this.callParent();
