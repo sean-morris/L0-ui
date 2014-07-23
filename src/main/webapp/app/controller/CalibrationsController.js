@@ -53,7 +53,9 @@ Ext.define('cc.controller.CalibrationsController', {
 	// tree ......................
     onNewCalibration: function(){
       if(this.isSavedAndClose()){
-        var f = Ext.widget("CalibrationForm");
+        var f = Ext.widget("CalibrationForm",{
+			title: "New Calibration",
+		});
         this.renderForm(f);
       }
     },

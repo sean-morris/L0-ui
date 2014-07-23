@@ -60,6 +60,7 @@ Ext.define('cc.controller.RunsController', {
     onNewRun: function(){
       if(this.isSavedAndClose()){
         var f = Ext.widget("RunForm", {
+            title: "New Run",
 			scenariosStore: this.getScenariosStore(),
 		});
         this.renderForm(f);
@@ -84,6 +85,7 @@ Ext.define('cc.controller.RunsController', {
         var f = Ext.widget("RunForm", {
           title: "Edit: " + record.data.name,
           model: record,
+		  scenariosStore: this.getScenariosStore(),
         });
         this.renderForm(f);
       }

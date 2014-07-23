@@ -53,7 +53,9 @@ Ext.define('cc.controller.PlansController', {
 	// tree ......................
     onNewPlan: function(){
       if(this.isSavedAndClose()){
-        var f = Ext.widget("PlanForm");
+        var f = Ext.widget("PlanForm",{
+			title: "New Plan",
+		});
         this.renderForm(f);
       }
     },
