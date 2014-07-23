@@ -33,7 +33,7 @@ Ext.define('cc.view.MainAppView', {
           id: 'nav-accordian',
           region:'west',
           floatable: false,
-          //margins: '5 0 5 5',
+          margins: '5 0 5 5',
           width: '20%',
           minWidth: 100,
           maxWidth: 250,
@@ -43,8 +43,8 @@ Ext.define('cc.view.MainAppView', {
           },
           defaults: {
             collapsed: true,
-            hideCollapseTool: false,
-            cls: 'nav-panels'
+            hideCollapseTool: true,
+            //cls: 'nav-panels'
           },
           items: cc.util.TreeNavigation.getPanelTitles()
         },
