@@ -11,21 +11,26 @@ Ext.define('cc.model.Run', {
     type: 'string'
   },{
     name: 'startTime',
-    type: 'date'
+    type: 'int',
+	defaultValue: 0
   },{
     name: 'endTime',
-    type: 'date'
+    type: 'int',
+	defaultValue: 86400
   },{
     name: 'dt',
-    type: 'int'
+    type: 'int',
+	defaultValue: 5
   },{
     name: 'ensembleSize',
-    type: 'int'
+    type: 'int',
+	defaultValue: 1
   },{
     name: 'scenarioId',
     type: 'int'
   },{
     name: 'alreadyRun',
-    type: 'boolean'
+    type: 'boolean',
+	defaultValue: false
   }]
 });

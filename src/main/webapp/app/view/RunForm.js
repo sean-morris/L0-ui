@@ -28,26 +28,26 @@ Ext.define('cc.view.RunForm', {
         anchor: '100%'
       },
       {
-        xtype: 'timefield',
-        fieldLabel: 'Start time',
+        xtype: 'textfield', //xtype: 'timefield',
+        fieldLabel: 'Start time [sec]',
         name: 'startTime',
-        minValue: '00:00 AM',
-        maxValue: '24:00 PM',
-        increment: 30,
+        //minValue: '00:00 AM',
+        //maxValue: '24:00 PM',
+        //increment: 30,
         anchor: '100%'
       },
       {
-        xtype: 'timefield',
-        fieldLabel: 'End time',
+        xtype: 'textfield', //xtype: 'timefield',
+        fieldLabel: 'End time [sec]',
         name: 'endTime',
-        minValue: '00:00 AM',
-        maxValue: '24:00 PM',
-        increment: 30,
+        //minValue: '10:01 AM',
+        //maxValue: '11:59 PM',
+        //increment: 1,
         anchor: '100%'
       },
       {
         xtype: 'textfield',
-        fieldLabel: 'Time step',
+        fieldLabel: 'Time step [sec]',
         name: 'dt',
         anchor: '100%'
       },

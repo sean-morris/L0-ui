@@ -23,10 +23,12 @@ Ext.define('cc.view.MenuBarPanel', {
             text: "Save Project",
             id: 'menu-save',
           },
+		  /*
           {
             xtype: 'menuitem',
             text: "Import Data",
           }
+		  */
         ]
       },
       {
@@ -66,6 +68,7 @@ Ext.define('cc.view.MenuBarPanel', {
           },
         ]
       },
+	  /*
       {
         xtype: 'splitbutton',
         text: 'Help',
@@ -88,5 +91,6 @@ Ext.define('cc.view.MenuBarPanel', {
           }
         ]
       },
+	  */
   ],
 });

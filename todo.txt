@@ -1,0 +1,8 @@
++ new project
++ display calibration/plan path
++ fix scenario:cal/plan combo
++ run form
+	+ end time should include midnight
+	+ launch run button
++ display completed runs in navigation
++ launch run
